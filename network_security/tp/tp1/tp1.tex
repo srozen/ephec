@@ -1,0 +1,95 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{listings}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in 
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\GroupeName}{4.6}
+\newcommand{\CourseAndAPP}{NetSec} % Course/APP
+\newcommand{\Date}{Septembre 2015}
+
+\title{
+\parbox{15cm}
+{ \includegraphics[width=4cm]{foxhound.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Sécurité des Réseaux - TP \\
+		\huge Cryptographie
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }} 
+\author{Monroe Samuel}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+
+	\section{Implémentation du Code de César}
+
+			La partie la plus difficile dans une implémentation brute-force, à mon avis, est le fait de savoir quel résultat est pertinant.\\
+			Dans ce cas-ci c'est assez simple, mais pour d'autres codages les possibilités peuvent être beaucoup plus nombreuses et selon ma méthode, prendraient beaucoup plus de temps à être analysées.\\
+
+			\lstinputlisting[language=Javascript]{tp1_cesar_code.js}
+
+
+	\section{John the Ripper}
+
+		\subsection{Shadow, Unshadow}
+
+			Le fichier de mots de passes que nous récupèrons sous Linux dans /etc/shadow est lié à l'utilitaire Shadow.\\
+
+			De base, les mots de passes hachés du système sont stockés à l'emplacement \textbf{/etc/passwd}, de fait ces informations
+			sont accessibles à quiconque aurait réussi à s'introduire sur la machine, et lui permettrait de tenter de les cracker.\\
+
+			Shadow permet de transposer ce fichier sous le nom \textbf{shadow} dans un emplacement accessibles uniquement en disposant des droits
+			de Root, ce qui réduit considérablement les risques d'accès à ce fichier sensible.\\
+			\textbf{Unshadow} permet de sortir de l'ombre ce fichier pour une quelconque raison, ici expérimenter sans entrave le programme John.\\
+
+		\subsection{Type de chiffrement}
+
+			Sur notre système CentOS 6, un \textbf{cat} du fichier shadow nous renseigne sur le type de mécanisme cryptographique utilisé pour hasher les mots de passes.\\
+			On retrouve en début de ligne des hash un signe \$ associé à un numéro, ici le 6, qui signifie l'utilisation de l'algorithme de hashage \textbf{SHA-512}.\\
+
+		\subsection{Mesures}
+
+			Les mots de passes dérivés du username sont trouvés presque \textbf{instantanément} en utilisant JTR de façon classique (trois modes successifs) ou via en spécifiant le mode simple.\\
+
+			La recherche via dictionnaire peut durer jusqu'à 45 minutes en utilisant le dictionnaire fourni sur CentOS.\\
+
+			La durée de la recherche incrémentale est directement liée à la complexité du mot de passe, plus celui-ci est long et varié en termes de caractères (alphanumériques, signes spéciaux, espaces), plus il est sûr.\\
+
+			On en concluera que les mots de passes dérivés du username sont les plus faibles, ceux tirés des mots courants sont aussi inutiles, les meilleurs mots de passes sont les plus complexes et les plus longs.\\
+
+\end{document}

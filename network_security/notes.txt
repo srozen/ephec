@@ -1,0 +1,27 @@
+#### 15/11/15 ####
+
+Brainstorming  :
+
+C'est quoi : Veiller à ce qu'un réseau (données et machines) ne soit accessible que par des personnes autorisées.
+
+Sert : à éviter vol de données sensibles, intrusions, dénis de services, actions mal intentionnées, garantir la stabilité du réseau et des services.
+
+Enjeux : Argent, sécurité physique du matériel, intégrité de données personelles, vie privée.
+
+Niveaux : Professionel, entreprises, particulier, données relatives à des clients, niveau interne et externe.
+
+5 points plus importants : données, argent, intégrité, intrusion, privacy.
+
+
+-- s20 --
+1)Identifier les avoirs et leur valeurs.
+Avoir : vulnérabilités, menaces, risque = probabilité x impact
+=> Classification des menaces
+
+2)Mise en place de contre-mesures
+Trade-off coût-bénéfice
+Prévention, détection, réaction, récupération
+Documenter les risques résiduels
+Prévoir la maintenance
+
+3) Validation

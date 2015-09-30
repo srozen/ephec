@@ -1,0 +1,139 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{hyperref}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in 
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\GroupeName}{4.6}
+\newcommand{\CourseAndAPP}{NetSec} % Course/APP
+\newcommand{\Date}{24 Septembre 2015}
+
+\title{
+\parbox{15cm}
+{ %\includegraphics[width=4cm]{fox.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Sécurité des Réseaux - TP2 \\
+		\huge Certificats
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }} 
+\author{Monroe Samuel}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+
+	\section{Préambule}
+
+		Ce tp a été réalisé sous environnement Mac OS X 10.10, disposant d'OpenSSL v.0.9.8zg 14 July 2015.\\
+
+	\section{Création d'une paire de clé publique/privée}
+
+		\subsection{Création de la clé}
+
+			Le format \textbf{PEM} est le format standard pour OpenSSL et d'autres outils SSL, c'est un format destiné à être inclus facilement dans d'autres documents ASCII ou plus riches, ce qui permet le copier-coller de son contenu d'un fichier PEM dans un autre document, et inversément.\\
+
+			Un rapport Européen de 2013 sur les recommandations en termes d'Algorithmes et de Longeurs de Clés stipule qu'une bonne longueur de clé RSA à moyen terme devrait être de \textbf{3096 bits}, et à long terme de \textbf{15360 bits}.\\
+			Le document est disponible via ce \href{http://www.enisa.europa.eu/activities/identity-and-trust/library/deliverables/algorithms-key-sizes-and-parameters-report/at_download/fullReport}{lien}.\\
+
+		\subsection{Visualisation de la clé}
+
+			\begin{itemize}
+				\item \textbf{-in <arg>} : Spécifie le fichier en input
+				\item \textbf{-text} : Imprime la clé en texte dans la console
+				\item \textbf{-noout} : N'imprime pas la clé en tant que telle dans la console
+			\end{itemize}
+
+		\subsection{Chiffrement de la clé}
+
+			Le nouveau fichier créé avec -des3 contient la clé chiffrée et donc illisible via un simple \textbf{cat}, il est nécéssaire de passer par la commande \textbf{rsa} pour que le prompt nous demande la clé privée (mot de passe entré au chiffrement), afin de pouvoir lire cette clé.\\
+
+		\subsection{Extraction de la clé publique}
+
+			Le cat de la clé publique donne une séquence plus petite de caractères au niveau de la console.\\
+
+	\section{Chiffrement Déchiffrement avec RSA}
+
+		La signature numérique générée avec la clé privée est bien identique avec celle obtenue via la clé publique lors de la vérification.\\
+
+		\includegraphics[width=4cm]{fox.png}
+
+	\section{Création d'un Certificats}
+
+		Le certificat créé comporte les informations demandées lors de sa création, plus une séquence chiffré similaire aux clés.
+
+		\includegraphics[width=4cm]{fox.png}
+
+	\section{Caractéristiques du CA}
+
+		Le \textbf{cat} du Certificat n'affiche qu'une séquence chiffrée de caractère, tandis que la commande \textbf{x509} de OpenSSL nous affiche les informations complètes du certificat.\\
+
+		Le certificat est \textbf{valide} entre le 5 Mai 2011 à 7h1m10s GMT et le 13 Juin 2015 à 7h1m10s GMT.\\
+
+		La clé fait 2048 bits.\\
+
+		\includegraphics[width=4cm]{fox.png}
+
+	\section{Signature du CA par le certificat}
+
+		Notre certificat possède bien le CA du pereUbu en plus des options souhaitées, telles la validité 10 jours.\\
+
+		\includegraphics[width=4cm]{fox.png}
+
+	\section{Vérification du certificat}
+
+		Un erreur est présente dans la vérification de la validité, la date de validité du CA est dépassée.\\
+
+		\includegraphics[width=4cm]{fox.png}
+
+	\section{Pour aller plus loin}
+
+		Le certificat va être utile au site Web pour prouver notre identité et éviter par exemple un risque de phishing au client, ainsi que d'assurer une confidentialité aux données qui transitent via SSL.\\
+		La présence de ce certificat établi également une relation de confiance vis-à-vis du client, dans un cadre de vente en ligne, une plus grande confiance du client pourra amener plus d'achats par exemple.\\
+
+		\subsection{Mettre en place le certificat sur Apache}
+
+			Il faut d'abord activer le module SSL sur apache.\\
+			Ensuite, faire en sorte qu'Apache écoute sur le port 443 (HTTPS).\\
+
+			Il faut également indiquer au serveur Web où trouver nos certificats.
+
+		\subsection{Faire accepter le certificat par les cliens Webs}
+
+			Le certificat doit être reconnu par des autorités de certifications reconnues.\\
+		
+
+\end{document}

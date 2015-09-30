@@ -1,0 +1,4 @@
+[ x509_ext ]
+subjectAltName		= email:copy
+basicConstraints        = CA:false,pathlen:0
+extendedKeyUsage	= emailProtection 

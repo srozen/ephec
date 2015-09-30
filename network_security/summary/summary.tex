@@ -1,0 +1,160 @@
+\documentclass{report}
+\usepackage{filecontents}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{listings}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage[toc, page]{appendix}
+\usepackage{url}
+
+\definecolor{xcodekw}{rgb}{0.75, 0.22, 0.60}
+\definecolor{xcodestr}{rgb}{0.89, 0.27, 0.30}
+\definecolor{xcodecmt}{rgb}{0.31, 0.73, 0.35}
+
+\titleformat{\chapter}[display]
+  {\centering\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+
+\geometry{hscale=0.75,vscale=0.85,centering}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand\appendixtocname{Annexes}
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
+
+\title{Sécurité des Réseaux Informatiques\\\includegraphics[scale=0.3]{foxhound.png}}
+\author{Samuel "Big Boss" \bsc{Monroe}}
+
+\date{30 Mai 2015}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\tableofcontents
+
+%% \textbf{}
+
+\chapter{Avant-propos}
+
+	Ceci ne consitue pas une synthèse, mais plutôt une oeuvre composée de mes notes prises en cours, et de la réunion du syllabus de V.Van den Schrieck ainsi que du livre Computer Security de Stallings.\\
+
+	Le but est d'obtenir une compréhension totale du cours à la première lecture et d'offrir aux membres de Fox Hound les compétences qui sont attendues d'eux, afin de pouvoir pérenniser ce groupe et ses objectifs.\\
+
+\chapter{Généralités}
+
+	\section{Exercices}
+
+		\subsection{Questions de révision}
+
+			\begin{itemize}
+
+				\item \textbf{Définition de la sécurité informatique : } \\
+
+				Protection fournie à un système d'information automatisé pour atteindre les objectifs de préservation de CIA (Confidentiality, Integrity, Availability) des ressources du système d'information (matériels, logiciels, firmwares, données, télécommunications).\\
+
+				\item \textbf{Différence entre attaques passives et actives : }\\
+
+				\textbf{Active : } L'attaque essaie d'altérer le système et ses opérations.\\
+				\textbf{Passive :} L'attaquant essaie d'obtenir ou d'utiliser les informations du système sans affecter les ressources.\\
+
+				\item \textbf{Listez et définissez brièvement des attaques actives et passives :}\\
+
+					\begin{itemize}
+
+						\item \textbf{Man in the Middle - Passive} : Attaque ayant pour but d'intercepter les communications entre deux parties sans que ni l'un ni l'autre ne puissent se douter que le canal de communication est compromis.\\
+
+						\item \textbf{Keylogger - Passive} : Type de spyware spécialisé pour espionner les frappes clavier sur l'ordinateur hôte, et pour les transmettre via internet à un pirate pour qu'il les exploite.\\
+
+						\item \tetxbf{Injections SQL - Actif(Passif)} : Type d'exploitation d'une faille de sécurité d'une application interagissant avec une base de données, en injectant une requête SQL non prévue par le système et pouvant compromettre sa sécurité.\\
+
+						\item \textbf{Phishing - Passive} : Technique utilisée par des fraudeurs pour obtenir des renseignements personnels dans le but de perpétrer une usurpation d'identité, ou d'utiliser malicieusement ces informations personnelles (vols d'informations bancaires).\\
+
+						\item \textbf{Denial Of Service - Actif} : Attaque informatique ayant pour but d'empêcher les utilisateurs légitimes d'un service de l'utiliser : Innondation d'un réseau, obstruction d'accès à un service à une personne donnée, envoi de milliards d'octets vers une cible.\\
+
+					\end{itemize}
+
+				\item \textbf{Etapes de mise en place d'une stratégie de sécurité informatique :}\\
+
+					\begin{enumerate}
+
+						\item \textbf{Définir} la politique de sécurité, définir ce que le mécanisme doit faire.\\
+						\item \textbf{Implémenter} cette politique, quels mécanismes mettre en place.\\
+						Analyser le \textbf{Trade-off} (Coût/Bénéfice), prévention, détection, réaction et récupération, documenter les risques résiduels et assurer la maintenance.\\
+						\item \textbf{Valider} cette politique, s'assurer que le mécanisme fonctionne.\\
+
+					\end{enumerate}
+
+				\item \textbf{Selon quels critères va-t-on sélectionner les contre-mesures à appliquer dans le cadre d'une politique de sécurité informatique?}\\
+
+					\begin{itemize}
+						\item Le premier choix à faire est un compromis entre la facilité d'utilisation et la sécurité.\\
+						\item Deuxièment, il faut évaluer le coût que représenteraient une contre-mesure par rapport aux coût des pertes éventuelles et de la procédure de récupération.\\
+					\end{itemize}
+
+			\end{itemize}
+
+	\section{Questions de réflexion}
+
+		\subsection{Exigences d'un distributeur de billets en termes CIA}
+
+			\begin{enumerate}
+				\item \textbf{Availability : } Exigence basse, l'indisponibilité du service représenterait au pire un dérangement minimal pour l'utilisateur, car il peut toujours payer ses achats avec sa carte en magasin, manipuler son compte via e-banking, ou éventuellement aller retirer son argent dans un autre ATM d'une autre banque.\\
+				\item \textbf{Integrity : } Exigence haute, car une erreur de données au niveau du retrait ou du dépôt de billets pourrait être catastrophique pour l'utilisateur, par exemple si son compte était débité de 500 euros pour un retrait de 50.\\
+				L'inverse est valable pour la banque elle-même, dans un cas où les utilisateurs recevraient beaucoup plus que le montant demandé.\\
+				\item \textbf{Confidentiality : } Exigence haute, une faille dans la confidentialité serait catastrophique si quelqu'un de mal intentionné pouvait avoir accès au compte de l'utilisateur.\\
+				Cette faille aurait aussi un impact considérable sur la réputation de la banque.\\
+			\end{enumerate}
+
+		\subsection{Impact d'attaques en termes de CIA sur : }
+
+			\begin{itemize}
+				\item \textbf{Organisation avec mise à disposition d'info publiques sur son serveur Web : }\\
+					\begin{enumerate}
+						\item C : Documents publiques, pas de réel impact puisque disponibles pour tout le monde.
+						\item I : Impact faible, les documents étant publiques, un impact sur l'intégrité pourrait gêner les utilisateurs et les possesseurs.\\
+						\item A : Impact faible à modéré, tout dépend de l'utilité de ces documents au public, mais si ces données sont publiques c'est qu'elles sont probablement de moindre importance et leur indisponibilité serait au pire gênante pour l'utilisateur.\\
+					\end{enumerate}
+				\item \textbf{Organisation policière, données exrêmement sensibles pour investigations : }\\
+					\begin{enumerate}
+						\item C : Les documents étant extrêmement sensibles, l'impact est élevé, toute divulgation pourrait nuire grandement au bon déroulement des enquêtes avec toutes les conséquences que cela entraînerait.\\
+						\item I : Leur intégrité est primordiale, pour les mêmes raisons que sus-mentionnées.\\
+						\item A : Leur indisponibilité pourrait avoir au pire un impact modéré, tout dépend des échéances de l'enquête.\\
+					\end{enumerate}
+				\item \textbf{Organisation financière, information administrative de routine : }\\
+					\begin{enumerate}
+						\item C : Impact modéré, ces informations étant de routines, on peut envisager que leur divulgation serait au pire assez gênante pour l'organisation, mais pas au point de pouvoir mettre en péril ses activités.\\
+						\item I : Impact élevé, même si ces informations sont de routines, des erreurs dans ces informations pourraient mener à des chiffres non justes dans les calculs finaux de l'organisation, l'intégrité doit être assurée absolument.\\
+						\item A : Impact modéré-élevé : Si ces informations sont dites "de routine", on peut estimer que leur indisponibilité empêcherait le fonctionnement en temps réel de l'organisation sur certains secteurs, situation qui pourrait être dommageable pour celle-ci.\\
+					\end{enumerate}
+				\item \textbf{Système SCADA - Organisation militaire}
+					\begin{enumerate}
+						\item C : Impact faible pour les informations de routine, tandis qu'une faille dans la confidentialité des informations de senseurs pourraient avoir un impact élevé si exploités par une nation ennemie ou un groupe terroriste.\\
+						\item I : Impact faible pour les informations de routine, probablement élevés pour celles de senseurs.\\
+						\item A : Impact faible pour informations de routine, élevés pour celles de senseurs.\\
+					\end{enumerate}
+			\end{itemize}
+
+		\subsection{Activités considérées comme menace potentielle pour le réseau d'une entreprise, et pourquoi? : }\\
+			\begin{itemize}
+				\item \textbf{Employé responsable de la distribution interne du courrier : } Menace potentielle, cet employé pourrait par exemple détourner le courrier à destination des supérieurs, ou à destination de certains secteurs sensibles de l'entreprise.\\
+				\item \tetxbf{Anciens employés licenciés pour cause de restructuration : } Certains pouvant sans doutes êtres rancuniers vis-à-vis de la situation vécue, ils pourraient éventuellement essayer de se servir de leurs anciens logins pour causer du tort à l'entreprise, récupèrer des documents sensibles, etc...
+				\item \tetxbf{Employé en voyage d'affaire : } Divulgation d'informations sensibles au cours d'une soirée arrosée.\\
+				\item \textbf{Compagnie de gestion des bâtiments : } Les système d'extinction automatiques étant contrôlés par cette compagnie, et pas par l'entreprise, on ne connaît pas le niveau de sécurité de leur système informatique et de leur système de contrôle à distance, quelqu'un ayant accès à cette compagnie pourrait activer ces extincteurs, voir les désactiver.\\
+			\end{itemize}
+
+\end{document}
+
+
