@@ -1,0 +1,79 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in 
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\GroupeName}{4.6}
+\newcommand{\CourseAndAPP}{NetSec} % Course/APP
+\newcommand{\Date}{24 Septembre 2015}
+
+\title{
+\parbox{15cm}
+{ %\includegraphics[width=4cm]{fox.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Sécurité des Réseaux - TP4 \\
+		\huge Injections SQL
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }} 
+\author{Monroe Samuel}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+
+	\section{Préambule}
+
+		Ce tp est réalisé avec l'image Debian 2.6.32 fournie sur le site de Pentesterlab.
+
+	\section{Fingerprinting}
+
+		Le hostname ne fonctionnant pas, j'ai lancé le telnet sur 127.0.0.1 port 80.\\
+
+		La requête \textbf{GET} indique effectivement que le serveur tourne sous Apache 2.2.6 avec PHP 5.3.3.\\
+
+	\section{Détection et exploitation d'injections SQL}
+
+		\subsection{Détection sur les entiers}
+
+			La manipulation des entiers dans l'url peut mettre en lumière une faille sur la façon dont ils sont traités.\\
+			Dans ce cas-ci, on remarque qu'en tappant \textbf{?id=2-1} dans l'url, PHP traite cette valeur comme une soustraction et nous affiche la page correspondant à \textbf{?id=1}.\\
+
+			
+		
+		
