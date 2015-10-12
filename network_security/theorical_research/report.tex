@@ -1,0 +1,73 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in 
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\GroupeName}{4.6}
+\newcommand{\CourseAndAPP}{NetSec} % Course/APP
+\newcommand{\Date}{24 Septembre 2015}
+
+\title{
+\parbox{15cm}
+{ %\includegraphics[width=4cm]{fox.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Sécurité des Réseaux \\
+		\huge Hardening d'un VPS Web
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }} 
+\author{Monroe Samuel}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+
+	\section{Introduction}
+
+		Ce document vous donnera une description du sujet de ma recherche théorique dans le cadre du cours de sécurité des réseaux, donné par Mme. Van Den Schrieck.\\
+
+	\section{Description du Sujet}
+
+		Ma recherche théorique portera sur le \textbf{hardening} d'un VPS.\\
+
+		Ce VPS est un serveur virtuel hébergé dans le cloud par un fournisseur de services de ce type (DigitalOcean, OVH).\\
+		Ce serveur tournera sous un OS Linux ou BDS, qui lui-même fera tourner un serveur Web hébergant un site web dynamique de vente en ligne de packs pour faire des hackathons chez soi. Il y aura donc également une base de données qui tournera sur ce serveur.\\
+
+		Le VPS sera donc administré à distance par le chef de projet, et celui-ci étant étudiant, son projet sera versionné sur un repo GitHub privé.\\
+
+\end{document}
