@@ -150,8 +150,8 @@
 		\subsection{Activités considérées comme menace potentielle pour le réseau d'une entreprise, et pourquoi? : }\\
 			\begin{itemize}
 				\item \textbf{Employé responsable de la distribution interne du courrier : } Menace potentielle, cet employé pourrait par exemple détourner le courrier à destination des supérieurs, ou à destination de certains secteurs sensibles de l'entreprise.\\
-				\item \tetxbf{Anciens employés licenciés pour cause de restructuration : } Certains pouvant sans doutes êtres rancuniers vis-à-vis de la situation vécue, ils pourraient éventuellement essayer de se servir de leurs anciens logins pour causer du tort à l'entreprise, récupèrer des documents sensibles, etc...
-				\item \tetxbf{Employé en voyage d'affaire : } Divulgation d'informations sensibles au cours d'une soirée arrosée.\\
+				\item \textbf{Anciens employés licenciés pour cause de restructuration : } Certains pouvant sans doutes êtres rancuniers vis-à-vis de la situation vécue, ils pourraient éventuellement essayer de se servir de leurs anciens logins pour causer du tort à l'entreprise, récupèrer des documents sensibles, etc...
+				\item \textbf{Employé en voyage d'affaire : } Divulgation d'informations sensibles au cours d'une soirée arrosée.\\
 				\item \textbf{Compagnie de gestion des bâtiments : } Les système d'extinction automatiques étant contrôlés par cette compagnie, et pas par l'entreprise, on ne connaît pas le niveau de sécurité de leur système informatique et de leur système de contrôle à distance, quelqu'un ayant accès à cette compagnie pourrait activer ces extincteurs, voir les désactiver.\\
 			\end{itemize}
 
@@ -166,23 +166,92 @@
 		\subsection{Questions de révision}
 
 			\begin{itemize}
-				\item \textbf{Quels sont les éléments intervenants dans un chiffrement symétrique ?}
-				\item \textbf{Combien de clés faut-il pour que deux personnes puissent communiquer par chiffrement symétrique ?}
-				\item \textbf{Quelles sont les deux contraintes principales pour garantir la sécurité du chiffrement symétrique ?}
-				\item \textbf{Listez les trois approches permettant de faire de l'authentification de messages :}
-				\item \textbf{Quels sont les éléments intervenant dans un chiffrement asymétrique ?}
-				\item \textbf{Listez et expliquez brièvement trois utilisations d'un cryptosystème à clé publique}
-				\item \textbf{Quelle est la différence entre une clé publique et une clé secrète ?}
-				\item \textbf{Qu'est-ce qu'une signature numérique ?}
-				\item \textbf{Qu'est-ce qu'un certificat de clé publique ?}
-				\item \textbf{Comment le chiffrement à clé publique peut-il être utilisé pour distribuer une clé secrète?}
-				\item \textbf{Faites un schéma expliquant le mécanisme d'enveloppe numérique}
+				\item \textbf{Quels sont les éléments intervenants dans un chiffrement symétrique ?} \\
+
+					\begin{enumerate}
+						\item Le message en clair
+						\item L'algorithme de chiffrement
+						\item Une clé secrète appliquée à l'algorithme
+						\item Le message chiffré
+						\item L'algorithme de déchiffrement
+					\end{enumerate}
+
+				\item \textbf{Combien de clés faut-il pour que deux personnes puissent communiquer par chiffrement symétrique ?}\\
+
+					Il suffit d'une clé, qui est partagée entre les deux entités communiquantes.\\
+
+				\item \textbf{Quelles sont les deux contraintes principales pour garantir la sécurité du chiffrement symétrique ?}\\
+
+					\begin{enumerate}
+						\item Un algorithme de chiffrement fort
+						\item L'émetteur et le reçeveur doivent avoir obtenu leur copie de clé de manière sécurisée\\
+					\end{enumerate}
+
+				\item \textbf{Listez les trois approches permettant de faire de l'authentification de messages :}\\
+
+					\begin{enumerate}
+						\item Le chiffrement des messages via le chiffrement symétrique
+						\item Ajout d'un tag en fin de message (MAC) calculé via clé symétrique
+						\item Ajout d'un tag via hashage unidirectionnel (signature digitale), plus besoin de clés partagées\\
+					\end{enumerate}
+
+				\item \textbf{Quels sont les éléments intervenant dans un chiffrement asymétrique ?}\\
+
+					\begin{itemize}
+						\item Le message en clair
+						\item L'algorithme de chiffrement
+						\item Une clé publique et une clé privée, une pour chiffrer et l'autre déchiffrer
+						\item Le message chiffré
+						\item L'algorithme de déchiffrement\\
+					\end{itemize}
+
+				\item \textbf{Listez et expliquez brièvement trois utilisations d'un cryptosystème à clé publique}\\
+
+					\begin{enumerate}
+						\item La signature numérique : On génère le tag qui prouve la validité du message et on le chiffre avec la clé secrète, le receveur regénère ce tag avec sa propre fonction et vérifié le tag reçu en le déchiffrant avec la clé publique.
+						\item La distribution de clés symétriques : Si deux entités veulent se communiquer une clé secrète, Alice chiffre la clé secrète à partager avec la clé publique de Bob, Bob reçoit cette clé secrète et la déchiffre avec sa clé privée.
+						\item Le chiffrement de clé secrète : Afin de ne pas avoir sa clé secète en clair dans ses fichiers, Bob peut la chiffrer avec une autre clé publique.\\
+					\end{enumerate}
+
+				\item \textbf{Quelle est la différence entre une clé privée et une clé secrète ?}\\
+
+					La clé privée fait partie du système de chiffrement asymétrique, elle est utilisable pour déchiffrer des messages chiffrés avec la clé publique qui lui est paire, tandis que la clé secrète est conçue pour chiffrer \textbf{et} déchiffrer un même message.\\
+
+				\item \textbf{Qu'est-ce qu'une signature numérique ?}\\
+
+					C'est un tag ajouté au message afin de prouvé sa validité, il est généré en calculant une valeur \textbf{hashée} du message, en chiffrant ce hash avec sa clé privée.\\
+					Ce hash chiffré accompagnera le message, sera déchiffrable en utilisant la clé publique de l'émetteur.\\
+					Le hash déchiffré sera comparé à un hash généré côté émetteur, leur correspondance prouvera que le message n'a pas été altéré.\\
+
+				\item \textbf{Qu'est-ce qu'un certificat de clé publique ?}\\
+
+					C'est un certificat géré par une Autorité Certificative qui est composé de l'identifiant d'un tiers et de sa clé publique, et prouve son identité. Cela évite l'utilisation par masquarade d'une clé publique de quelqu'un d'autre.\\
+
+				\item \textbf{Comment le chiffrement à clé publique peut-il être utilisé pour distribuer une clé secrète?}\\
+
+					Alice chiffre la clé secrète avec la clé publique de Bob, Bob reçoit le message chiffré, lui seul peut le déchiffrer avec sa clé privée.\\
+					Bob et Alice possèdent maintenant tous deux la clé privée.\\
+
+				\item \textbf{Faites un schéma expliquant le mécanisme d'enveloppe numérique}\\
+
+					\textbf{TODO}
+
 			\end{itemize}
 
 		\subsection{Questions de réflexion}
 
 			\begin{enumerate}
-				\item
+				\item \textbf{On cherche un moyen de s’assurer que vous et une autre personne êtes en possession de la même clé secrète, sans transmettre cette clé. On vous propose de créer une chaîne de bits aléatoire ayant la longueur de la clé, d’effectuer un XOR entre cette chaîne et la clé secrète, puis d’envoyer le résultat à l’autre personne. Cette dernière effectue un XOR entre ce qu’il a reçu et sa clé secrète et renvoie le résultat. Vous pouvez alors vérifier que la chaine renvoyée correspond bien à la chaîne aléatoire que vous avez générée pour vous assurer que votre correspondant possède bien la même clé que vous. Que pensez-vous de la sécurité de ce mécanisme ?}\\
+
+					Ce n'est pas sécurisé, en faisant un XOR des deux messages qui transitent entre les deux entités, on retrouve la clé secrète.\\
+
+				\item \textbf{Comment pourrait-on ajouter un mécanisme d’authentification au système d’enveloppe numérique ? Faites un schéma.}\\
+
+					Génération de deux signatures digitales. \textbf{TODO}
+
+					Génération d'une signature digitale sur l'enveloppe elle-même.
+
+
 			\end{enumerate}
 
 \chapter{Authentification de l'utilisateur}
@@ -192,19 +261,83 @@
 		\subsection{Questions de révision}
 
 			\begin{itemize}
-				\item \textbf{Décrivez en termes généraux quatres moyens pour authentifier l'identité d'un utilisateur}
-				\item \textbf{Listez et décrivez brièvement les menaces principales au secret des mots de passe}
-				\item \textbf{Comment peut-on protéger un fichier de mot de passe? Pourquoi est-ce important?}
-				\item \textbf{Listez et décrivez brièvement quatre techniques qui permettent de garantir que les mots de passes d'un système sont sécurisés}
-				\item \textbf{Quelle est la différence entre une carte à mémoire et une smart card ?}
-				\item \textbf{Listez les principales caractéristiques physiques utilisées pour l'authentification biométrique}
+				\item \textbf{Décrivez en termes généraux quatres moyens pour authentifier l'identité d'un utilisateur}\\
+
+					\begin{enumerate}
+						\item L'identification par mots de passes
+						\item Token
+						\item Biométrique
+						\item A distance\\
+					\end{enumerate}
+
+				\item \textbf{Listez et décrivez brièvement les menaces principales au secret des mots de passe}\\
+
+					\begin{itemize}
+						\item Attaque par dictionnaire hors-ligne : Accès au fichier mot de passe, craquage brute-force sur ce fichier (John The Ripper).
+						\item Attaque sur un compte spécifique : Essais de combinaisons de logins/mot de passe.
+						\item Attaque par mot de passe populaire : Essai de logins avec les mots de passes fréquemments utilisés.
+						\item Piratage du poste de travail
+						\item Social Engeneering
+						\item Exploitation de l'usage multiple d'un mot de passe
+						\item Surveillance électronique\\
+					\end{itemize}
+
+				\item \textbf{Comment peut-on protéger un fichier de mot de passe? Pourquoi est-ce important?}\\
+
+					Premièrement via le hashage - salage des mots de passes, et ensuite en les stockant dans un fichier \textbf{shadow} situé dans les fichiers root, qui nécéssitent donc des droits d'administrations pour être accédés.\\
+					C'est important car un fichier de mots de passes peut-être utilisé avec un cracker dictionnaire pour en déloger les mots de passes hashés.\\
+
+				\item \textbf{Listez et décrivez brièvement quatre techniques qui permettent de garantir que les mots de passes d'un système sont sécurisés}\\
+
+					\begin{enumerate}
+						\item Sensibilisation des utilisateurs
+						\item Génération automatiques des mots de passes
+						\item Vérification des mots de passes
+						\item Vérification proactive des mots de passes\\
+					\end{enumerate}
+
+				\item \textbf{Quelle est la différence entre une carte à mémoire et une smart card ?}\\
+
+					Carte-mémoire : 
+					\begin{itemize}
+						\item Nécéssitent lecteur spécial
+						\item Associé à un code
+						\item Perte du token signifie risque de sécurité\\
+					\end{itemize}
+
+					Smart-Card :
+					\begin{itemize}
+						\item La plupart du temps générent un identifiant pour accèder au système, le token n'est donc pas l'objet direct d'authentification
+						\item La perte de la smart-card n'implique pas de risques de sécurité\\
+					\end{itemize}
+
+				\item \textbf{Listez les principales caractéristiques physiques utilisées pour l'authentification biométrique}\\
+
+					\begin{enumerate}
+						\item Reconnaissance faciale
+						\item Empreintes digitales
+						\item Géométrie de la main
+						\item Empreinte rétinienne
+						\item Iris
+						\item Signature manuscrite
+						\item La voix\\
+					\end{enumerate}
+
 			\end{itemize}
 				
 
 		\subsection{Questions de réflexion}
 
 			\begin{enumerate}
-				\item 
+				\item \textbf{Discutez de l'adéquation des mots de passes suivants :}\\
+					\begin{itemize}
+						\item 1-EBL-345 : Chiffres, lettres et caractères spéciaux, bon niveau
+						\item mfmitm : Peu et niquement lettres bien que pas dans un dictionnaire, faible niveau
+						\item Nathalie1 : Prénom + chiffre, très faible niveau
+						\item Whashington : Variation d'un nom connu, faible niveau
+						\item Aristotle : Nom connu tel quel, très très faible niveau
+						\item tv9stove : Niveau moyen, pas de sens et présence de chiffres
+					\end{itemize}
 			\end{enumerate}
 
 \chapter{Contrôle d'accès}
@@ -213,22 +346,81 @@
 
 		\subsection{Questions de révision}
 			\begin{itemize}
-				\item \textbf{Expliquez le modèle AAA}
-				\item \textbf{Quelles sont les différences entre le modèle DAC, MAC, et RBAC? Donnez un exemple d'utilisation}
-				\item \textbf{Quelle est la différence entre un sujet et un objet dans le contrôle d'accès?}
-				\item \textbf{Listez quelques droits d'accès possibles}
-				\item \textbf{Expliquez que sont les bits Sticky, SetUID et SetGID dans le système de contrôle d'accès Unix classique.}
-				\item \textbf{Expliquez les droits d'accès Read, Write et Execute dans le cas d'un répertoire}
-				\item \textbf{En quoi est-ce que le bit SetUID peut éventuellement poser problème?}
-				\item \textbf{Expliquez brièvement ce que les Access Lists apportent par rapport au système de contrôle d'accès classique Unix}
-				\item \textbf{Donnez et expliquez trois bonnes pratiques dans le cadre du contrôle d'accès}	
+				\item \textbf{Expliquez le modèle AAA}\\
+
+					Protocole de contrôle d'accès : \\
+
+					\begin{itemize}
+						\item \textbf{Authentication} : Vérification de la validité des éléments prouvant l'identité d'une personne ou d'une entité système.
+						\item \textbf{Authorization} : Vérifier si la personne identifiée bénéficie des autorisations requises pour accéder au système.
+						\item \textbf{Accounting} : Surveillance des accès aux ressources, logs, ...\\
+					\end{itemize}
+
+				\item \textbf{Quelles sont les différences entre le modèle DAC, MAC, et RBAC? Donnez un exemple d'utilisation}\\
+
+					\begin{itemize}
+						\item \textbf{Discretionary Access Control} : Contrôle d'accès basé sur des règles fixant quels demandeurs sont ou non autorisés à effectué une action, discretionnaire car une entité peut transmettre ses droits. (SQL)
+						\item \textbf{Mandatory Access Control} : Contrôle d'accès basé sur le niveau de confidentialité (documents secrets, top secrets) qui est comparé aux droits d'accès du demandeur d'accès. Mandatoire car ces droits ne sont pas transmissibles.
+						\item \textbf{Role Based Access Control} : Droits d'accès définis pour des catégories d'utilisateurs.\\
+					\end{itemize}
+
+				\item \textbf{Quelle est la différence entre un sujet et un objet dans le contrôle d'accès?}\\
+
+					\begin{itemize}
+						\item \textbf{Sujet : } Entité pouvant accéder à des objets.
+						\item \textbf{Objet : } Ressource dont l'accès est contrôlé.
+					\end{itemize}
+
+				\item \textbf{Listez quelques droits d'accès possibles}\\
+
+					\begin{itemize}
+						\item Lecture
+						\item Ecriture
+						\item Exécution
+						\item Suppression
+						\item Création
+						\item Recherche
+					\end{itemize}
+
+				\item \textbf{Expliquez que sont les bits Sticky, SetUID et SetGID dans le système de contrôle d'accès Unix classique.}\\
+
+					\begin{itemize}
+						\item \textbf{Sticky Bit : } Indique que seul le propriétaire d'un fichier du répertoire peut renommer, déplacer ou supprimer ce fichier.
+						\item \textbf{SetGID : } Indique que les fichiers nouvellement créés seront associés au GID de ce répertoire.
+						\item \textbf{SetUID : } Lorsqu'un utilisateur possédant les droits d'exec sur un fichier l'exécute, on lui attribue temporairement les droits du user créateur du fichier.\\
+					\end{itemize}
+
+				\item \textbf{Expliquez les droits d'accès Read, Write et Execute dans le cas d'un répertoire}\\
+
+					\begin{itemize}
+						\item \textbf{Read : } Droit de listing
+						\item \textbf{Write : } Droit de création, renommage, suppresion de fichiers
+						\item \textbf{Execute : } Droits de recherche ou de traverser le dossier
+					\end{itemize}
+
+				\item \textbf{En quoi est-ce que le bit SetUID peut éventuellement poser problème?}\\
+
+					Mettre un fichier et surtout un programme en Setuid ou Setgid n'est pas anodin car cela court-circuite le système de protection. Ainsi si vous tapez chmod ug+s /bin/bash vous donnez les droits root à toute personne qui ouvre un terminal ou qui lance l'interpréteur de commande bash. \textit{Wikipédia : Setuid}
+
+				\item \textbf{Expliquez brièvement ce que les Access Lists apportent par rapport au système de contrôle d'accès classique Unix}\\
+
+					Le découpage des droits ne se fait plus sur les groupes mais sur les utilisateurs mêmes, une liste données donne tels drois pour tels fichiers à tels users.\\
+
+				\item \textbf{Donnez et expliquez trois bonnes pratiques dans le cadre du contrôle d'accès}	\\
+
+					\begin{itemize}
+						\item Interdire l'accès aux utilisateurs non authentifiés
+						\item Désactiver les services inutiles
+						\item Retirer immédiatement les comptes des personnes qui quittent la société
+						\item Bloquer l'accès si trop d'essais infructueux
+					\end{itemize}
 			\end{itemize}
 				
 
 		\subsection{Questions de réflexion}
 
 			\begin{enumerate}
-				\item 
+				\item \textbf{TODO}
 			\end{enumerate}
 
 \chapter{Sécurité des DB \& Cloud Computing}
@@ -239,18 +431,44 @@
 
 			\begin{itemize}
 				\item \textbf{Expliquez le concept d'autorisation en cascade}
+
+					Si Alice donne à Bob ses droits, Bob peut également les donner à Charlie, qui peut ensuite en donner à Daryl.\\
+					Si maintenant on décide de retirer les droits accordés à Bob par Alice, ce retrait va se faire en cascade et Charlie et Daryl vont perdre les droits qu'Alice avait légués par Bob et que lui-même leur avait légué.\\
+
 				\item \textbf{Expliquez l'injection SQL par tautologie}
+
+					On fait en sorte de modifier la requête pour y injecter une condition toujours vraie pour passer outre la vérification de mots de passe.\\
+
 				\item \textbf{Expliquez la menace d'inférence sur une base de données}
+
+					L'attaquant observe la manière dont le système réagit à l'attaque pour en déduire des informations sur son comportement, en essayant par exemple d'afficher des messages d'erreurs trop descriptifs, ou insérant des requêtes SQL à l'aveugle.\\
+
 				\item \textbf{Quels sont les désavantages du chiffrement d'une base de données?}
+
+					Gestion des clés complexes, complexifie et ralenti le process de la base de données (qu'on veut rapide la plupart du temps).
+
 				\item \textbf{Listez et décrivez brièvement les trois modèles du service Cloud}
+
+					\begin{itemize}
+						\item \textbf{Software As A Service : } Application logicielle disponible dans le cloud, telle que le client mail GMail
+						\item \textbf{Platform As A Service : } Plateforme sur laquelle une organisation peut développer et faire tourer ses propres applications, telle Google App Engine.
+						\item \textbf{Infrastructure As A Service : } La ressource est matérielle (machines + OS) contrôlables via une API, tels Windows Azure, DigitalOcean.\\
+					\end{itemize}
+
 				\item \textbf{Décrivez trois menaces de sécurité spécifiques au cloud}
+
+					\begin{itemize}
+						\item Abus et usage malicieux du Cloud, création d'un botnet de machines dans le cloud.
+						\item Interfaces et API non sécurisées.
+						\item Pertes ou fuites des données.\\
+					\end{itemize}
 			\end{itemize}
 			
 
 		\subsection{Questions de réflexion}
 
 			\begin{enumerate}
-				\item 
+				\item \textbf{TODO}
 			\end{enumerate}
 
 \end{document}
