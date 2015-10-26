@@ -562,6 +562,72 @@
 					\end{itemize}
 
 			\end{itemize}
+
+\chapter{Détection d'intrusion}
+
+	\section{Exercices}
+
+		\subsection{Questions de révision}
+
+			\begin{enumerate}
+				\item \textbf{Listez et définissez quatres types d'intrus : }\\
+
+					\begin{enumerate}
+						\item \textbf{Cyber-Criminels : } Objectif financier, via vol d'indentité, accès à des organismes financiers, espionnage, vol de données.\\
+						\item \textbf{Activistes : } Causes politiques ou sociales, veulent promouvoir leurs causes via Defaces ou DoS Attacks.\\
+						\item \textbf{Organisations sponsorisées par un état : } Advanced Persistant Threats, attaques d'espionnage ou de sabotage.\\
+						\item \textbf{Autres : } Hackers classiques motivés par le challenge ou la reconnaissances de leurs pairs.\\
+					\end{enumerate}
+
+				\item \textbf{Donnez les principales étapes d'une intrusion avec un exemple d'activité : }\\
+
+					\begin{itemize}
+						\item \textbf{Choix de la cible} : Scanning NMAP, WhoIS
+						\item \textbf{Accès initial} : Crackage de mot de passe, MalWare, Social Engineering
+						\item \textbf{Acquisition de privilèges} : Vulnérabilités logicielles ou sniffer pour obtenir un mot de passe
+						\item \textbf{Collecte d'informations ou exploitation du système} : Scan de fichiers, obtention de mots de passes vers d'autres réseaux.
+						\item \textbf{Pérénnisation de l'accès} : Installation de Backdoors
+						\item \textbf{Dissimulation des traces} : Rootkits, modification des logs
+					\end{itemize}
+
+				\item \textbf{Quelle est la différence entre un HIDS et un NIDS? Comment peut-on les combiner? }\\
+
+					Un HIDS surveille un hôte uniquement sur base des events qui se produisent dessus, un NIDS surveille le trafic réseau de certains segments ou appareils spécifiques.\\
+					On peut les combiner sur in IDS Hybride qui combine ces différents senseurs.\\
+
+				\item \textbf{Quel sera l'impact d'un faux positif avec un NIDS? Et un faux négatif? : }\\
+
+					Trop de faux positifs amènera l'équipe d'administration à les ignorer, un faux négatif sera plus pernicieux car considéré comme légitime et de base moins surveillé qu'un faux positif.\\
+
+				\item \textbf{Quels types de senseurs peut utiliser un HIDS? Et un NIDS? }\\
+
+					Pour un HIDS : \\
+					\begin{itemize}
+						\item Traces d'appels systèmes 
+						\item Fichiers de logs
+						\item Checksums d'intégrité des fichiers
+						\item Accès au registre\\
+					\end{itemize}
+
+					Pour un NIDS : \\
+					\begin{itemize}
+						\item Détection d'anomalie
+						\item Détection par signature
+					\end{itemize}
+
+				\item \textbf{Où placer un NIDS? }\\
+
+					\begin{itemize}
+						\item Niveau du firewall externe
+						\item Extérieur du réseau
+						\item Au niveau du backbone du réseau
+						\item Au niveau du LAN et machines spécifiques
+					\end{itemize}
+
+				\item \textbf{Qu'est-ce qu'un honeypot? }\\
+
+					Un leurre conçu spécifiquement pour attirer les auteurs d'attaques et les distraire, collecter des infos sur ces attaques et les retenir assez longtemps pour permettre une réaction de l'administrateur.
+			\end{enumerate}
 \end{document}
 
 
