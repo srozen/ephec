@@ -1,0 +1,261 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in 
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\GroupeName}{4.6}
+\newcommand{\CourseAndAPP}{NetSec} % Course/APP
+\newcommand{\Date}{24 Septembre 2015}
+
+\title{
+\parbox{15cm}
+{ %\includegraphics[width=4cm]{fox.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Sécurité des Réseaux \\
+		\huge Hardening d'un VPS Web
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }} 
+\author{Monroe Samuel}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+
+	\section{Introduction}
+
+		La tendance actuelle du développement Web est celle du cloud computing, très intéressante tant il est facile de déployer un site dans le Cloud et ce en quelques dizaines de secondes. Plus besoin de devoir monter un serveur chez soi, de se préoccuper de paramètres tels que l'adresse IP, l'achat de matériel spécifique, un débutant sans connaissances hardware ou réseau peut aujourd'hui voir son serveur web fonctionner et accessible en l'espace de quelques minutes.\\
+
+		Ce rapport va détailler ma recherche théorique dans le cadre du cours de sécurité des réseaux, et plus spécifiquement concernant le hardening qu'il est nécéssaire d'effectuer sur un VPS, appliquée à un cas imaginaire d'un utilisateur du cloud computing.
+
+
+	\section{Situation Concrète}
+
+		Michael "Mickey" Riffouille est un étudiant en informatique à l'EPHEC, passionné de web-development, au potentiel assuré d'auto-entrepreneur.\\
+		Après un rude hackathon au cours de sa deuxième année et suite aux débuts de projets d'intégration de troisième, il a eu une brillante idée : construire son propre site e-commerce pour \textbf{vendre des packs hackathons} pour organiser ses propres soirées coding entre amis.\\
+
+		Le site HackatHome (son site d'e-commerce) propose d'acheter des packs qui permettent d'organiser des hackathons chez soi (boissons énergisantes, tableaux SCRUMS, goodies).\\
+
+		Les utilisateurs seront donc invités à s'enregistrer sur le site, à indiquer leurs informations personnelles et de livraison, ainsi qu'à entrer un numéro de carte bancaire lors du paiement ou de procéder via paypal. Système classique que l'on retrouve sur la plupart des plateformes e-commerce, typiquement Amazon.\\
+		Ces informations seront stockées sur base de donnée, afin qu'un utilisateur puisse refaire des achats de packs facilement dans le futur, et même gagner des points de fidélité et obtenir des bonus si il effectue un cetain nombre d'achats.\\
+
+		Mickey a fait un plan de de tout ce qu'il allait mettre en place pour HackatHome : \\
+
+		\begin{itemize}
+			\item Un VPS de chez DigitalOcean avec un plan tarifaire de 10\$ par mois.
+			\item Un système d'exploitation FreeBSD 10.2
+			\item Php comme langage pour le backend de son service
+			\item MySQL pour sa base de données
+			\item Projet versionné sur GitHub (repository privé)\\
+			
+		\end{itemize}
+
+		Mickey développera son site de manière locale sur son portable, mettra en place l'infrastructure également depuis celui-ci en se connectant à son VPS via SSH.\\
+		Il est certain de versionner son code (il a entendu dire un jour : "Du code non versionné n'existe pas."), et le mettra sur GitHub pour peut-être envisager un déploiement automatique dans le futur.\\
+		Son VPS tournera avec FreeBSD, avec serveur web Apache et une combinaison Php/MySQL.\\
+
+		Enfin, il est à préciser que Michaël compte vivre de cette activité e-commerce, les retours qu'il a reçu sur sont projet sont très encourageants et il a quitté son job de super codeur HTML freelance pour se consacrer au dévelopement de HackatHome.\\
+
+	\section{Présentation Technique}
+
+		Le \textbf{hardening} d'un serveur est, comme son nom l'indique, le fait de le \textbf{renforcer} afin de préserver un certain niveau de sécurité minimum, en tenant compte d'une analyse de sécurité préalable et des requirements qu'elle aura mise en lumière.\\
+
+		\subsection{FireWall}
+
+			La première étape implémentable est celle de la configuration d'un firewall.\\
+			Ce VPS sous FreeBSD a un but de service précis et doit être administrable, il faut donc en limiter l'accès en ouvrant seulement les ports nécessaires à ces buts. Notre serveur n'a par exemple pas besoin d'être accessible via les ports FTP ou même Telnet.\\
+
+			Notre service a donc besoin des ports suivants : \\
+			\begin{itemize}
+				\item 22 pour le SSH, pour l'administration du système
+				\item 80 pour le HTTP
+				\item 443 pour le HTTPS
+				\item Tout les autres ports seront simplement bloqués par défaut
+			\end{itemize}
+
+			Un des firewalls disponibles sur FreeBSD est \textbf{PF} (Packet Filter), un pare-feu réputé et d'origine OpenBSD, la syntaxe diffère quelque peu de IpTable de chez Linux.\\
+
+			La commande suivante permettra l'administration SSH sur le port 22 : \textbf{pass in on \$ext\_if inet proto tcp from any to (\$ext\_if) port 22}
+
+		\subsection{Configuration de SSH}
+
+	\section{Analyse de sécurité structurée}
+
+		Cette section présentera d'abord un tableau de l'analyse des impacts d'une faille CIA sur les assets de HackatHome, ensuite une seconde analyse reprendra les risques encourus sur les assets et les contre-mesures qui pourraient être mises en place pour pallier à ces risques.\\
+
+		\subsection{Assets et CIA (Confidentiality, Integrity, Availability)}
+
+			Certains éléments de la triade CIA sont parfois omis car sans intérêt pour le bien analysé. \\
+
+			\begin{enumerate}
+				\item \textbf{VPS}
+
+					\begin{itemize}
+						\item \textbf{A : } Impact \textbf{élevé}, une indisponibilité du service représente une perte d'argent vitale pour Michaël qui vit de cette activité.\\
+					\end{itemize}
+
+				\item \textbf{PC Portable}
+
+					\begin{itemize}
+						\item \textbf{C : } Impact \textbf{élevé}, l'ordinateur contient énormément de données essentielles de la vie de Mickey et par extension, des données essentielles sur son travail.
+						\item \textbf{A : } Impact \textbf{faible}, bien que Mickey tienne à son beau MacbookPro, un terminal et un éditeur de texte sur une autre machien peuvent pallier à toute indisponibilité de sa station de travail.
+					\end{itemize}
+
+				\item \textbf{Système hôte FreeBSD 10.2}
+
+					\begin{itemize}
+						\item \textbf{C : } Impact \textbf{élevé}, le système hôte du service HackatHome contient forcément toutes les données relatives à l'activité, et une faille dans la confidentialité du système est inadmissible.
+						\item \textbf{I : } Impact \textbf{moyen à élevé}, tout dépend des éléments systèmes qui seraient touché par un problème d'intégrité.
+						\item \textbf{A : } Impact \textbf{élevé}, ce système faisant tourner par extension la plate-forme web, sont indisponibilité n'est pas envisagée.
+					\end{itemize}
+
+				\item \textbf{Plateforme Web}
+
+					\begin{itemize}
+						\item \textbf{I : } Impact \textbf{faible à élevé}, encore une fois tout dépend de quels éléments sont affectés par la perte d'intégrité, des données corrompues au niveau html purement visuel auraient un impact faible, tandis que du code php altéré pourrait s'avérer catastrophique. Notons également que cela pourrait aussi impacter la réputation de HackatHome.
+						\item \textbf{A : } Impact \textbf{élevé}, disponibilité du service obligatoire.
+					\end{itemize}
+
+				\item \textbf{Données clients}
+
+					\begin{itemize}
+						\item \textbf{C : } Impact \textbf{très élevé}, ces données sont plus qu'importantes, une perte de confidentialité impacterait non-seulement le service mais plus conséquamment les utilisateurs qui auraient entré leurs informations bancaires sur le site, sans parler de la perte de réputation et même les éventuels risques pénaux.
+						\item \textbf{I : } Impact \textbf{élevé}, ces données sont très importantes pour assurer le service, pas question d'envoyer un HackaPack Deluxe à une adresse erronée si Rémy Groet a payé 125\$ pour celui-ci.
+						\item \textbf{A : } Impact \textbf{moyen à élevé}, les données clés étant les adresses de livraison, leur indisponibilité mettrait au pire temporairement les livraisons en attente ou inviterait l'utilisateur à réessayer plus tard, ce qui impacterait également la réputation. Tout dépend de la portée qu'aurait cette indisponibilité des données sur le fonctionnement de la plate-forme.
+					\end{itemize}
+
+
+				\item \textbf{Argent - Système de paiement}
+
+					\begin{itemize}
+						\item \textbf{C : } Impact \textbf{très élevé}, si les données du système de paiement perdaient en confidentialité, on se trouve dans un cas similaire que pour les données client, l'impact serait catastrophique.
+						\item \textbf{I : } Impact \textbf{élevé}, une perte d'intégrité du système pourrait entraîner une sérieuse perte d'argent, par exemple si des commandes pouvaient être effectuées avec des paiements modifiés, etc.
+						\item \textbf{A : } Impact \textbf{moyen à élevé}, un peu près comme tout les autre composants du service, une non disponibilité pourrait entraîner une perte de réputation ou de clients potentiels.
+					\end{itemize}
+
+			\end{enumerate}
+
+		\subsection{Assets, risques et contre-mesures}
+
+			\begin{enumerate}
+				\item \textbf{VPS}
+
+					\begin{itemize}
+						\item \textbf{Panne électrique chez DigitalOcean} : Le risque est très \textbf{faible}, DigitalOcean est une société ayant une bonne réputation et son service est sûrement assuré contre ce genre d'évènement.\\
+						Néamoins et selon la durée de cette panne et de la remise en service, l'impact pourrait être \textbf{élevé}.\\
+						On prendra donc la précaution de créer des backups et snapshots réguliers quand le service est en ligne, ou même éventuellement de baser les déploiements avec Docker, de sorte que l'on puisse rapidement déployer le service sur une autre plate-forme en cas de panne.
+						\item \textbf{Défaut de paiement} : Le risque est également très faible, le plan de Mickey étant un plan à 10\$/mois, il y a donc très peu de chances qu'il ne puisse s'affranchir de ce montant. L'impact serait néamoins assez \textbf{élevé} si DigitalOcean venait à lui couper le service.
+						\item \textbf{Perte ou fuite de données chez DigitalOcean} :  
+					\end{itemize}
+
+				\item \textbf{PC Portable}
+
+					\begin{itemize}
+						\item \textbf{Vol} : Le risque est \textbf{très élevé}, cela pourrait lui arriver n'importe où. L'impact serait lui également \textbf{très élevé} dans le sens où le voleur aurait une capacité beaucoup plus grande à devenir un risque potentiel pour d'autres assets.\\
+						Mickey possède un Macbook, Apple permet à l'utilisateur de bloquer de manière assez sûre ses appareils à distance, il veillera donc à configurer ce service de façon à mettre hors service son appareil et empêcher toute utilisation en cas de vol.\\
+
+						\item \textbf{Accès non autorisé} : Ce risque très élevé en cas de vol, plutôt \textbf{moyen} en temps normal.\\
+						L'impact serait cependant \textbf{très élevé}, puisque cet appareil contient des informations sensibles sur la vie et le travail de Michaël.\\
+						Celui-ci veillera donc à utiliser des mots de passe forts pour tout ses comptes quels qu'ils soient, et également à mettre en place le verouillage automatique de son ordinateur après un temps assez court (dans la limite du confortable tout de même) d'inactivité.\\
+
+						\item \textbf{Destruction} : Comme tout autre produit électronique, un ordinateur portable peut tomber en panne sévère, avoir une obsolescence programmée, ou l'utilisateur imprudent qu'est Michaël pourrait éventuellement renverser son Monster (sa boisson favorite) dessus, ou bien même encore le laisser tomber par terre. Le risque est donc \textbf{très élevé}.\\
+						L'impact est cependant \textbf{faible}, outre une perte sentimentale et d'argent assez désagreable, Mickey aime le cloud et a placé son code sur un repository privé Github, il n'a donc réellement besoin que d'un éditeur de texte, un terminal et une connexion internet pour travailler.\\
+						Il est tout de même possible d'éviter ces situations en transportant l'ordinateur dans une housse protégeant des chocs, en souscrivant à une assurance sur le matériel, et en évitant les gestes brusques si l'on désire boire en travaillant.\\
+
+						\item \textbf{Malwares} : Le risques est très \textbf{faible}, Mickey est un informaticien averti et utilise son ordinateur pour travailler uniquement et n'installe que le strict minimum sur cette machine, l'impact reste quant à lui \textbf{élevé}.\\
+						Il devra continuer à utiliser son ordinateur comme poste de travail uniquement et bien appliquer les mises à jours de sécurité de son système ainsi que de ses utilitaires.\\
+
+					\end{itemize}
+					
+				\item \textbf{Système hôte FreeBSD}
+
+					\begin{itemize}
+						\item \textbf{Malwares} : Michaël étant le seul administrateur sur ce système, le risque est relativement \textbf{faible} si on considère surtout les virus, trojans et autres malwares étant souvent dûs à une mauvaise utilisation d'une machine et à un comportement peu prudent.\\
+						L'impact serait cependant très \textbf{élevé} puisque le serveur de production de HackatHome serait touché, il sera important pour Michaël de rester vigilent, de n'installer que le strict nécessaire sur son serveur de prod et d'éviter l'utilisation de plugins douteux pour se faciliter la vie.\\
+						\item \textbf{Exploit} : Un exploit ne peux jamais être écarté, l'impact serait également très \textbf{élevé} mais le risque est relativement \textbf{moyen}, Mickey a choisi FreeBSD pour sa grosse communauté et sa fiabilité.\\
+						Il lui importera de rester au courant des dernières mise-à-jour sécuritaires du système et de les appliquer.\\
+						\item \textbf{Accès non authorisé } : Le risque est ici plus \textbf{élevé} car rendu possible via d'autres menaces (vol de son pc, fuites chez DigitalOcean), et l'impact serait bien sûr très \textbf{élevé} également.\\
+						Le système doit donc être rendu accessible via SSH uniquement, et il faut configurer le serveur SSH pour n'accepter qu'une connection via clé publique/clé privée. Plus encore, les passphrases des clés doivent être fortes.\\
+					\end{itemize}
+					
+				\item \textbf{Plateforme Web}
+
+					\begin{itemize}
+						\item \textbf{Injections SQL} : Le risque est très \textbf{élevé}, des formulaires sur une page web sont une invitation à ces injections, surtout que les gains potentiels en données seraient intéressants pour un cracker.\\
+						L'impact d'une attaque par injection SQL serait très \textbf{élevé}.\\
+						Il conviendra de sécuriser au mieux les inputs PhP et les uploads fichiers avec les fonctions fournies par le langage, ainsi que de configurer sa base de donnée MySQL afin d'en limiter les droits en production.\\
+						\item \textbf{Exploits} : Le risque est plutôt \textbf{moyen}, mais l'impact peut être très \textbf{élevé}. Il conviendra d'utiliser les dernières versions des programmes, de se tenir au courant sur les dernièrs infos concernant ces logiciels et également de ne pas utiliser de fonctions dépréciées dans le code.
+						\item \textbf{Defacement} : Le risque dépend d'autres menaces et la manière dont les contre-mesures de celles-ci ont été mise en place, il reste néanmoins \textbf{moyen}, avec un impact \textbf{moyen} qui touchera surtout à la réputation du service mais laissera intact des pans plus critiques de celui-ci.\\
+
+					\end{itemize}
+
+					En contre-mesure globale, Michaël isolera son application dans une jail FreeBSD. En cas de compromission de celle-ci, l'impact pourra être limité ou du moins contrôlé via cette mesure. 
+					
+				\item \textbf{Données clients}
+
+					\begin{itemize}
+						\item \textbf{Vol} : Le risque dépend encore une fois des autres menaces et de la manière dont elles sont traitées, il est néamoins \textbf{élevé} avec un impact \textbf{élevé}. Il est priommordial de sécuriser tout les moyens d'accès à ces données, depuis la machine de travail, base de données, vps tels que susmentionnés.\\
+						\item \textbf{Destruction} : Le risque est assez \textbf{élevé} car cette menace peut même provenir de Mickey lui-même, on pourrait imaginer un \textbf{sudo rm -rf /} dans la mauvaise console un jour de très grosse fatigue, l'action d'un malware ou d'une injection SQL. L'impact est évidemment \textbf{très élevé}.\\
+						Les contre-mesures sur ces aspects ont été explorées dans les menaces précédentes.\\
+					\end{itemize}
+					
+				\item \textbf{Argent - Système de paiement}
+
+					\begin{itemize}
+						\item \textbf{Récupération des données lors de la transaction} : Le risque est \textbf{élevé}, surtout si son système est fait-maison, avec un impact évidemment \textbf{très élevé}.\\
+						En contre-mesures, il conviendra déjà d'utiliser un certificat SSL sur le site pour éviter l'échange d'informations en clair, et pourquoi pas utiliser un système de paiement avec un tiers tel que \textbf{Stripe}.\\
+					\end{itemize}
+					
+			\end{enumerate}
+
+	\section{Conclusion}
+
+	\section{Bibliographie}
+
+		\begin{itemize}
+			\item \textbf{DigitalOcean} - https://cloud.digitalocean.com/droplets/new
+			\item \textbf{FreeBSD - Digital Handbook} - https://www.freebsd.org/doc/en\_US.ISO8859-1/books/handbook/
+			\item \textbf{Computer Security} - William Stallings \& Lawrie Brown
+			\item \textbf{Syllabus Sécurité des Réseaux} - Virginie Van Den Schrieck
+			\item \textbf{OpenSSH \& Ubuntu} - https://help.ubuntu.com/community/SSH/OpenSSH/Keys
+			\item \textbf{Hack et défacement de sites web} - http://www.hackingloops.com/6-ways-to-hack-or-deface-websites-online.html
+			\item \textbf{Stripe - Paiements en ligne} - https://stripe.com/be
+			\item \textbf{PF on FreeBSD} - https://www.freebsd.org/doc/en_US.ISO8859-1/articles/linux-users/firewall.html
+		\end{itemize}
+
+\end{document}
