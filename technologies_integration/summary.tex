@@ -1,0 +1,166 @@
+\documentclass{report}
+\usepackage{filecontents}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{listings}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage[toc, page]{appendix}
+\usepackage{url}
+
+\definecolor{xcodekw}{rgb}{0.75, 0.22, 0.60}
+\definecolor{xcodestr}{rgb}{0.89, 0.27, 0.30}
+\definecolor{xcodecmt}{rgb}{0.31, 0.73, 0.35}
+
+\titleformat{\chapter}[display]
+  {\centering\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+
+\geometry{hscale=0.75,vscale=0.85,centering}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand\appendixtocname{Annexes}
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
+
+\title{Intégration des Technologies\\\includegraphics[scale=0.3]{foxhound.png}}
+\author{Samuel "Big Boss" \bsc{Monroe}}
+
+\date{30 Mai 2015}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\tableofcontents
+
+%% \textbf{}
+
+\chapter{Avant-propos}
+
+	Toi, mauvais élève qui n'a jamais été aux cours de Mr. Thiry, avais sans doute comme seul choix d'étudier des slides un peu austères pour l'examen.\\
+
+	En bonne âme, je viens à toi avec cette synthèse d'une pureté ultime afin de te sauver de ton funeste destin.\\
+	Composée de ce que j'ai retenu, complété via l'aides des internets, et corrélées avec les informations d'autres membres de la F0X.\\
+
+	En espérant que tu sois membre de la F0X en mettant les mains sur ce document.\\
+
+\chapter{Historique}
+
+	\section{Le Chaos - 1960}
+
+		L'historique des méthodes organisationnelle présenté ici naît avec l'apparition de l'informatique mais plus spécifiquement des langages de programmation, qui signifient que l'on va pouvoir mettre sur pied des projets de développement logiciels pour couvrir les nouveaux besoins d'applications de l'entreprise.\\
+
+		Dans les alentours de 1960 on pourra citer le \textbf{FORTRAN} en 1954, le \textbf{COBOL} en 1959 et enfin le \textbf{BASIC} en 1964.\\
+
+		Tout ceci étant relativement nouveau, chaque entreprise s'organise selon sa propre conception sur base des \textbf{échéances}, du \textbf{budget} ou encore de la \textbf{taille du projet}.\\
+
+		La période de Chaos des gestions de projets est comme son nom peut le faire comprendre, une période d'\textbf{échec} sur cette gestion.
+
+	\section{Waterfall - 1970}
+
+		Pour pallier à cette période de Chaos un pionier du développement logiciel et scientifique informatique Américain, \textbf{Winston W. Royce}, va mettre au point le modèle \textbf{Waterfall} pour définir une manière de manager le développement de larges logiciels.\\
+
+		Sa méthode est calquée sur ce qui se fait dans l'industrie en Amérique, qui met en avant la \textbf{planification} du projet et la maximisation de l'\textbf{éfficacité} dans chacun des maillons d'une chaîne de production.\\
+
+		Ce modèle est nommé \textbf{Waterfall} car représente une cascade où vont se succéder : \\
+
+		\begin{itemize}
+			\item \textbf{Requirements} : On documente les besoins et les spécifications du produit.
+			\item \textbf{Design} : Modélisation de l'architecture du logiciel
+			\item \textbf{Implémentation} : Le développement en lui-même
+			\item \textbf{Vérification} : Tests, vérification du bon fonctionnement
+			\item \textbf{Maintenance}\\
+		\end{itemize}
+
+		Cette méthode va se révéler un \textbf{échec}, entraînant un système de bureaucratie contre-productif et une perte de motivation chez les acteurs du projet.\\
+
+	\section{Lightweight - 1990}
+
+		Les méthodologies légères vont conduire à l'émergence de méthodologies plus spécifiques apparentées que l'on développera juste après.\\
+
+		\textbf{Lightweight} apprenant des erreurs de Waterfall va proposer une nouvelle façon d'organiser cette gestion de projets : \\
+
+		\begin{itemize}
+			\item \textbf{Pas de prédictions} : La planification à l'extrême chez Waterfall n'a pas fonctionné.
+			\item \textbf{Adaptif} : Les changements étant inévitables, et ayant justement conduit à arrêter de tout prévoir, il faut à ce qu'il y aie des changements, les accepter et les gérer éfficacement.
+			\item \textbf{Centré sur les gens} : Waterfall ayant cloisonné les rôles et fait perde la motivation aux acteurs, on va se recentrer sur les gens et travailler avec eux plutôt que de se concentrer sur le process.
+			\item \textbf{Pas de documentation exagérée}, conduisant à la bureaucratie, à des marges de manoeuvres limitées et probablement à la perte de motivation.\\
+		\end{itemize}
+
+		\subsection{Crystal - 1992}
+
+			Cette famille de méthodologies à été développée par \textbf{Allistair Cockburn} dans le milieu des années 90.\\
+
+			Les méthodologies Crystal sont centrées sur les gens, leur interaction, la communauté, les compétences et talents et la communication.\\
+
+			Ces méthodologies sont faciles d'adoption.\\
+
+		\subsection{DSDM - 1994}
+
+			\textbf{D}ynamic \textbf{S}oftware \textbf{D}evelopment \textbf{M}ethod, consortium créé par des vendeurs et experts, est une compilation de bonnes pratiques dans la gestion de projets.\\
+
+			\textbf{DSDM} s'appuie sur 9 principes de bases : \\
+
+			\begin{enumerate}
+				\item Implication des utilisateurs dans le cycle de développement
+				\item Autonomie
+				\item Visibilité du résultat
+				\item Adéquation
+				\item Développement itératif
+				\item Réversibilité
+				\item Synthèse
+				\item Tests
+				\item Coopération
+			\end{enumerate}
+
+		\subsection{SCRUM - 1995}
+
+			Métaphore liée à la mêlée du rugby utilisée pour la première fois dans une publication Japonaise de Hirotaka Takeuchi et Ikujiro Nonaka dans le monde industriel.\\
+
+			Cette publication va inspirer \textbf{Ken Schwaber} et \textbf{Jeff Sutherland} dans ce que deviendra la méthode SCRUM.\\
+
+		\subsection{Rational Unified Process (RUP) - 1996}
+
+			Donne un cadre au développement logiciel avec un grand nombre de variantes pas seulement agiles.\\
+
+			Fournit un ensemble d'outils décrivant les processus et pratiques à mettre en place pour gérer un projet.\\
+
+		\subsection{Extreme Programming - 1999}
+
+			Inventée par \textbf{Kent Beck}, \textbf{Cunningham} et \textbf{Jeffries} pendant un travail chez Chrysler.\\
+
+			Méthode agile qui pousse à l'extrême des principes simples, proposant une solution d'organisation pour des petites équipes avec des besoins qui changent fréquemment.\\
+
+	\section{Agile - 2000}
+
+		Groupe de pratiques ayant pour base le \textbf{Agile Manifesto} rédigé en Février 2001 par 17 personnes conceptrices de méthodologies Lightweight, qui vont extraire les principes et critères de leurs méthodologies qui selon eux conduisent aux meilleures gestion de projets, afin de les réunir et créer le \textbf{Agile Manifesto}.\\
+
+	\section{Lean}
+
+		Henri Ford, inspiré par le \textbf{Scientific Management}, va organiser sa production de voiture sur ce modèle en découpant les tâches dans la chaîne à l'extrême, en associant chaque petite tâche simple et répétitive à un seul ouvrier afin de maximiser sa production.\\
+
+		Cependant, au Japon, les Toyoda vont s'organiser différemment et forment leurs ouvriers en les rendants compétents et en leur donnant des responsabilités et qui doivent devenir polyvalents.\\
+
+		L'américain \textbf{W. Edwards Deming} va enseigner aux japonais comment améliorer la qualité, conception, tests et ventes de leurs produits.\\
+		\textbf{Taiichi Ohno} quant à lui va développer la méthode Just-in-Time et celle des \textbf{five 0} chez Toyota.\\
+
+		L'industrie Japonaise va rattraper cele Américaine, dont l'éfficacité des ouvriers était pourtant neuf fois supérieures, en proposant des produits moins chers et de meilleure qualité.\\
+
+		Les Poppendieck vont publier en 2003 le livre \textbf{Lean Sofware Development}, en se basant sur l'histoire de l'industrie qui précède.\\
+
+
+\chapter{Méthodologies Waterfall}
+
+\end{document}
