@@ -114,6 +114,57 @@
 
 		\subsection{Configuration de SSH}
 
+			L'administration d'un VPS dans le cloud est forcément faite à distance.\\
+			Telnet n'étant pas une option valable du tout d'un point de vue sécurité, cela se fait donc via le protocole \textbf{SSH} ou Secure SHell.\\
+
+			SSH étant sécurisé car chiffrant les échanges de données, il faut impérativement configurer le service un peu plus en profondeur pour se prémunir d'autres risques.\\
+
+			\subsubsection{Clés SSH}
+
+				De base, le serveur SSH tournant sur le VPS propose une authentification par mot de passe.\\
+				Forcément, ce mode d'authentification tel quel est vulnérable aux attaques brute-force.\\
+
+				La solution est d'utiliser le système de clés SSH. L'utilisateur doit créer une paire de clés SSH via la commande : \\
+
+				\textbf{ssh-keygen -t rsa -b 4096 -C "your\_email@example.com"}\\
+
+				Cette commande va créer une paire de clés publique/privée à protéger par une passphrase (mot de passe fort de préférence).\\
+				La clé publique doit être ensuite placée sur le VPS dans le fichier de clés autorisées associé au compte user du VPS.\\
+
+				Enfin, le serveur SSH du VPS doit être configuré pour ne plus accepter l'authentification par mot de passe, de sorte que seul un utilisateur possédant la clé privée puisse se connecter.\\
+
+		\subsection{Certificat SSL}
+
+			Ce certificat permet l'utilisation du protocole HTTPS port 443 pour un service web.\\
+			Notre cas étant un site e-commerce, cette mesure est essentielle pour assurer la sécurisation des transactions bancaires.\\
+
+		\subsection{Fail2Ban}
+
+			Fail2Ban est un service qui scan les fichiers de log et bannit une adresse IP s'il détermine que cette adresse adopte un comportement non légitime.\\
+
+			Il peut être configurer par exemple pour détecter des tentatives continues et infructueuses de connexions au serveur, et ainsi ajouter une règle au firewall pour rejetter tout traffic provenant de cette adresse.
+
+		\subsection{IDS - Système de détection d'intrusion}
+
+			Un système de détection d'intrusion va permettre à l'administrateur VPS d'agir si les mesures préventives n'avaient pas suffit et qu'une intrusion réussi, et ce en surveillant et analysant les events du système.\\
+
+			\subsubsection{Tripwire}
+
+				Tripwire est un IDS de type \textbf{Host-based IDS}, il se charge de surveiller un hôte et les évènements qui occurent sur celui-ci.\\
+
+				Lors de la configuration, cet IDS génère une base de donnée des fichiers système à surveiller qu'il va signer numériquement.\\
+
+				En fonctionnement, Tripwire compare la signature numérique qu'il possède en base de données avec des recalculs de signatures sur les fichiers.\\
+
+				En cas de non-correspondance des signatures, c'est que le fichier a été altéré et Tripwire va alerter l'administrateur.\\
+
+			\subsubsection{Psad}
+
+				Psad (Port Scan Attack Detection) est quant à lui un IDS de type \textbf{Network IDS}, surveillant le réseau et protocoles pour détecter une tentative intrusion.\\
+
+				Ce service surveille le firewall pour déterminer si une attaque via scan de ports est en cours, et en alerte l'administrateur.\\
+
+
 	\section{Analyse de sécurité structurée}
 
 		Cette section présentera d'abord un tableau de l'analyse des impacts d'une faille CIA sur les assets de HackatHome, ensuite une seconde analyse reprendra les risques encourus sur les assets et les contre-mesures qui pourraient être mises en place pour pallier à ces risques.\\
@@ -245,6 +296,10 @@
 
 	\section{Conclusion}
 
+		Le hardening d'un VPS Cloud est un sujet qui peut s'avérer très vaste.\\
+
+		L'équilibre entre le coût des mesures, le coût d'une menace potentielle, et le degré de sécurité qu'il est possible d'implémenter sans gêner le processus d'administration ou même l'expérience des utilisateurs est un juste milieu qu'il incombe de trouver.\\
+
 	\section{Bibliographie}
 
 		\begin{itemize}
@@ -255,7 +310,14 @@
 			\item \textbf{OpenSSH \& Ubuntu} - https://help.ubuntu.com/community/SSH/OpenSSH/Keys
 			\item \textbf{Hack et défacement de sites web} - http://www.hackingloops.com/6-ways-to-hack-or-deface-websites-online.html
 			\item \textbf{Stripe - Paiements en ligne} - https://stripe.com/be
-			\item \textbf{PF on FreeBSD} - https://www.freebsd.org/doc/en_US.ISO8859-1/articles/linux-users/firewall.html
+			\item \textbf{PF on FreeBSD} - https://www.freebsd.org/doc/en\_US.ISO8859-1/articles/linux-users/firewall.html
+			\item \textbf{SSH} - http://doc.ubuntu-fr.org/ssh
+			\item \textbf{Hardening VPS} - http://www.hacksonville.com/2013/hardening-a-vps/
+			\item \textbf{Certificat SSL} - https://fr.wikipedia.org/wiki/Certificat\_\%C3\%A9lectronique
+			\item \textbf{Certificats SSL} - https://www.globalsign.fr/fr/centre-information-ssl/definition-certificat-ssl/
+			\item \textbf{Fail2Ban} - http://www.fail2ban.org/wiki/index.php/Main\_Page
+			\item \textbf{Tripwire} - https://fr.wikipedia.org/wiki/Tripwire\_(logiciel)
+			\item \textbf{Psad} - https://www.digitalocean.com/community/tutorials/how-to-use-psad-to-detect-network-intrusion-attempts-on-an-ubuntu-vps
 		\end{itemize}
 
 \end{document}
