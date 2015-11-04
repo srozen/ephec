@@ -1,3 +1,6 @@
+% A faire, fin de chapitre 4
+
+
 \documentclass{report}
 \usepackage{filecontents}
 
@@ -314,6 +317,89 @@
 		Unified Modeling Language, permet la visualisation d'un système, est normalisé et documenté, propose 14 types de diagramme.\\
 
 \chapter{Méthodologies LightWeight}
+	
+	\section{Méthodologies "Légères"}
 
+		Les 4 précèptes importants de ces méthodologies vont être les suivants : \\
+
+		\begin{itemize}
+			\item De l'organisation et pas de structure cadenassée
+			\item Adaptation aux changements et pas de prédictions sur le futur
+			\item Le fonctionnement est centré sur les gens, pas sur l'organisation
+			\item Pas de documentation exagérée
+		\end{itemize}
+
+	\section{Les besoins changent}
+
+		Les changements étant \textbf{inévitables}, le mieux serait d'en tirer profit.\\
+
+		Dans les fonctionnements lourds, le planning étant fixé une fois pour toute, des changements de besoins au niveau du client seront facturés en plus car s'écartant du contrat initial.\\
+
+		En lightweight, le développement est itératif et le client participe activement à celui-ci, de sorte qu'il puisse introduire des demandes de changements qui orientent la suite du développement et n'ont pas d'impact majeurs puisque ces changements sont "anticipés".\\
+		Ceci donne un avantage compétitif aux développeurs.\\
+
+	\section{Gérer le changement}
+
+		Les changements sont aisément \textbf{anticipables}, les itérations se font sur quelques semaines, proposent à chaque issue des fonctionnalités fonctionnelles et utiles au client, et celui-ci va pouvoir donner son avis sur ce qu'il peut déjà utiliser afin de proposer des modifications utiles si besoin qui seront implémentées dans la prochaine itération.\\
+
+	\section{Le Client}
+
+		Le client veut principalement un \textbf{prix à l'avance} et surtout ne pas \textbf{payer plus que prévu}.\\
+		En fonctionnant sur cette base d'itérations et de reviews clients, on met à jour le planning selon les nouveaux besoins et les nouvelles idées, il n'est pas nécéssaire non plus de surfacturer des changements ce qui engendre de la confiance de la part du client car ses volontés principales sont respectées.\\
+		Il faut cependant lui faire comprendre qu'un investissement en temps est nécéssaire de sa part pour le feedbacks et donc pour assurer le bon fonctionnement de la méthode.\\
+
+	\section{Succès d'un Projet}
+
+		Le succès d'un projet repose sur le coût qu'il a généré par rapport à la valeur du produit fournit, implique de la qualité.\\
+
+	\section{Les Gens}
+
+		La méthodologie est centrée sur les gens et ce qu'ils peuvent apporter à une équipe, sur leurs compétences, et attend d'eux une implication dans le projet.\\
+		Les gens ne sont pas juste des ouvriers à la chaîne remplaçables dans la minute comme dans ce que Taylor proposait, ils ne doivent cependant pas être indispensables au bon déroulement d'un projet (accident, etc...)\\
+
+		On attend des gens qu'ils prennent des décisions et proposent des estimations dans ce qui doit être fait, les managers doivent déléguer.\\
+
+\chapter{Agile}
+
+	\section{Création du terme}
+
+		Agile vient du terme "Light" dans LightWeight.\\
+
+		Groupe de pratiques ayant pour base le \textbf{Agile Manifesto} rédigé en Février 2001 par 17 personnes conceptrices de méthodologies Lightweight, qui vont extraire les principes et critères de leurs méthodologies qui selon eux conduisent aux meilleures gestion de projets, afin de les réunir et créer le \textbf{Agile Manifesto}.\\
+		Ils créeront plus tard la \textbf{Agile Alliance}.\\
+
+
+	\section{Manifeste - Valeurs}
+
+		Les méthodes agiles prônent 4 valeurs fondamentales : \\
+		(Ctrl+C+V Wikipedia)\\
+
+		\begin{enumerate}
+			\item \textbf{L'équipe :} (« Les individus et leurs interactions, plus que les processus et les outils ») : dans l'optique agile, l'équipe est bien plus importante que les outils (structurants ou de contrôle) ou les procédures de fonctionnement. Il est préférable d'avoir une équipe soudée et qui communique, composée de développeurs (éventuellement à niveaux variables), plutôt qu'une équipe composée d'experts fonctionnant chacun de manière isolée. La communication est une notion fondamentale.
+			\item \textbf{L'application :} (« Des logiciels opérationnels, plus qu'une documentation exhaustive ») : il est vital que l'application fonctionne. Le reste, et notamment la documentation technique, est une aide précieuse mais non un but en soi. Une documentation précise est utile comme moyen de communication. La documentation représente une charge de travail importante, mais peut pourtant être néfaste si elle n'est pas à jour. Il est préférable de commenter abondamment le code lui-même, et surtout de transférer les compétences au sein de l'équipe (on en revient à l'importance de la communication).
+			\item \textbf{La collaboration :} (« La collaboration avec les clients, plus que la négociation contractuelle ») : le client doit être impliqué dans le développement. On ne peut se contenter de négocier un contrat au début du projet, puis de négliger les demandes du client. Le client doit collaborer avec l'équipe et fournir un compte rendu continu sur l'adéquation du logiciel avec ses attentes.
+			\item \textbf{L'acceptation du changement :} (« L'adaptation au changement, plus que le suivi d'un plan ») : la planification initiale et la structure du logiciel doivent être flexibles afin de permettre l'évolution de la demande du client tout au long du projet. Les premières livraisons du logiciel vont souvent provoquer des demandes d'évolution.
+		\end{enumerate}
+
+	\section{Manifeste - Principes}
+
+		\begin{enumerate}
+			\item La plus haute priorité est de satisfaire le client en livrant rapidement et régulièrement des fonctionnalités à grande valeur ajoutée.\\
+			\item Accueillir positivement les changements de besoins, même tard dans le projet. Les processus Agiles exploitent le changement pour donner un avantage compétitif au client.\\
+			\item Livrez fréquemment un logiciel opérationnel avec des cycles de quelques semaines à quelques mois et une préférence pour les plus courts.\\
+			\item Les utilisateurs ou leurs représentants et les développeurs doivent travailler ensemble quotidiennement tout au long du projet.\\
+			\item Réaliser les projets avec des personnes motivées. Fournissez-leur l'environnement et le soutien dont ils ont besoin et faites-leurs confiance pour atteindre les objectifs fixés.\\
+			\item La méthode la plus simple et la plus éfficace pour transmettre l'information à l'équipe de développement et à l'intérieur de celle-ci est le dialogue en face à face.\\
+			\item Un logiciel opérationnel est la principale mesure d'avancement.\\
+			\item Les processus Agiles encouragent un rythme de développement soutenable. Ensemble, les commenditaires, les développeurs et les utilisateurs devraient être capables de maintenir indéfiniment un rythme constant.
+			\item Une attention continue à l'excellence technique et à une bonne conception renforce l'Agilité.\\
+			\item La simplicité, càd l'art de minimiser la quantité de travail inutile, est essentielle.\\
+			\item Les meilleures architectures, spécifications et conceptions émergent d'équipes autoorganisées.\\
+			\item A intervalles réguliers, l'équipe réfléchit aux moyens de devenir plus éfficaces, puis règle et modifie son comportement en conséquence.\\
+		\end{enumerate}
+
+	\section{Agile - Répétition}
+
+	\section{Agile - Marketing}
 
 \end{document}
