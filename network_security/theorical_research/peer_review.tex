@@ -1,0 +1,128 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in 
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\GroupeName}{4.6}
+\newcommand{\CourseAndAPP}{NetSec} % Course/APP
+\newcommand{\Date}{7 Novembre 2015}
+
+\title{
+\parbox{15cm}
+{ %\includegraphics[width=4cm]{fox.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Sécurité des Réseaux \\
+		\huge Peer Review - Tristan Moers
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }} 
+\author{Monroe Samuel}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+
+	\section{Introduction}
+
+		Ce document constitue, dans le cadre de la correction croisée recherches théoriques du cours de Sécurité des Réseaux de Mme. Van Den Schrieck, mon feedback au sujet du travail de Tristan Moers de 2TL1.\\
+
+		Celui-ci s'appuie tel quel sur la liste des critères d'évaluation du rapport final fournie par Mme. Van Den Schrieck dans l'énoncé de ce travail, page 3 point 5.2.\\
+
+	\section{Feedback}
+
+		\subsection{Mise en forme, écriture et structure}
+
+			Les \textbf{consignes} de page de garde sont bien respectées.\\
+
+			Concernant \textbf{l'écriture}, plus spécifiquement le style et l'orthographe, attention à la formulation de certaines phrases ou tournures telles que, par exemple dans le premier paragraphe, "\textit{..traiter à propos de...}" ou encore : "\textit{mal attentionnées}" qui sont incorrectes grammaticalement.\\
+			L'orthographe est plutôt bonne, mais il faudra donc relire ce texte afin d'améliorer les soucis sus-mentionnées, sachant que je n'ai pas explicité ici toutes les erreurs commises au long du texte.\\
+
+			Au niveau du \textbf{style}, il est constant et plutôt agréable à lire.\\
+			Attention cependant à des transitions parfois abruptes, par exemple au point 3, ou on est lancé directement dans le contenu sans sous-introduction ou explication de ce va décrire cette section.\\
+
+			Enfin, à propos de la \textbf{structure}, peut-être éviter les sauts de page à la moitié de celles-ci, nottamment à la deuxième et troisème page.\\
+			L'analyse technique a un découpage un peu difficile à saisir, peut-être découper celle-ci un peu plus visuellement.\\
+
+		\subsection{Concernant l'introduction}
+
+			Elle explicite bien le sujet choisi et le contexte, ainsi que le cas illustratif Geinimi qui seront développés au long du rapport.\\
+
+			Peut-être faudrait-il cependant ramener l'accroche en première position de l'introduction, et puis expliciter les thèmes qui vont être traités ainsi que le cours dans lequel ce travail est effectué.\\
+
+		\subsection{Niveau Technique}
+
+			Le sujet est bien décrit et compréhensible, il manque cependant des informations un peu plus précises sur son fonctionnement et sur le types de commandes qu'il effectue pour avoir l'accès au terminal et effectuer les requêtes mentionnées après, petit manque de complétion.\\
+
+		\subsection{Description Technique}
+
+			Décrit bien le fonctionnement de Geinimi une fois installé, mais manque de points de références sérieuses pour appuyer ceci, par exemple comment ces traces ont été prises, par qui, dans quel contexte?
+
+			Le sujet étant une menace, cette description devrait contenir des contre-mesures qui pourraient être appliquées, celles-ci ne sont pas présentes.\\
+
+		\subsection{Cas Illustratif}
+
+			Il semble ne pas y avoir de cas illustratif lié au sujet décrit.\\
+
+			Il est donc nécéssaire de corriger cela en créant un cas illustratif lié justement à cette attaque par Trojan Mobile, sur lequel va ensuite venir s'appuyer l'anayse de sécurité détaillée.\\
+			Par exemple le cas illustratif pourrait être un homme d'affaire avec des enfants de 10 ans qui utilisent parfois son smarphone pour jouer ou un étudiant en informatique qui développe sur son smartphone, s'en suivra ensuite l'analyse de sécurité qui changera selon le cas illustratif.\\
+			Le risque sera beaucoup plus gros d'avoir un trojan avec un enfant de 10 ans qui installe n'importe quoi sur le gsm de son père, l'impact sera beaucoup plus élevé car celui-ci a des informations sensibles sur son smartphone.\\
+
+		\subsection{L'analyse de sécurité}
+
+			Elle est donc à refaire sur base d'un cas illustratif, qui impactera tout les paramètres de cette analyse.\\
+
+			De plus, cette analyse n'est pas intégralement liée au sujet technique, il faut lister plus de vulnérabilités que uniquement celle d'attraper le Trojan Geinimi.\\
+
+			Il faudra donc : \\
+
+			\begin{itemize}
+				\item Liste complète des assets à protéger et les classer par importance
+				\item Lister les vulnérabilités sur ces biens, les attaques et risques liées.
+				\item Liste des contre-mesures, elle est ici pas si mal, mais elle changera forcément si le rapport est rectifié.
+				\item Documenter les risques résiduels, c'est à dire les risques pour lesquels on ne sait pas prendre de contre-mesure, mais qu'il est nécéssaire de connaître
+			\end{itemize}
+
+
+		\subsection{Conclusion}
+
+			Reprend les éléments principaux du rapport, peut-être ajouter une mention par rapport à Geinimi.\\
+
+		\subsection{Bibliographie}
+
+			Un peu légère peut-être, mais bien structurée, augmentera probablement avec l'addition du cas illustratif.\\
+\end{document}

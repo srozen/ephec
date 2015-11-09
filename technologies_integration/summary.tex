@@ -1,3 +1,6 @@
+% A faire, fin de chapitre 4
+
+
 \documentclass{report}
 \usepackage{filecontents}
 
@@ -207,7 +210,366 @@
 
 	\section{Modèle de la construction et développement}
 
+		En construction, il faut établir les plans et le planning et puis organiser la construction autour de deux-ci, le projet suit deux phases : \\
+
+			\begin{itemize}
+				\item \textbf{Modélisation : } Compliquée et dont le coût est faible
+				\item \textbf{Implémentation : } Longue, coût total est élevé
+			\end{itemize}	
+
+		\textbf{Waterfall} calque son modèle sur celui de l'industrie et de la construction, hors le développement ne peut pas suivre ce modèle, les besoins sont imprévisibles et des changements peuvent survenir à tout instant du processus.\\
+
+		Là où un \textbf{modèle} est utile en construction, un \textbf{prototype} est plus intéressant pour du développement.\\
+
+	\section{Waterfall - Quelques définitions}
+
+		\begin{itemize}
+			\item \textbf{Gestion de programme} : Encadre les projets
+			\item \textbf{Project Management Office} : Surveille les projets (processus et métriques)
+		\end{itemize}
+
+	\section{Prince2}
+
+		Créé en 1996 par le gouvernement UK, mis à jour en 2009, propose des cours et certifications (énorme business).\\
+
+		PRINCE2 (\textbf{PR}ojects \textbf{IN} \textbf{C}ontrolled)) est une méthode de gestion de projets structurée autour de \textbf{7 principes}, \textbf{7 processus} et \textbf{7 thèmes}.\\
+
+		Les 7 \textbf{Principes} : \\
+
+		\begin{itemize}
+			\item \textbf{Justification d'affaires en continu} : Savoir pourquoi on fait les choses
+			\item \textbf{Retours d'expérience} : Prendre en compte les expériences passées
+			\item \textbf{Rôles et responsabilités définis} : Définir qui fait quoi
+			\item \textbf{Management par séquence} : Découper le travail
+			\item \textbf{Management par exception} : Tolérer certaines marges et ne pas remonter tout à la hierarchie
+			\item \textbf{Focalisation sur les produits} : Toujours travailler vers la réalisation du produit
+			\item \textbf{Adaptation à l'environnement du projet} : Prendre l'environnement en compte
+		\end{itemize}
+
+		Les 7 \textbf{Processus} : \\
 		
+		\begin{itemize}
+			\item \textbf{Elaborer le projet} : Nommer les gens, créer les documents à remplir, rédaction des objectifs, vérification des projets précédents, validation par le commité de pilotage
+			\item \textbf{Diriger le projet} : Comité de pilotage : décisions, approbations
+			\item \textbf{Initialiser le projet} : Plannification du projet en détail par le chef de projet
+			\item \textbf{Contrôler une séquence} : Chef de projet fait le suivi du projet, préparation des tâches, suivi des rapports d'avancement, identifie tout risque ou déviation par rapport au plan initial et rapporte au comité de pilotage
+			\item \textbf{Gérer la livraison du produit} : Les exécutants rapportent sur la progression
+			\item \textbf{Gérer une limite de séquence} : A la fin d'une séquence, le chef de projet fournit un rapport au comité de pilotage
+			\item \textbf{Clore le projet} : Le chef de projet s'assure que tout ele travail est achevé et documente les retours d'expérience
+		\end{itemize}
+
+		Les 7 \textbf{Thèmes} : \\
+		
+		\begin{itemize}
+			\item \textbf{Cas d'affaire} : La raison du projet
+			\item \textbf{Organisation} : Les rôles et responsabilités
+			\item \textbf{Qualité} : Produit conforme aux exigences client
+			\item \textbf{Planification} : Dates, quantités, détails
+			\item \textbf{Risque} : EValuer et maîtriser les risques
+			\item \textbf{Changement} : Catégoriser, valider, contrôler
+			\item \textbf{Progression} : Moyens de contrôle de l'avancement
+		\end{itemize}
 
 
+	\section{PMI/PMBOK}
+
+		Le Project Management Institute produit en 1983 un guide définissant les champs de connaissances couvrant la gestion d'un projet : le \textbf{P}roject \textbf{M}anagement \textbf{B}ody of \textbf{Knowledge}.\\
+		Celui-ci recense les bonnes pratiques professionnelles dans la gestion de projet, et est standardisé ANSI en 1999.\\
+
+		Equivalant à PRINCE2.\\
+
+	\section{CMM/CMMI}
+
+		\textbf{C}apability \textbf{M}aturity \textbf{M}odel 1991 (+ \textbf{I}ntegration 2001).\\
+
+		Commandé à la Software Engineering Institute par le DoD Américain, recueil de bonnes pratiques pour évaluer et améliorer les entreprises, s'appliquait d'abord au domaine informatique, ensuite à tous les domaines d'ingénierie.\\
+
+		5 niveaux de maturité : \\
+
+		\begin{enumerate}
+			\item \textbf{Initial : }Aucun processus défini, pas de monitoring, réactions dans l'urgence
+			\item \textbf{Managed : }Chef de projet établit des plans de développement, assurance qualité
+			\item \textbf{Defined : }Centralisation des bonnes pratiques, suivies par tous
+			\item \textbf{Quantitatively Managed : }Les processus sont mesurés et contrôlés par rapport aux besoins du client
+			\item \textbf{Optimizing : }Amélioration continue et anticipation
+		\end{enumerate}
+
+	\section{ITIL}
+
+		Information Technology Infrastructure Library.\\
+
+		Créé par le gouvernement UK dans les années 1990, ensemble d'ouvrages recensant les bonnes pratiques du management du système d'information.\\
+
+		Processus définis et contrôlés, traçabilité des actions.\\
+
+	\section{Waterfall - Critique de la standardisation}
+
+		Le standardisation a les avantages de proposer des bonnes pratiques pour améliorer l'éfficacité, d'éviter aux gens de réinventer la roue et de proposer un reporting uniforme permettant une gestion facilitée du projet.\\
+
+		Cependant celle-ci amène une lourdeur bureaucratique et une documentation exagérée, ainsi qu'un manque de flexibilité alors que celle-ci est importante dans un projet de développement.\\
+
+		Ces standards sont aussi bien souvent un business, les certifications étant payantes.\\
+
+		Cela dit, celle-ci est très importantes pour des domaines sensibles où le contrôle doit être important (centrales nucléaires, armée, ...)\\
+
+	\section{UML}
+
+		Unified Modeling Language, permet la visualisation d'un système, est normalisé et documenté, propose 14 types de diagramme.\\
+
+\chapter{Méthodologies LightWeight}
+	
+	\section{Méthodologies "Légères"}
+
+		Les 4 précèptes importants de ces méthodologies vont être les suivants : \\
+
+		\begin{itemize}
+			\item De l'organisation et pas de structure cadenassée
+			\item Adaptation aux changements et pas de prédictions sur le futur
+			\item Le fonctionnement est centré sur les gens, pas sur l'organisation
+			\item Pas de documentation exagérée
+		\end{itemize}
+
+	\section{Les besoins changent}
+
+		Les changements étant \textbf{inévitables}, le mieux serait d'en tirer profit.\\
+
+		Dans les fonctionnements lourds, le planning étant fixé une fois pour toute, des changements de besoins au niveau du client seront facturés en plus car s'écartant du contrat initial.\\
+
+		En lightweight, le développement est itératif et le client participe activement à celui-ci, de sorte qu'il puisse introduire des demandes de changements qui orientent la suite du développement et n'ont pas d'impact majeurs puisque ces changements sont "anticipés".\\
+		Ceci donne un avantage compétitif aux développeurs.\\
+
+	\section{Gérer le changement}
+
+		Les changements sont aisément \textbf{anticipables}, les itérations se font sur quelques semaines, proposent à chaque issue des fonctionnalités fonctionnelles et utiles au client, et celui-ci va pouvoir donner son avis sur ce qu'il peut déjà utiliser afin de proposer des modifications utiles si besoin qui seront implémentées dans la prochaine itération.\\
+
+	\section{Le Client}
+
+		Le client veut principalement un \textbf{prix à l'avance} et surtout ne pas \textbf{payer plus que prévu}.\\
+		En fonctionnant sur cette base d'itérations et de reviews clients, on met à jour le planning selon les nouveaux besoins et les nouvelles idées, il n'est pas nécéssaire non plus de surfacturer des changements ce qui engendre de la confiance de la part du client car ses volontés principales sont respectées.\\
+		Il faut cependant lui faire comprendre qu'un investissement en temps est nécéssaire de sa part pour le feedbacks et donc pour assurer le bon fonctionnement de la méthode.\\
+
+	\section{Succès d'un Projet}
+
+		Le succès d'un projet repose sur le coût qu'il a généré par rapport à la valeur du produit fournit, implique de la qualité.\\
+
+	\section{Les Gens}
+
+		La méthodologie est centrée sur les gens et ce qu'ils peuvent apporter à une équipe, sur leurs compétences, et attend d'eux une implication dans le projet.\\
+		Les gens ne sont pas juste des ouvriers à la chaîne remplaçables dans la minute comme dans ce que Taylor proposait, ils ne doivent cependant pas être indispensables au bon déroulement d'un projet (accident, etc...)\\
+
+		On attend des gens qu'ils prennent des décisions et proposent des estimations dans ce qui doit être fait, les managers doivent déléguer.\\
+
+\chapter{Agile}
+
+	\section{Création du terme}
+
+		Agile vient du terme "Light" dans LightWeight.\\
+
+		Groupe de pratiques ayant pour base le \textbf{Agile Manifesto} rédigé en Février 2001 par 17 personnes conceptrices de méthodologies Lightweight, qui vont extraire les principes et critères de leurs méthodologies qui selon eux conduisent aux meilleures gestion de projets, afin de les réunir et créer le \textbf{Agile Manifesto}.\\
+		Ils créeront plus tard la \textbf{Agile Alliance}.\\
+
+
+	\section{Manifeste - Valeurs}
+
+		Les méthodes agiles prônent 4 valeurs fondamentales : \\
+		(Ctrl+C+V Wikipedia)\\
+
+		\begin{enumerate}
+			\item \textbf{L'équipe :} (« Les individus et leurs interactions, plus que les processus et les outils ») : dans l'optique agile, l'équipe est bien plus importante que les outils (structurants ou de contrôle) ou les procédures de fonctionnement. Il est préférable d'avoir une équipe soudée et qui communique, composée de développeurs (éventuellement à niveaux variables), plutôt qu'une équipe composée d'experts fonctionnant chacun de manière isolée. La communication est une notion fondamentale.
+			\item \textbf{L'application :} (« Des logiciels opérationnels, plus qu'une documentation exhaustive ») : il est vital que l'application fonctionne. Le reste, et notamment la documentation technique, est une aide précieuse mais non un but en soi. Une documentation précise est utile comme moyen de communication. La documentation représente une charge de travail importante, mais peut pourtant être néfaste si elle n'est pas à jour. Il est préférable de commenter abondamment le code lui-même, et surtout de transférer les compétences au sein de l'équipe (on en revient à l'importance de la communication).
+			\item \textbf{La collaboration :} (« La collaboration avec les clients, plus que la négociation contractuelle ») : le client doit être impliqué dans le développement. On ne peut se contenter de négocier un contrat au début du projet, puis de négliger les demandes du client. Le client doit collaborer avec l'équipe et fournir un compte rendu continu sur l'adéquation du logiciel avec ses attentes.
+			\item \textbf{L'acceptation du changement :} (« L'adaptation au changement, plus que le suivi d'un plan ») : la planification initiale et la structure du logiciel doivent être flexibles afin de permettre l'évolution de la demande du client tout au long du projet. Les premières livraisons du logiciel vont souvent provoquer des demandes d'évolution.
+		\end{enumerate}
+
+	\section{Manifeste - Principes}
+
+		\begin{enumerate}
+			\item La plus haute priorité est de satisfaire le client en livrant rapidement et régulièrement des fonctionnalités à grande valeur ajoutée.\\
+			\item Accueillir positivement les changements de besoins, même tard dans le projet. Les processus Agiles exploitent le changement pour donner un avantage compétitif au client.\\
+			\item Livrez fréquemment un logiciel opérationnel avec des cycles de quelques semaines à quelques mois et une préférence pour les plus courts.\\
+			\item Les utilisateurs ou leurs représentants et les développeurs doivent travailler ensemble quotidiennement tout au long du projet.\\
+			\item Réaliser les projets avec des personnes motivées. Fournissez-leur l'environnement et le soutien dont ils ont besoin et faites-leurs confiance pour atteindre les objectifs fixés.\\
+			\item La méthode la plus simple et la plus éfficace pour transmettre l'information à l'équipe de développement et à l'intérieur de celle-ci est le dialogue en face à face.\\
+			\item Un logiciel opérationnel est la principale mesure d'avancement.\\
+			\item Les processus Agiles encouragent un rythme de développement soutenable. Ensemble, les commenditaires, les développeurs et les utilisateurs devraient être capables de maintenir indéfiniment un rythme constant.
+			\item Une attention continue à l'excellence technique et à une bonne conception renforce l'Agilité.\\
+			\item La simplicité, càd l'art de minimiser la quantité de travail inutile, est essentielle.\\
+			\item Les meilleures architectures, spécifications et conceptions émergent d'équipes autoorganisées.\\
+			\item A intervalles réguliers, l'équipe réfléchit aux moyens de devenir plus éfficaces, puis règle et modifie son comportement en conséquence.\\
+		\end{enumerate}
+
+	\section{Agile - Répétition}
+
+	\section{Agile - Marketing}
+
+	\section{Agile - Excellence Technique}
+
+		Seule l'excellence technique exigée permet ensuite de mettre en place l'Agilité.\\
+
+\chapter{SCRUM}
+
+	\section{Remarque}
+
+		Scrum compile les bonnes pratiques de beaucoup d'autres méthodologies légères, et laisse la place à des idées venues d'autres horizons, même les vôtres éventuellement.\\
+
+	\section{Origines}
+
+		Métaphore liée à la mêlée du rugby utilisée pour la première fois dans une publication Japonaise de Hirotaka Takeuchi et Ikujiro Nonaka dans le monde industriel.\\
+
+		Cette publication va inspirer \textbf{Ken Schwaber} et \textbf{Jeff Sutherland} dans ce que deviendra la méthode SCRUM.\\
+
+		Ken Schwaber créera la Scrum Alliance pour proposer des certifications.\\
+
+	\section{Rôles}
+
+		On retrouve 4 rôles principaux dans un projet SCRUM : \\
+
+		\subsection{Product Owner}
+
+			Le Product Owner est la personne de référence pour la vision du produit, il est le \textbf{représentant du(es) clients}.
+			Il est responsable des choix stratégiques liés aux fonctionnalités du produit, et a quattre tâches principales : \\
+
+			\begin{enumerate}
+				\item Définir les fonctionnalités : Gestionnaire des user stories en précisant leurs descriptions etc...
+				\item Répondre aux questions : Il fournit une vision partagée du produit, il énonce clairement l'énoncé du problème que le produit doit résoudre, s'assure que toutes les parties comprennent et partagent la même vision.
+				\item Planifier la vie du produit : Il définit l'ordre de réalisation des foncionnalités
+				\item Valider le résultat
+			\end{enumerate}
+
+		\subsection{Scrum Master}
+
+			Ce n'est pas un rôle hierarchique, mais peu être apparenté au leader, il doit aider l'équipe à appliquer Scrum et à l'adapter au contexte.\\
+
+			Le Scrum Master gère et est reponsable du processus, il doit : \\
+
+			\begin{enumerate}
+				\item Veiller à la mise en application de Scrum en organisant les différentes réunions et en s'assurant qu'elles se déroulent dans le respect des règles établies conjointement par l'équipe
+				\item Encourager l'équipe à apprendre et à progresser
+				\item Faire en sorte d'éliminer ou de prévenir les obstacles qui pourraient freiner le processus (\textbf{impédiments})
+				\item Inciter l'équipe à devenir autonome
+			\end{enumerate}
+
+		\subsection{Team}
+
+			Est inter-fonctionnelle, pas d'ultra spécialisations, chaque membre peut aider un autre sur n'importe qu'elle partie du projet à tout moment.\\
+
+			L'équipe doit trouver ses propres solutions aux problèmes via des initiatives et des prises de décisions.\\
+
+		\subsection{Stakeholders}
+
+			Toute personne ayant un intérêt dans le résultat (financier, scientifique, etc...)\\
+
+	\section{Processus}
+
+		Le Produt Owner commence par établir un Product Backlog autour duquel l'équipe va organiser le planning d'un Sprint d'une certaine durée fixe.\\
+
+		Chaque jour, l'équipe se réuni quelques minutes pour faire un Daily Scrum.\\
+
+		A chaque fin de Sprint, l'équipe se réuni pour faire un démonstration Sprint Review de ce qui a été produit de fonctionnel, et faire une rétrospective de Sprint pour discuter de ce qui pourrait être amélioré.\\
+
+		\subsection{Sprint Planning}
+
+			Team, Product Owner et Scrum Master se réunissent pour débuter le Sprint.\\
+			Chaque tâche du Backlog va être estimée en temps grossièrement via un planning poker, et un Selected Product Backlog va être produit en comportant toutes les Stories que la Team s'engage à remplir.\\
+
+			Ce Selected Product Backlog avec les tâches estimées en points formera le Sprint Backlog.\\
+
+		\subsection{Daily Scrum}
+
+			En début de journée, la team et le Scrum Master se réunit pendant 15 minutes pour expliquer : 
+
+			\begin{enumerate}
+				\item Ce qu'il a fait hier
+				\item Ce qu'il va faire aujourd'hui
+				\item Ce sur quoi il a des problèmes
+			\end{enumerate}
+
+			Le Product Owner peut éventuellement assister à ce Daily Scrum mais n'a pas le droit de participer, juste de s'informer.\\
+
+		\subsection{Sprint Review Meeting}
+
+			En fin de Sprint, la trinité se réunit avec les clients et les stakeholders et va présenter les Stories terminées devant l'assistance.\\
+
+			De cette manière, l'équipe va pouvoir avoir le feedback de ceux-ci et mettre à jour le Backlog.\\
+
+		\subsection{Sprint Retrospective Meeting}
+
+			L'équipe et éventuellement le Product Owner se réunissent pour discuter de : \\
+
+			\begin{enumerate}
+				\item Ce qui a bien été
+				\item Ce qu'il faudrait améliorer ou changer
+			\end{enumerate}
+
+		\subsection{Backlog Refinement}
+
+			Cette étape n'est pas forcément effectuée au début ni tout court.\\
+
+			Elle consiste, en milieu de sprint, a repasser le Backlog et a éventuellement revoir certaines fonctionnalités, afin d'estimer comment va se passer la suite.\\
+
+	\section{Definition of Done}
+
+		L'équipe doit se mettre d'accord sur la définition de ce qui est fini, par exemple un élément finit pourrait avoir les caractéristiques suivantes : \\
+
+		\begin{itemize}
+			\item Inclus dans le source control
+			\item Couvert par des tests unitaires
+			\item Couvert par des tests d'intégration
+			\item Documenté et màj\\
+		\end{itemize}
+
+		Ceci est très utile pour l'estimation des tâches et afin de terminer et finir tout correctement.\\
+
+	\section{Burn Down Chart}
+
+		Estime le temps sur un Sprint, mais trop rigide car inadapté aux changements si réestimation de temps ou ajout de temps de travail.\\
+
+		Désavantage au niveau du client, qui verra presque forcément un non-respect de ce planning qui n'est censé être là qu'à titre informatif pour l'équipe.\\
+
+		Une analyse a montré que le Burn Down Chart avait presque toujours la même forme pour un Sprint, lent démarrage puis gros boost en fin de Sprint.\\
+
+	\section{Burn Up Chart}
+
+	\section{Chicken n Pigs}
+
+	\section{Transparence}
+
+		Scrum demande du travail en transparence par rapport à toutes les personnes impliquées, ceci est assuré via : \\ 
+
+		\begin{itemize}
+			\item \textbf{Daily Scrum} : Tout le monde est au courant de ce que tout le monde fait, pas de secrets
+			\item \textbf{Sprint Review} : Les clients sont régulièrement mis au courant de l'état dans lequel se trouve le projet, impossible d'essayer de lui cacher que ça n'avance pas très bien ou qu'il y a eu tel problème
+			\item \textbf{Burn Down Charts, Kanbans, etc..}
+		\end{itemize}\\
+
+		Tout cette transparence mène sur des prises de décisions meilleures.\\
+
+	\section{Remarques}
+
+		Le bon fonctionnement de Scrum a pour condition \textbf{l'engagement} de chaque personne de la team.\\
+
+		Bien que les méthodes légères veulent se défaire de plannings, un planning de Sprint en tant que feedback et non en tant que ligne conductrice n'est pas forcément mauvais.\\
+
+		Les idées sont plus importantes que le vocabulaire, il faut comprendre les idées que l'on veut appliquer.\\
+
+	\section{Tableau des Tâches}
+
+		Le Kanban vient de Mike Cohn et permet via un système de \textbf{Post-It} de placer les éléments du BackLog sur un tableau et de les répartir dans trois colonnes : \\
+
+		\begin{itemize}
+			\item Todo
+			\item Doing
+			\item Done\\
+		\end{itemize}
+
+		Permet un gain au niveau transparence et transmission des idées au sein de l'équipe.\\
+
+	\section{Planning Poker}
+
+		Jeu de cartes reprenant la suite de Fibonacci, tout le monde choisi une carte pour estimer une tâche et la montre en même temps, ensuite il y a discussion.\\
+
+		Fibonacci permet d'avoir des valeurs assez éloignées les unes des autres, évite les discussions pour un écart faible, provoque vite un consensus.\\
+		Permet également d'avoir l'avis des personnes qui auraient une valeur assez extrême sur sa carte par rapport aux autres et d'apporter un point de vue peut-être essentiel que les autres auraient oublié.\\
+
+		Enfin, permet d'identifier les tâches trop grosses qu'il faudrait sans doute raffiner.\\
 \end{document}
