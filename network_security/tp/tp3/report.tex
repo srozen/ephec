@@ -58,8 +58,73 @@
 
 	\section{Préambule}
 
-		Ce tp est réalisé avec un Ubuntu 14.04 LTS virtualisé avec VMWare.
+		Ce tp est réalisé avec CentOS Security virtualisé de l'EPHEC avec VMWare.
 
 	\section{Contrôle d'accès aux fichiers Unix} 
+
+		\subsection{Utilisation du contrôle d'accès}
+
+			\subsubsection{Création des users et groupes}
+
+				La création des utilisateurs se fait via la commande \textbf{adduser nom\_du\_user}\\
+
+				La création des groupes se fait via la commande \textbf{groupadd nom\_du\_groupe}\\
+
+				La commande \textbf{usermod} permet d'ajouter un utilisateur existant à un groupe, ici utilisée de la manière suivante : \textbf{usermod -a -G grp1 userX}\\
+			
+			\subsubsection{/etc/group}
+
+				Le fichier contient des entrées du type : \textbf{kek:x:502:user1,user2}\\
+
+				Ces entrées ont donc les champs suivants : \\
+
+				\begin{itemize}
+					\item Le nom du groupe
+					\item Un mot de passe, souvent non utilisé et laissé blank (x)
+					\item Le GID, group id
+					\item La liste des users appartenant à ce groupe
+				\end{itemize}
+
+			\subsubsection{Différences entre /etc/passwd, /etc/shadow}
+
+				La fichier \textbf{passwd} associe à chaque entrée, qui correspond un user, le nom complet du User et le chemin absolu vers son \textbf{home} terminé par son compte shell.\\
+
+				Le fichier \textbf{shadow} quant à lui, contient : \\
+
+				\begin{itemize}
+					\item Le nom du user
+					\item Le mot de passe codé
+					\item Des nombres de jours à propos des modifications de mots de passes (update, validité, expiration,)
+				\end{itemize}
+
+			\subsubsection{Accès au répertoire}
 		
-		
+				Le répertoire de userX a tout les droits au niveau user et groupe, les autres ont le droit à X et R mais pas en écriture.\\
+
+				Un test avec userZ, appartenant au groupe 2, n'est pas possible étant donné que le répertoire Home ne propose des droits qu'au propriétaire ! \\
+
+			\subsubsection{Cascade des droits}
+
+				Afin de propager les droits, le bits SGID doit être positionné afin que les fichiers et répertoires suivants héritent de ces mêmes droits.\\
+
+				\textbf{chmod 2xxxx dir}\\
+
+			\subsubsection{Suppression des fichiers personnels}
+
+				Ceci est effectué en positonnant le sticky bit, de sorte qu'un user ne puisse supprimer que les fichiers qui lui appartiennent dans ce répertoire.\\
+
+				\textbf{chmod 1xxx dir}\\
+
+			\subsubsection{Droits d'accès fichiers spéciaux}
+
+				 \begin{itemize}
+				 	\item /dev/sda : brw-rw----
+				 	\item /dev/tty : crw-rw-rw
+				 	\item /dev/lp  : crw-rw----
+				 \end{itemize}
+
+			\subsubsection{Droits défault dans home}
+
+				Les droits par défaut sont RWX pour le propriétaire uniquement.\\
+
+\end{document}

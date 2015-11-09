@@ -1,0 +1,109 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{hyperref}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in 
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\GroupeName}{4.6}
+\newcommand{\CourseAndAPP}{NetSec} % Course/APP
+\newcommand{\Date}{24 Septembre 2015}
+
+\title{
+\parbox{15cm}
+{ %\includegraphics[width=4cm]{fox.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Sécurité des Réseaux - TP5 \\
+		\huge Nmap
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }} 
+\author{Monroe Samuel}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+
+	\section{Préambule}
+
+		J'ai réalisé ce tp dans un LAN domestique, ma machine sur laquelle j'utilise Nmap est un OSX 10.11 avec Nmap 6.49BETA5, je fais également tourner un VM CentOS Security, et d'autres appareils appartenant à ma famille fonctionnent dans ce LAN.\\
+
+	\section{Utilisation de Nmap}
+
+		Un Scan \textbf{nmap -Sp} du réseau me renvoie ma propre machine et l'ip du routeur.\\
+
+		Un Scan \textbf{nmap -Pn} du réseau me renvoie également une machine windows dont je sais que l'adresse IP est 192.168.1.3.\\
+
+		Je me trouve dans un réseau domestique \textbf{192.168.1.0/24}, pour commencer je vais lançer la commande \textbf{nmap -A} qui est censée selon la man page, me ramener la version des OS et logiciels utilisés sur les machines du réseau.\\
+
+		\begin{itemize}
+			\item Je commence avec l'adresse 192.168.1.1, j'apprend de celui-ci que le port 23 Telnet est ouvert mais également le port 80 HTTP (plate-forme web d'administration) et a pour titre Proximus, ainsi que le port 443 HTTPS.\\
+
+			L'appareil est un router de marque \textbf{Sagem}.\\
+
+			Un scan de version d'OS m'informera également sur les informations suivantes : \\
+
+			\begin{itemize}
+				\item MAC Address: 6C:2E:85:09:89:8D (Sagemcom)
+				\item Device type: WAP \textbf{Confirmation que c'est un router wi-fi}
+				\item Running: Linux 2.6.X
+				\item OS CPE: cpe:/o:linux:linux_kernel:2.6.13
+				\item OS details: Linux 2.6.13 (embedded)
+				\item Uptime guess: 2.271 days (since Sat Nov  7 12:21:12 2015)
+			\end{itemize}
+
+			\item Un PC Windows 10 tourne à l'adresse 192.168.1.3 mais n'a pas été découvert lors du mappage par ping.\\
+
+			La version de l'OS est obtenable via la commande \textbf{nmap -O -v ip}, en la tentant sur cet appareil, nmap me renvoie que la plus grande probabilité est que l'os soit un Windows Phone, ce qui est plus ou moins probant, Windows 10 étant conçu pour être un OS commun au parc des appareils Windows.\\
+
+			Au niveau des services qui tournent sur celui-ci, j'obtiens via -A -T4 :\\
+
+			\begin{itemize}
+				\item 135/tcp  open  msrpc
+				\item 139/tcp  open  netbios-ssn
+				\item 445/tcp  open  microsoft-ds
+				\item 1801/tcp open  msmq
+				\item 2103/tcp open  zephyr-clt
+				\item 2105/tcp open  eklogin
+				\item 2107/tcp open  msmq-mgmt
+				\item 5357/tcp open  wsdapi
+			\end{itemize}
+
+		\end{itemize}
+
+
+	\section{Analyse du fonctionnement de Nmap}
+
+\end{document}
