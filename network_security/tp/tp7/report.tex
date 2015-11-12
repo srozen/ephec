@@ -55,3 +55,140 @@
 \begin{document}
 \maketitle
 \newpage
+
+	\section{Exercices de Théorie}
+
+		\subsection{Exercice 1}
+
+			Les trois chaînes ont une policy de DROP par défaut.\\
+
+			\begin{itemize}
+				\item INPUT : Accepte du ICMP peu importe les conditions
+				\item FORWARD : Accepte de l'udp depuis 192.168.1.10 vers n'importe où, et accepte de l'udp depuis n'importe où vers 192.168.1.10
+				\item OUTPUT : Pas de règle
+			\end{itemize}
+
+		\subsection{Exercice 2}
+
+			Les commandes font un \textbf{flush} de toutes les règles précédentes, mettent une \textbf{policy} de drop par défaut sur toutes les chaînes, ajoutent sur \textbf{INPUT} l'acceptation de messages ICMP echo-request.\\
+			Sur \textbf{OUTPUT}, accepte les messages ICMP
+
+		\subsection{Exercice 3}
+
+			La chaîne \textbf{PREROUTING} a une policy d'acceptation par défaut.\\
+			La chaîne \textbf{POSTROUTING} a une policy d'acceptation par défault, et une règle de NAT qui modifie les adresses IP source du réseau local vers n'importe quelle destination.\\
+			La chaîne \textbf{OUTPUT} a une policy d'acceptation par défaut.\\
+
+		\subsection{Exercice 4}
+
+			Flush de toutes les règles précédentes, et ajout d'une policy \textbf{DROP} par défaut sur les trois chaînes.\\
+			Ajoute une règle d'acceptation en INPUT de nouvelles connexions ou de connexions établies sur les ports 80 et 443 (HTTP(S))\\
+			En \textbf{OUTPUT}, règle d'acceptation de toute connexion en état établie.\\
+
+		\subsection{Exercice 5}
+
+			\begin{itemize}
+				\item Flush de la chaîne \textbf{Forward}
+				\item Ajout d'une règle d'acceptance sur forward
+				\item Sur la table NAT, la chaîne \textbf{PREROUTING} est créditée d'une règle de NAT dynamique pour NAter les adresses du LAN.
+			\end{itemize}
+
+		\subsection{Exercice 6}
+
+			On flush les trois chaînes de la table \textbf{FILTER}, et on leur ajoute une policy d'acceptation.\\
+			On flush la chaînes \textbf{POSTROUTING} de la table \textbf{NAT}, et on ajoute une règle qui va modifier (\textbf{SNAT}) l'adresse source publique à une adresse publique dans un range de 10 adresses.\\
+
+		\subsection{Exercice 7}
+
+			On flush les trois chaînes de la table \textbf{FILTER}, et on leur ajoute une policy d'acceptation.\\
+			On flush la chaînes \textbf{PREROUTING} de la table \textbf{NAT}, et on ajoute une règle qui va modifier (\textbf{DNAT}) l'adresse de destination publique à une adresse privée port 80.\\
+
+		\subsection{Exercice 8}
+
+			On ajoute des règles en INPUT et OUTPUT, pour l'interface ppp0 en sortie et en entrée, qui vont accepter le protocole DNS port 53 en TCP et en UDP.\\
+
+		\subsection{Exercice 9}
+
+			\begin{enumerate}
+				\item Active le routage ipv4
+				\item Flush de toutes les règles
+				\item Création d'une chaîne personelle LOG\_DROP, on spécifie que les outputs de cette chaîne vont avoir un préfixe textuel et on spécifie également que tout paquet amené sur cette chaîne doit être droppé.
+				\item Création d'une chaîne personelle LOG\_ACCEPT, on spécifie que les outputs de cette chaîne vont avoir un préfixe textuel et on spécifie également que tout paquet amené sur cette chaîne doit être accepté.
+				\item Les policies sur les chaînes \textbf{INPUT, OUTPUT, FORWARD} sont mise à \textbf{DROP}.
+				\item Sur la chaîne \textbf{INPUT}, l'interface l0 en input est mise à \textbf{ACCEPT}, et sur la chaîne \textbf{OUTPUT}, l'interface l0 en output est mise à \textbf{ACCEPT}
+				\item Sur la chaîne \textbf{FORWARD}, ACCEPT en input sur la eth1 et output sur ppp0, et inversément.\\
+				De plus, sur la tâble nat chaîne \textbf{POSTROUTING}, une règle NAT les adresses du réseaux local.\\
+				\item Sur la chaîne \textbf{OUTPUT}, on accepte en sortie de l'interface ppp0, les connexions en état nouveau ou établie sur le port 80.\\
+				Sur la chaîne \textbf{INPUT}; on accepte en entrée de l'interface ppp0 les connexion établies sur le port 80.\\
+				Enfin, sur la tâble NAT chaîne \textbf{PREROUTING}, la règle NATe l'adresse destination des paquets en entrée de l'interface eth1 sur le port 80 vers l'adresse 192.168.2.1 port 3128.\\
+				\item Sur la tâble NAT chaîne \textbf{PREROUTING}, la règle NATe l'adresse destination 42.42.42.42 port 80 vers l'adresse 192.168.1.2 port 80.\\
+				Sur la chaîne \textbf{FORWARD}, on accepte les paquets entrants sur ppp0 à destination du port 80 pour des connexions NEW ou ESTABLISHED.\\
+				Sur la chaîne \textbf{FORWARD}, on accepte les paquets sortants sur ppp0 à destination du port 80 pour des connexions ESTABLISHED.\\
+				Sur la table \textbf{NAT}, chaîne \textbf{POSTROUTING} on NATe les paquets du LAN.\\
+				\item Sur la chaîne \textbf{FORWARD}, on accepte les paquets entrants sur eth1 pour le port 80 entrant pour des connexions nouvelles ou établies.\\
+				On accepte également les paquets entrants sur eth1 pour le port 80 sortant pour des connexions établies.\\
+				\item Sur la chaîne \textbf{INPUT}, on transfère à la liste LOG\_ACCEPT les paquets entrants sur eth1, depuis 192.168.2.42 à destination du port 22 pour des nouvelles connexions ou établies.\\
+				Sur la chaîne \textbf{OUTPUT}, on transfère à la liste LOG\_ACCEPT les paquets sortants sur eth0, vers l'adresse 192.168.2.42 port 200, pour des connexions établies.\\
+				\item On jump les trois chaînes de la table \textbf{filter} sur LOG\_DROP.
+			\end{enumerate}
+
+	\section{Laboratoire}
+
+		\begin{enumerate}
+			\item Les trois commandes suivantes ajoutent une policy d'acceptation pour tout paquet : \\
+
+				\begin{itemize}
+					\item iptables -P INPUT ACCEPT
+					\item iptables -P OUTPUT ACCEPT
+					\item iptables -P FORWARD ACCEPT
+				\end{itemize}
+
+			\item Rejet de tout le traffic, et logging des outputs, les commandes fonctionnent et on observe bien les rejets dans /var/log/messages \\
+
+				\begin{itemize}
+					\item iptables --flush (flush de toutes les règles)
+					\item iptables -N LOGS (création d'une liste custom LOGS)
+					\item iptables -P INPUT DROP
+					\item iptables -P OUTPUT DROP
+					\item iptables -P FORWARD DROP
+					\item iptables -A INPUT -j LOGS (jump da la liste dans logs)
+					\item iptables -A OUTPUT -j LOGS	
+					\item iptables -A FORWARD -j LOGS
+					\item iptables -A LOGS -m limit -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
+					\item iptables -A LOGS -j DROP
+				\end{itemize}
+
+			\item Remise du firewall dans sa config par défault, configurer le firewall pour empêcher toute requête html vers pc3 qui possède un site web. \\
+
+			Le serveur web du PC3 affiche une page html avec "It works ! ".\\
+
+				\begin{itemize}
+					\item iptables -A INPUT -p tcp --destination-port 80 -j DROP
+					\item iptables -A OUTPUT -p tcp --destination-port 80 -j DROP
+					\item iptables -A FORWARD -p tcp --destination-port 80 -j DROP
+				\end{itemize}
+
+			\item Dans l'exercice précédent, la policy par défaut était ACCEPT donc je garde ici la configuration précédente.\\
+			Cette commande permet toujours le ping par PC4, mais le subnet précisé ne peut plus pinguer PC3.\\
+
+				\begin{itemize}
+					\item iptables -A FORWARD -p icmp -s 192.168.2.0/24 -d 192.168.1.3 -j DROP
+				\end{itemize}
+
+			\item Ici encore, je garde la configuration de policy d'acceptance par défaut, pour bien voir que les échecs et l'acceptance sont dûs à mes règles.\\
+
+			Je précise d'abord une règle d'accès pour le PC2 sur l'interface du côté de PC2, ensuite un refus pour tout autre source.\\
+			Ensuite on rejette le reste dans la liste LOGS, qui elle-même rejera un jump sur drop.\\
+
+				\begin{itemize}
+					\item Flush puis acceptance par défaut.
+					\item iptables -A INPUT -i eth0 -p tcp --destination-port 22 -s 192.168.2.2/24 -d 192.168.2.200/24 -j ACCEPT
+					\item iptables -A OUTPUT -p tcp --source-port 22 -d 192.168.2.2/24 -j ACCEPT
+					\item iptables -A INPUT -j LOGS
+					\item iptables -A OUTPUT -j LOGS
+					\item iptables -A LOGS -m limit -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
+					\item iptables -A LOGS -j DROP
+				\end{itemize}
+		\end{enumerate}
+
+\end{document}
