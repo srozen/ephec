@@ -311,30 +311,24 @@
 							\item \textbf{Malwares} : \\
 
 								\begin{itemize}
-									\item 
-									\item 
+									\item Michaël étant le seul administrateur sur ce système, le risque est relativement \textbf{faible} si on considère surtout les virus, trojans et autres malwares étant souvent dûs à une mauvaise utilisation d'une machine et à un comportement peu prudent.\\ L'impact serait cependant très \textbf{élevé} puisque le serveur de production de HackatHome serait touché.
+									\item Il sera important pour Michaël de rester vigilent, de n'installer que le strict nécessaire sur son serveur de prod et d'éviter l'utilisation de plugins douteux pour se faciliter la vie.\\ Il faudra aussi installer un Système de détection d'intrusion afin de détecter toute anomalie sur le processus normal de travail.\\
 								\end{itemize}
 
-								Michaël étant le seul administrateur sur ce système, le risque est relativement \textbf{faible} si on considère surtout les virus, trojans et autres malwares étant souvent dûs à une mauvaise utilisation d'une machine et à un comportement peu prudent.\\
-							L'impact serait cependant très \textbf{élevé} puisque le serveur de production de HackatHome serait touché, il sera important pour Michaël de rester vigilent, de n'installer que le strict nécessaire sur son serveur de prod et d'éviter l'utilisation de plugins douteux pour se faciliter la vie.\\
 							\item \textbf{Exploit} : \\
 
 								\begin{itemize}
-									\item 
-									\item 
+									\item Un exploit ne peux jamais être écarté, l'impact serait également très \textbf{élevé} mais le risque est relativement \textbf{moyen}, Mickey a choisi FreeBSD pour sa grosse communauté et sa fiabilité.\\
+									\item Il lui importera de rester au courant des dernières mise-à-jour sécuritaires du système et de les appliquer.\\
 								\end{itemize}
-
-							Un exploit ne peux jamais être écarté, l'impact serait également très \textbf{élevé} mais le risque est relativement \textbf{moyen}, Mickey a choisi FreeBSD pour sa grosse communauté et sa fiabilité.\\
-							Il lui importera de rester au courant des dernières mise-à-jour sécuritaires du système et de les appliquer.\\
+							
 							\item \textbf{Accès non authorisé } : \\
 
 								\begin{itemize}
-									\item 
-									\item 
+									\item Le risque est ici plus \textbf{élevé} car rendu possible via d'autres menaces (vol de son pc, fuites chez DigitalOcean), et l'impact serait bien sûr très \textbf{élevé} également.\\
+									\item Le système doit donc être rendu accessible via SSH uniquement, et il faut configurer le serveur SSH pour n'accepter qu'une connection via clé publique/clé privée. Plus encore, les passphrases des clés doivent être fortes.\\
+									Comme précédemment, on installera un IDS afin de détecter toute intrusion dans le système.
 								\end{itemize}
-
-							Le risque est ici plus \textbf{élevé} car rendu possible via d'autres menaces (vol de son pc, fuites chez DigitalOcean), et l'impact serait bien sûr très \textbf{élevé} également.\\
-							Le système doit donc être rendu accessible via SSH uniquement, et il faut configurer le serveur SSH pour n'accepter qu'une connection via clé publique/clé privée. Plus encore, les passphrases des clés doivent être fortes.\\
 
 
 							\item \textbf{Risques résiduels} : \\
@@ -352,33 +346,22 @@
 							\item \textbf{Injections SQL} : \\
 
 								\begin{itemize}
-									\item 
-									\item 
+									\item Le risque est très \textbf{élevé}, des formulaires sur une page web sont une invitation à ces injections, surtout que les gains potentiels en données seraient intéressants pour un cracker.\\ L'impact d'une attaque par injection SQL serait très \textbf{élevé}.\\
+									\item Il conviendra de sécuriser au mieux les inputs PhP et les uploads fichiers avec les fonctions fournies par le langage, ainsi que de configurer sa base de donnée MySQL afin d'en limiter les droits en production.\\
 								\end{itemize}
 
-							Le risque est très \textbf{élevé}, des formulaires sur une page web sont une invitation à ces injections, surtout que les gains potentiels en données seraient intéressants pour un cracker.\\
-							L'impact d'une attaque par injection SQL serait très \textbf{élevé}.\\
-							Il conviendra de sécuriser au mieux les inputs PhP et les uploads fichiers avec les fonctions fournies par le langage, ainsi que de configurer sa base de donnée MySQL afin d'en limiter les droits en production.\\
-							\item \textbf{Exploits} : \\
-
-								\begin{itemize}
-									\item 
-									\item 
-								\end{itemize}
-
-							Le risque est plutôt \textbf{moyen}, mais l'impact peut être très \textbf{élevé}. Il conviendra d'utiliser les dernières versions des programmes, de se tenir au courant sur les dernièrs infos concernant ces logiciels et également de ne pas utiliser de fonctions dépréciées dans le code.
-							\item \textbf{Defacement} : \\
-
-								\begin{itemize}
-									\item 
-									\item 
-								\end{itemize}
-
-							Le risque dépend d'autres menaces et la manière dont les contre-mesures de celles-ci ont été mise en place, il reste néanmoins \textbf{moyen}, avec un impact \textbf{moyen} qui touchera surtout à la réputation du service mais laissera intact des pans plus critiques de celui-ci.\\
 
 						\end{itemize}
 
-						En contre-mesure globale, Michaël isolera son application dans une jail FreeBSD. En cas de compromission de celle-ci, l'impact pourra être limité ou du moins contrôlé via cette mesure. 
+
+						Risques résiduels : \\
+
+						\begin{itemize}
+							\item \textbf{Exploits} : Le risque est plutôt \textbf{moyen}, mais l'impact peut être très \textbf{élevé}.\\
+							\item \textbf{Defacement} : Le risque dépend d'autres menaces et la manière dont les contre-mesures de celles-ci ont été mise en place, il reste néanmoins \textbf{moyen}, avec un impact \textbf{moyen} qui touchera surtout à la réputation du service mais laissera intact des pans plus critiques de celui-ci.\\
+						\end{itemize}
+
+						En contre-mesure globale, Michaël isolera son application dans une jail FreeBSD. En cas de compromission de celle-ci, l'impact pourra être limité ou du moins contrôlé via cette mesure. \\
 						
 					\item \textbf{Données clients}
 
@@ -386,27 +369,28 @@
 							\item \textbf{Vol} : \\
 
 								\begin{itemize}
-									\item 
-									\item 
+									\item Le risque dépend encore une fois des autres menaces et de la manière dont elles sont traitées, il est néamoins \textbf{élevé} avec un impact \textbf{élevé}.
+									\item Il est priommordial de sécuriser tout les moyens d'accès à ces données, depuis la machine de travail, base de données, vps tels que susmentionnés.\\
 								\end{itemize}
-
-							Le risque dépend encore une fois des autres menaces et de la manière dont elles sont traitées, il est néamoins \textbf{élevé} avec un impact \textbf{élevé}. Il est priommordial de sécuriser tout les moyens d'accès à ces données, depuis la machine de travail, base de données, vps tels que susmentionnés.\\
+							 
 							\item \textbf{Destruction} : \\
 
 								\begin{itemize}
-									\item 
-									\item 
+									\item Le risque est assez \textbf{élevé} car cette menace peut même provenir de Mickey lui-même, on pourrait imaginer un \textbf{sudo rm -rf /} dans la mauvaise console un jour de très grosse fatigue, l'action d'un malware ou d'une injection SQL. L'impact est évidemment \textbf{très élevé}.\\
+									\item Les contre-mesures sur ces aspects ont été explorées dans les menaces précédentes.\\
 								\end{itemize}
-
-							Le risque est assez \textbf{élevé} car cette menace peut même provenir de Mickey lui-même, on pourrait imaginer un \textbf{sudo rm -rf /} dans la mauvaise console un jour de très grosse fatigue, l'action d'un malware ou d'une injection SQL. L'impact est évidemment \textbf{très élevé}.\\
-							Les contre-mesures sur ces aspects ont été explorées dans les menaces précédentes.\\
+							
 						\end{itemize}
 						
 					\item \textbf{Argent - Système de paiement}
 
 						\begin{itemize}
-							\item \textbf{Récupération des données lors de la transaction} : Le risque est \textbf{élevé}, surtout si son système est fait-maison, avec un impact évidemment \textbf{très élevé}.\\
-							En contre-mesures, il conviendra déjà d'utiliser un certificat SSL sur le site pour éviter l'échange d'informations en clair, et pourquoi pas utiliser un système de paiement avec un tiers tel que \textbf{Stripe}.\\
+							\item \textbf{Récupération des données lors de la transaction} : 
+							\begin{itemize}
+								\item Le risque est \textbf{élevé}, surtout si son système est fait-maison, avec un impact évidemment \textbf{très élevé}.\\
+								\item En contre-mesures, il conviendra déjà d'utiliser un certificat SSL sur le site pour éviter l'échange d'informations en clair, et pourquoi pas utiliser un système de paiement avec un tiers tel que \textbf{Stripe}.\\
+							\end{itemize}
+							
 						\end{itemize}
 						
 				\end{enumerate}
