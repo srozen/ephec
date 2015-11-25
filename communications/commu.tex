@@ -1,0 +1,188 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{hyperref}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in 
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\GroupeName}{4.6}
+\newcommand{\CourseAndAPP}{Communication} % Course/APP
+\newcommand{\Date}{24 Septembre 2015}
+
+\title{
+\parbox{15cm}
+{ %\includegraphics[width=4cm]{fox.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Présentation Technique Communication \\
+		\huge L'Intelligence Artificielle dans les Jeux Video
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }} 
+\author{Monroe Samuel, Youri Mouton}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+
+\section{Introduction}
+	
+	Depuis ses débuts, l'informatique a évolué de façon exponentielle, et il en est de même pour les jeux vidéo. Ces deux dernier ont vu naître des besoins en termes d'indépendance et de raisonnement croissants afin d'améliorer l'expérience des leurs utilisateurs.\\
+
+	L'intelligence artificielle, ou IA, est ce qui définit les capacités d'un programme à raisonner et à prendre des déicisions afin de résoudre un problème. On peut imaginer une intelligence comme un cerveau virtuel.\\
+	Elle est conçue dans le but d'aider l'homme à accomplir des tâches plus rapidement et ceci afin d'avoir un meilleur rendement, justement en lui évitant de devoir se soucier de prises de décisions basiques dans son travail.\\
+
+	Dans le domaine des jeux vidéo, l'Intelligence Artificielle est devenue nécéssaire, voir indispensable pour offrir au joueur une expérience de plus en plus agréable.\\
+
+	Dans on évolution, on trouve deux catégories d'IA, la \textbf{faible} qui est aussi la première et celle dans laquelle nous sommes toujours plus ou moins, et la \textbf{forte} qui est celle vers laquelle nous allons de plus en plus.\\
+
+\section{L'intelligence artificielle faible}
+
+	L'IA faible est un programme bien définit, qui permet à son possesseur de résoudre des problèmes dans des situations précises, elle ne se pose pas de questions ni cherche à tirer des conclusions sur ce qu'elle ne connaît pas.\\
+	Ce n'est qu'une suite logique de conditions préprogrammées, pour laquelle l'entité va prendre telle ou telle action selon tel ou tel stimuli tous bien définis.\\
+	On est confronté tout les jours aux IA faibles, pensez simplement à un site internet qui va vous refuser ou vous autoriser l'accès selon que vous avez entré les bons identifiants, c'est déjà une sorte d'intelligence.\\
+	
+	Au début du jeux vidéo, citons Pong dans lequel deux joueurs se renvoient une balle de part et d'autre de l'écran, il n'y a pas d'IA complexe avec des personnages ennemis contrôlés par l'ordinateur, ces jeux nécéssitent deux joueurs.\\
+
+	On va ensuite commencer à automatiser certaines parties du jeux pour qu'il réagisse selon les actions et le comportement du joueur, afin de complexifier le jeu.\\
+	Par exemple dans les jeux de combats ou l'IA écoute les actions que le joueur fait (les touches sur lesquelle il appuie) et la fait réagir en conséquence, on obtient un combat presque réaliste mais avec un certaine marge d'erreur pour que l'ennemi reste tout de même battable.\\
+
+	Dans les années 90, avec l'évolution de la technologie et des ordinateurs, on veut donner un comportement plus humain aux ennemis, ceux-ci peuvent courir vers le joueur, sauter ou s'arrêter devant un trou. Ou même estimer la distance du joueur pour lui tirer dessus ou autre.\\ Ces IA sont assez basiques et se contentent de peu de choses.\\
+
+	Une grande avancée dans l'IA est probablement Pacman, où les fantômes ont un comportement varié dans le labyrinthe et sont donc programmés de manières différentes pour venir à bout du joueur, certains poursuivent le joueur, d'autres cherchent à se positionner devant le joueur pour le piéger et le dernier a un mouvement officiellement aléatoire.\\
+
+	Ces comportement de déplacement dans le labyrinthe selon la position du joueur donne l'impression que les ennemis sont intelligents et réfléchissent, cela amène le nouveau concept dans les intelligences artificielles : le \textbf{pathfinding}.
+
+	\subsection{Pathfinding}
+
+		Traduit litéralement par "détection du chemin", c'est un procédé mathématique qui permet le déplacement des personnages non-joueurs sur une carte.\\
+
+		Pour ce faire on considère la carte comme une grille dont on va se servir pour créer une trajectoire d'un point A à un point B en évitant les obstacles sur sa route pour arriver à destination.
+
+		Deux algorithmes permettent de trouver le chemin le plus court, l'algorithme de \textbf{Dijkstra} et celui \textbf{A*}.\\
+
+		\begin{itemize}
+			\item \textbf{Dijkstra} : Cet algorithme calcule la distance de chaque chemin possible vers la destination, et établit ensuite un comparatif de ces chemins pour déterminer la meilleur route vers le point B.\\
+			Cet algorithme est assez lent et gourmand, donc évité dans les jeux vidéos, mais c'est un algorithme très utilisé notamment en Routage Internet, où les routeurs calculent le meilleur chemin vers lequel faire transiter vos données en partageant des données relatives aux distances avec leurs voisins.\\
+
+			\item \textbf{A*} : Cet algorithme est plus rapide donc souvent utilisé dans les jeux vidéo, mais moins précis.\\
+			Son nom vient de sa façon de procéder, en partant du point A, il va vérifier les chemin autour de ce point initial et va suivre le résultat qui se rapproche le plus du point d'arrivée, et s'il rencontre un obstacle, il recommence depuis le début et recherche un autre itinéraire.
+		\end{itemize}
+
+	\subsection{La période 2D vers 3D}
+
+		La transition a été difficile car on passe d'un environnement en deux dimensions assez simple et transposable en grille à une environnement complexe en trois dimensions, on peut imaginer la masse de calculs à réaliser pour du pathfinding dans de telles conditions.\\
+
+		On va alors trouver une solution appelée \textbf{navigation mesh}, sorte de carte en deux dimensions que l'on va superposer à l'environnement 3D, et c'est sur cete carte que l'on va définir le déplacement des personnages non joueurs.\\
+
+	\subsection{La prise de décision}
+
+		Les jeux les plus représentatifs de cette mise en oeuvre de l'IA dans les décisions sont les jeux de stratégie.\\
+		On va regrouper ces décisions en quatre sous-systèmes utilisés par les \textbf{bots} (personnages non joueurs) pour être crédibles et utiliser les straatégies : \\
+
+		\begin{enumerate}
+			\item \textbf{La Tactique} : Elle va déterminer le comportement sur le champ de bataille selon les points des autres joueurs, leurs avancées, etc...
+			\item \textbf{Le Commandement} : Il va déterminer si une bataille vaut le coup d'être menée, s'il faut que l'ordinateur amène des renforts, ou bien qu'il batte en retraite.\\
+			\item \textbf{L'Occupation du Terrain} : Qui va déterminer s'il est plus avantageux de construire des bâtiments dans telle ou telle partie de la carte (ressources plus abondantes par exemple), ou s'il est plus avantageux de conquérir tels endroits plutôt que d'autres.\\
+			\item \textbf{La stratégie des soldats eux-même}
+		\end{enumerate}
+
+		Malgré leur crédibilité, ces comportements restent préprogrammés par les concepteurs et ne rendent donc pas cette IA humaine, d'où l'appellation d'IA faible.\\
+
+		C'est aussi dans le domaine la prise de décision que doivent se démarquer les \textbf{FPS} (jeux de tir en vue subjective) pour apporter du challenge et du réalisme au joueur.\\
+		Les ennemis doivent sembler éprouver des sentiments et poser des choix à court terme qui vont les sauver ou au contraire les faire mourir, comme par exemple dans le jeu Half-Life où les soldats vont souvent tenter d'encercler le joueur ou encore se mettre à couvert pour éviter les tirs du joueur.\\
+
+	\subsection{Logique, puissance et évolution}
+
+		L'intelligence d'un ordinateur se base juste sur des évènements logiques et des calculs mathématiques, un ordinateur puissant pourra juste calculer plus vite et résoudre plus de problèmes en même temps.\\
+
+		Le problème de l'IA est son omniscience, l'erreur étant humaine, on doit donc créer des erreurs dans l'IA via des probabilités et des variables qui ne sont finalement que mathématiques elles aussi.\\
+
+		Faire une IA totalement humaine reste toujours de la science-fiction, mais on s'en rapproche petit à petit.\\
+		L'arrivée des ordinateurs quantiques permettra sans doutes l'élaboration d'IA fortes beaucoup plus avancés que celles d'aujourd'hui.\\
+
+\section{Les IA fortes}
+	
+	L'IA \textbf{faible} n'est qu'un simple exécutant et limitée par son programme, cependant de plus en plus de jeux proposent une IA plus évoluée où elle a dex comportements plus complexes et peut même apprendre ou réafir selon les actions des joueurs, et ceci donne beaucoup plus d'intérêt aux jeux car on ne sait pas toujours prédire les actions des ennemis.\\
+
+	Ce sont toujours malgré tout des IA dites faibles, elles exécutent toujours un comportement prédit par le programmeur, mais on tend vers une IA forte, la frontière entre IA faible et forte n'est pas tout à fait nette.\\
+
+	Une IA forte selon sa définition doit remplir plusieurs critères, elle doit pouvoir : \\
+	\begin{itemize}
+		\item Comprendre
+		\item Apprendre
+		\item S'améliorer
+		\item Avoir consience d'elle même\\
+	\end{itemize}
+
+	Cet aspect de conscience d'elle-même rend l'IA forte difficile à définir précisément.\\
+
+	\subsection{Apprentissage de l'IA}
+
+		L'apprentissage est surtout une question de mémoire, l'IA mémorisera des situations et prendra des décisions sur base de ce qu'elle a vécu précédemment, plutôt que sur base d'un schéma prédéterminé.\\
+		C'est le cas notamment dans le jeu Planetary Annihilation, un jeu de stratégie où dans ses débuts, l'IA avait tendance à abuser des bombes nucléaires contre le joueur car elle se rendait très vite compte que c'était une arme un peu trop efficace. On a donc restreint ce comportement pour ne pas frustrer le joueur.\\
+		Lors d'une attaque, l'IA regardera dans sa mémoire à propos de combats précédents pour prendre une décision adéquate, l'IA apprend donc de ses erreurs.\\
+
+		Le programme Cepheus de l'université d'Alberta a résolu une variante du pocker, où il a joué des milliards de parties contre lui-même, en mémorisant et faisant chaque schéma de partie possible et en a déduit une stratégie infaillible.\\
+
+		Dans un autre jeu tel que Hello Neighbor, notre voisin nous chasse dans notre maison, et base ses stratégies sur son environnement et son expérience passée, il va poser des pièges, bloquer des portes et nous tendre des gut-apens, il base son intelligence sur les réactions du joueur face à des stimuli.\\
+
+		On peut imaginer un avenir dans lequel on pourra même dialoguer avec des IA.\\
+
+	\subsection{Turing et l'IA humaine}
+
+		D'après Alan Turing, c'est par le biais de la communication qu'on peut comprendre si une IA a consience d'elle même, il a mis en place un test pour déterminer si une IA peut penser, le \textbf{Test de Turing} dans lequel on détermine si une IA est capable de convaincre son interlocuteur qu'elle est humaine, et on est très proche d'y arriver.\\
+
+		Un ordinateur a notamment remporté en 2011 le jeu Jeopardy!, sorte de question pour un champion, face aux deux champions humains en titre.\\
+		L'exploit est surtout que l'ordinateur aie été capable de comprendre le sens des questions posées par le présentateur.\\
+
+		Google a créé un programme qui permet de reconnaître des formes et des couleurs via analogie, avec une série de neurones virtuels qui forment un réseau, scannant individuellement l'image et répondent chacun à un stimuli (détection des contours, motifs), si un neurone sensible aux quadrillages se déclanche il pourra par exemple détecter que c'est une chemise etc...\\
+
+	\subsection{La conscience des IA}
+
+		Maintenant qu'elles apprennent, communiquent et qu'elles comprennent, viens la question de la conscience des IA.\\
+
+		On enseigne déjà à des robots à reconnaître leur corps devant un miroir et même à dialoguer entre eux dans leur propre langage, l'IA est cependant toujours dépendante des humaines.\\
+
+\subsection{Conclusion}
+
+	Plus tard, les IA pourront probablement apprendre et déduire des choses, même abstraites, voire philosphiques.\\
+
+	Certains estiment que 47\% du travail humaine pourra être pris par des robots d'ici 2035, et les gouverments investissant dans les IA n'ont pas forcément un but philanthropique.\\
+
+	L'éminant scientifique Stephen Hawking prétend que l'IA pourrait mettre un terme à l'humanité si elle était assez évoluée que pour se reprogrammer elle-même.\\
+
+	Sommes-nous destinés à être remplacés par les robots, les humains seraient-ils les dinosaures des robots, et finalement ne sommes-nous pas que des êtres programmés par notre environnement cherchant à aller d'un point A à un point B en empruntant le chemin le plus court?\\
+
+\end{document}
