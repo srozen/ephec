@@ -40,3 +40,8 @@ Ouvrir l'application et tester un peu tout n'importe où, explorer l'application
 Même code pour de meilleures fonctionnalités, les tests unitaires rassurent sur le fait que le système continuera à tourner même refactoré.
 
 ## Itération
+2-3 semaines
+
+## Planning
+Planning grossier, on prend toutes les features et on estime un planning en gros
+Pas de détails, flexibilité et obligation de revoir le planning à chaque itération
