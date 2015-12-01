@@ -1,0 +1,91 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{listings}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in 
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\GroupeName}{HE201041}
+\newcommand{\CourseAndAPP}{BeerCollection} % Course/APP
+\newcommand{\Date}{\today}
+
+\title{
+\parbox{15cm}
+{ %\includegraphics[width=4cm]{foxhound.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Sécurité des Réseaux \\
+		\huge Projet IpTables
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }} 
+\author{Monroe Samuel}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\section{Introduction}
+	
+	Ce rapport fait état de notre travail sur le projet Iptables dans le cadre du cours de Sécurité des Réseaux donné par Madame Van Den Schrieck.\\
+
+	Il contiendra une explication des règles haut niveau implémentées, et notre stratégie de validation ainsi que leurs résultats.\\
+	En annexe seront également incluses les configurations des trois firewalls, ainsi que les scripts ou méthodologies de validation.\\
+
+\section{Pré-configurations et Environnement}
+
+	Tout d'abord, ce projet a été réalisé via le labo Netkit fournit par Mme. Van Den Schrieck, tournant dans un environnement Centos 6 Securité virtualisé sous VmWare.\\
+
+	Ceci a un impact au niveau de la configuration initiale, le labo Netkit n'avait tout simplement pas accès à internet. Quelques petits points de configurations sont donc nécéssaires pour poursuivre l'implémentation de notre solution : \\
+
+	\begin{enumerate}
+		\item Dans la machine virtuelle, il faut déterminer sur quelle interface est liée le labo Netkit, elle s'apelle typiquement \textbf{nk_tap_user}.\\
+		\item Il faut également déterminer quelle adresse ip est assignée à cette interface, ici \textbf{10.0.1.15}\\
+		\item Dans le \textbf{router} du labo Netkit, il faut définir sa route par défaut (gateway) sur l'adresse ip de l'interface nk_tap_user : \textbf{route add default gw 10.0.1.15}.\\
+		\item Il faut maintenant activer le NAT sur la Vm pour que le tout fonctionne, en déterminant au préalable sous quelle interface la VM elle-même est reliée à l'Internet (eth6): \\
+		\begin{itemize}
+			\item \textbf{iptables -t nat -I POSTROUTING 1 -o eth6 -j MASQUERADE}
+			\item \textbf{iptables -I FORWARD 1 -i nk_tap_user -j ACCEPT}
+			\item \textbf{echo "1" > /proc/sys/net/ipv4/ip_forward}
+		\end{itemize}
+
+		\item ????
+		\item PROFIT !!!
+	\end{enumerate}
+
+	Un ping 8.8.8.8 depuis router devrait maintenant fonctionner, et une implémentation des règles NAT au sein du réseau et des règles Firewall peut être commencée.\\
+
+\end{document} 
