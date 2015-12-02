@@ -56,11 +56,11 @@
 \maketitle
 \newpage
 
-	\section{Rappel}
+	% \section{Rappel}
 
-		La première étape indispensable dans la réalisation de ce travail est de définir un cahier des charges, c’est-à-dire une description non technique (point de vue utilisateur) de la réalisation que vous envisagez.
+	% 	La première étape indispensable dans la réalisation de ce travail est de définir un cahier des charges, c’est-à-dire une description non technique (point de vue utilisateur) de la réalisation que vous envisagez.
 
-		Je vous propose donc de vous lancer dans la rédaction d’une première version de ce document (environ 2-3 pages).  Ce document devrait lister l’ensemble des fonctionnalités du projet, les contraintes qui s’y appliquent éventuellement (ces dernières peuvent, elles, être d’ordre technique) et fournir une première description générale des interfaces (graphiques ou non) permettant l’interaction avec l’utilisateur.
+	% 	Je vous propose donc de vous lancer dans la rédaction d’une première version de ce document (environ 2-3 pages).  Ce document devrait lister l’ensemble des fonctionnalités du projet, les contraintes qui s’y appliquent éventuellement (ces dernières peuvent, elles, être d’ordre technique) et fournir une première description générale des interfaces (graphiques ou non) permettant l’interaction avec l’utilisateur.
 
 	\section{Introduction}
 
@@ -112,21 +112,81 @@
 				\end{itemize}
 
 
-				Une fois ceci fait, il accèdera à l'accueil du site pour un utilisateur connecté.\\
+				Une fois ceci fait, il accèdera à la version du site pour un utilisateur connecté.\\
 
-			\subsubsection{Home - Page d'accueil}
+			\subsubsection{Menu de Navigation}
 
-				
+				Une fois connecté, l'utilisateur aura accès à plusieurs pages différentes pour profiter du service : \\
 
+				\begin{itemize}
+					\item \textbf{Profil} : Via laquelle l'utilisateur peut gérer son profil.
+
+					\item \textbf{Recherche} : Via laquelle il peut rechercher d'autres personnes avec lesquelles commencer à échanger.
+
+					\item \textbf{Amis} : Via laquelle il peut gérer ses échanges avec ses correspondants.
+				\end{itemize}
+
+			\subsubsection{Profil}
+
+				Cette page permettra à l'utilisateur de gérer son profil.\\
+				Il pourra modifier à la volée certains champs comme sa bio ou ses centres d'intérêts, voir des statistiques sur lui-même telles que le nombre d'heures qu'il a passé en chat ou encore le nombre de messages qu'il a déjà envoyé en anglais.\\
 
 			\subsubsection{Learners - Recherche de correspondants}
 
 				Dans cette section, l'utilisateur pourra rechercher des personnes avec qui commencer une correspondance en leur envoyant une demande d'ajout d'ami, pour leur proposer de pratiquer l'anglais ensemble.\\
 
-				Cette page présentera à l'utilisateur une liste des personnes établie selon les critères de matching, avec pour chaque personne sa bio, et un bouton d'ajout qui permet d'envoyer une invitation avec un message à destination de la personne.\\
+				Cette page présentera à l'utilisateur une liste des personnes établie selon les critères de matching, avec pour chaque personne sa bio, sa photo et un bouton d'ajout qui permet d'envoyer une invitation avec un message à destination de la personne.\\
 
 
-				
+			\subsubsection{Amis}
+
+				Cette page montrera à l'utilisateur une interface du type de \textbf{messenger.com}, c'est à dire une liste latérale de ses correspondants avec un rappel du dernier message, dernière connexion, ainsi qu'un indicateur selon qu'un nouveau message aurait été envoyé par un de ceux-ci.\\
+				Un click sur une personne dans cette liste ouvrira dans le panneau central la fenêtre de discussion correspondante.\\
+				Des boutons seront mis en évidence pour passer un appel ou démarrer un chat vidéo avec la peronne.\\
+				Enfin, divers petites informations seront présentes également pour indiquer le nombre de messages échangés, la durée de la correspondance, etc...\\
+
+			\subsubsection{Dictionnaire de Chat}
+
+				L'échange entre deux personnes ne connaissant pas extrêmement bien l'anglais pourrait poser des problèmes quant à la connaissance du vocabulaire, l'idée serait ici d'incorporer en vis-à-vis du chat, un petit dictionnaire regroupant les mots courants selon les centres d'intérêts concernés.\\
+				L'utilisateur pourrait ainsi se référer à celui-ci lorsqu'il veut envoyer un message, voir même effectuer des recherches dedans.\\
+
+		\subsection{Mobile App}
+
+			L'application mobile sera un outil de type companion-app permettant à l'utilisateur de prolonger son expérience en tout temps et tout endroit.\\
+
+			Elle consistera en quelques interfaces assez simples : \\
+
+			\begin{itemize}
+				\item Connexion
+				\item Liste de contacts
+				\item Ecran de chat
+			\end{itemize}
+
+			\subsubsection{Liste de contacts}
+
+				Elle se présentera en une liste déroulante affichant les correspondants de l'utilisateur.\\
+				Pour chaque entrée, classée selon l'échange le plus récent, sera indiqué l'état de connexion de l'utilisateur, un rappel de la date du dernier message ainsi qu'un résumé du dernier message.\\
+
+				Un appui sur une de ces entrées emmenerait l'utilisateur vers le fil de discussion avec cette personne.\\
+
+			\subsubsection{Ecran de chat}
+
+				Celui-ci affichera le fil de discussion entre l'utilisateur et le correspondant lié.\\
+				Les messages seraient séparés via couleur selon qu'il provient du destinataire ou de l'utilisateur, un espace de message permettrait via un appui de composer celui-ci, et proposer également l'envoi d'Emojis ou d'images via l'appareil photo.\\
+				Un petit menu permettrait également de lancer un appel ou une vidéo-conférence avec la personne.\\
+
+	\section{Contraintes identifiées}
+
+		Suite à une première réflexion sur les interfaces disponibles que j'aimerais proposer à l'utilisateur, j'ai identifié quelques contraintes techniques pour lesquelles je devrai me renseigner au mieux.\\
+
+		Premièrement, tout l'aspect \textbf{realtime} que proposent la plupart des réseaux sociaux, tels que l'affichage de notifications instantannées, les indicateurs de messages en cours de rédaction, etc...\\
+
+		Ensuite, tout ce qui concerne l'environnement VoIP qui permettrait la mise en place des appels et échanges vidéos.\\
+
+		Il y a également tout ce qui concerne les dérives et certains individus que ce genre de réseaux pourrait attirer, il faudrait donc un moyen efficace de gérer les utilisateurs posant des problèmes.\\
+
+		Enfin, il y a la mise en place d'une solide API pour que l'application fonctionne parfaitement en parallèle de la web app.\\
+					
 	\section{Détails Techniques Additionnels}
 
 		Vous trouverez dans cette section des éléments non abordés précédemment mais que j'estime intéressant de répertorier, puisqu'ils peuvent être sujet à discussion et à modification.\\
@@ -137,9 +197,15 @@
 		\begin{itemize}
 			\item \textbf{Ruby on Rails} : Ayant déjà une expérience sur celui-ci pour intégration, et étant donné que je vais également utiliser celui-ci lors de mon stage, je pense que c'est le meilleur choix qui puisse s'offrir à moi.\\
 			De plus, une bonne RESTapi sera pratique à mettre en place pour l'application mobile.\\
+			J'utiliserai l'utilitaire \textbf{Rspec} pour le testing dès le début, afin d'avoir un développement conduit par le testing.\\
 
-			 \item \textbf{}
+			\item \textbf{AngularJS} : J'aurai également à utiliser ce framework dans le cadre de mon stage, et je pense donc l'utiliser pour mon projet afin d'assurer le front-end.\\
+
 		\end{itemize}
+
+		Infrastructure : \\
+
+		\textbf{VPS} : J'hébergerai le service sur un VPS de chez DigitalOcean, probablement sous FreeBSD, pour l'aspect sécuritaire de ce système d'exploitation mais également pour acquérir une expérience sur un OS Unix.\\
 
 
 \end{document}

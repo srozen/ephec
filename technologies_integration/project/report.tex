@@ -1,69 +1,209 @@
-\documentclass[a4paper,10pt,final,fleqn]{article}
-\usepackage[frenchb]{babel}
-\usepackage{fontenc}
-\usepackage{fancyhdr} % Required for custom headers
-\usepackage{lastpage} % Required to determine the last page for the footer
-\usepackage{extramarks} % Required for headers and footers
-\usepackage{graphicx} % Required to insert images
+\documentclass{report}
+\usepackage{filecontents}
+
 \usepackage[utf8]{inputenc}
-\usepackage{apacite}
-\usepackage{url}
-\usepackage[normalem]{ulem}
-\usepackage{verbatim}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
 \usepackage{listings}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage[toc, page]{appendix}
+\usepackage{url}
 
-\evensidemargin=0in
-\oddsidemargin=0in
-\textwidth=6in
-\textheight=9.0in
-\headsep=0.25in 
+\definecolor{xcodekw}{rgb}{0.75, 0.22, 0.60}
+\definecolor{xcodestr}{rgb}{0.89, 0.27, 0.30}
+\definecolor{xcodecmt}{rgb}{0.31, 0.73, 0.35}
 
-% Set up the header and footer
-\pagestyle{fancy}
-\lhead{\GroupeName} % Top left header
-\chead{\CourseAndAPP} % Top center header
-\rhead{\Date} % Top right header
-\lfoot{\lastxmark} % Bottom left footer
-\cfoot{} % Bottom center footer
-\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
-\renewcommand\headrulewidth{0.4pt} % Size of the header rule
-\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+\titleformat{\chapter}[display]
+  {\centering\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
 
-\setcounter{tocdepth}{2}
+\geometry{hscale=0.75,vscale=0.85,centering}
 
-\newcommand{\GroupeName}{HE201041}
-\newcommand{\CourseAndAPP}{BeerCollection} % Course/APP
-\newcommand{\Date}{\today}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand\appendixtocname{Annexes}
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
 
 \title{
 \parbox{15cm}
-{ %\includegraphics[width=4cm]{foxhound.png} \\
-  \vspace{3cm}
+{ \vspace{3cm}
 	\begin{center}\sf\bfseries\Huge
 		\rule{15cm}{1pt}
 		\medskip
-		Rapport Projet Intégration des Technologies \\
+		Intégration des Technologies\\
 		\huge BeerCollection
 		\vspace{.5cm}
 		\rule{15cm}{1pt}
 	\end{center}
 	\vspace{3cm}
  }} 
-\author{Monroe Samuel}
+\author{Samuel \bsc{Monroe}}
+
 \date{\today}
 
 \begin{document}
-\maketitle
-\newpage
 
-\chapter{Introduction}
+\maketitle
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\tableofcontents
+
+\chapter{Rappel contenu}
+
+Les étudiants veilleront à ce que le document soit de qualité professionnelle, rédigé dans un français correct utilisant le vocabulaire adéquat (public-cible = équipe enseignante), avec une mise en page soigné, et utilisant adéquatement schémas, figures et tableaux.  
+
+
+\chapter{Introduction} % CHECKED : []
+
+	%% TODO
 	
 	
 \chapter{Description Initiale}
-\chapter{Analyse de sécurité}
-\chapter{Etude de marché}
-\chapter{Comparatif de rentabilité}
-\chapter{SCRUM}
-\chapter{Annexes}
+
+	\textbf{Beer Collection} est une application centrée autour de la zythologie (étude de la bière), et ayant également pour but de créer un petit réseau social entre ses utilisateurs.\\
+
+	Le projet sera décomposé en trois axes, une application Androïd, un site web de présentation du produit, d'administration et communautaire à plus long terme, et enfin de l'infrastructure réseau.\\
+
+	\section{Aspect Zythologie}
+
+		L'application permettra à chaque utilisateur de se créer un profil, et à partir de là, de commencer la "collection" des bières goûtées.\\
+
+		Une large base de données sera créée dans le but de collecter les informations sur toutes les bières du monde, et celles à venir.\\
+		On y retrouvera toutes les informations possibles sur une bière donnée, jusqu'à son historique, région de production, note de la team, note globale des utilisateurs, aspects gustatifs, etc...\\
+
+		L'utilisateur pourra agrandir sa collection de bières bues via un scan d'étiquette de bouteille par appareil photo du smartphone.\\
+		Il pourra également noter cette bière, et lui attribuer un commentaire.\\
+
+		Dans le cas où la bière ne serait pas présente dans la base de données, l'utilisateur sera invité à remplir certains champs à propos de celle-ci et la nouvelle bière devra être validée par l'équipe, ce afin de proposer un moyen collaboratif de construire une base de donnée complète des bières du monde.\\
+
+		Le site internet proposera également de consulter librement ce catalogue de bières construit par la communauté, et aussi par exemple de pouvoir voir quelles bières sont les plus plebiscitées par la communauté.\\
+
+	\section{Aspect Communautaire}
+
+		L'utilisateur inscrit disposera d'un profil, dans lequel il pourra renseigner ses préférences en termes de bières, et obtenir des informations tirées de son activité bibitive.\\
+
+		Il aura également un intérêt ludique à essayer de compléter un maximum sa collection via un système d'achievement (ex : avoir goûté toutes les trappistes belges, les trappistes internationales, etc...).\\
+		Sa collection sera évaluée par rapport au catalogue existant, et il obtiendra un niveau et un avatar qui évoluera suivant la complétion de sa quête.\\
+
+		Les utilisateurs pourront s'ajouter en ami, afin de consulter leurs profils respectifs, pouvoir voir quelles sont les dernières découvertes de leurs amis, conseiller des bières à ceux-ci, etc...\\
+
+	\section{Fonctionnalités Application}
+
+		\begin{itemize}
+			\item Scanner de bière
+			\item Profil
+			\item Catalogue
+			\item Ma Collection
+			\item Mes amis
+			\item Bons Plans
+			\item (Jeux Bibitifs)
+		\end{itemize}
+
+	\section{Fonctionnalités Site Web}
+
+		\begin{itemize}
+			\item Présentation du produit
+			\item Consultation du catalogue
+			\item Administration
+			\item Bons Plans
+			\item Communauté
+		\end{itemize}
+
+
+\chapter{Analyse du produit développé} % CHECKED : []
+
+	%% TODO
+
+	Une analyse du produit développé par rapport à cette description initiale, avec une réflexion sur les différences obtenues.  Le Product Owner peut se baser sur l’évolution du Backlog Produit pour mener cette discussion.  L’accent sera mis sur les échanges avec le client, afin de démontrer que le développement s’est fait en phase avec les demandes de ce dernier.  Les fonctionnalités présentées doivent être illustrées par des captures d’écran soigneusement choisies (ni trop, ni trop peu) et adéquatement commentées dans le texte. 
+
+	Le produit que nous avons développé s'est quelque peu écarté de la description initiale au fur et à mesure des sprints.\\
+	Il y a déjà eu un petit changement dès le départ, où suite à notre description il nous a été demandé de rajouter des fonctionnalités qui puissent rendrent ce projet plus "intégrateur", nous avions donc envisagés d'ajouter une fonctionnalité VoIP qui permette à un utilisateur de contacter un de ses amis pour aller boire un verre, et également un système de géolocalisation pour dénicher les bons endrois où aller consommer, ainsi que d'y voir ses amis connectés pour les retrouver facilement dans un bar.\\
+
+	\section{Web Application}
+
+		Notre application Web n'a au final pas réellement dévié des grandes lignes que nous avions tracées dans la description initiale.\\
+
+		
+
+	\section{Application Android}
+
+
+
+\chapter{Analyse de sécurité} % CHECKED : []
+
+	%% TODO
+
+	Une analyse des aspects sécurité liés au projet
+
+
+\chapter{Etude de marché} % CHECKED : []
+
+	%% TODO
+
+	Une étude de marché approfondie du produit
+
+\chapter{Comparatif de rentabilité} % CHECKED : []
+
+	%% TODO
+
+	Une comparaison entre la rentabilité espérée au début du projet (rapport remis fin septembre) et la rentabilité espérée en fin de projet, en tenant compte des coûts de développement effectifs (calculés sur base des timesheets)
+
+\chapter{SCRUM} % CHECKED : []
+
+	Une analyse de la mise en pratique de Scrum et du travail d’équipe : Qu’est ce qui vous a le plus aidé, qu’est ce qui a posé problème, comment a évolué la capacité du groupe, comment les différents rôles ont été tenus, etc.  Cette section sera typiquement sous la responsabilité du ou des étudiants qui ont tenu le rôle de Scrum Master durant le projet.
+
+	Ce chapitre expose notre analyse de la mise en pratique de la méthodologie Scrum, ceci en parcourant les divers outils qui nous ont été offerts par cette méthodologies, et en pointant ce qui a été bénéfique ou au contraire ce qui a été un problème pour nous, et enfin l'évolution du groupe et la gestion des rôles au cours de ce projet.\\
+
+	\section{Scrum et son expérimentation positive}
+
+		Ce qui nous a sans doute le plus aidé dans ce projet est la découpe en \textbf{User et Technical Stories} du projet.\\
+		D'une part, cela a rendu plus facile l'ensemble du travail puisqu'il s'agissait de se concentrer sur des fonctionnalités uniques et les plus indépendantes possibles.\\
+		Ce mode de fonctionnement offrait également une récompense aux développeurs et gardait la motivation de l'équipe à un bon niveau, chaque fonctionnalité terminée était directement visible et utilisable, on avait donc un réel sentiment d'avancer.\\
+		Cette découpe nous a de plus permis de se concentrer au mieux et de mettre en évidence des problèmes ou des contraintes qui ne seraient peut-être pas apparus en envisageant le projet sur toute son entiereté.\\
+
+		On pointera aussi le \textbf{Backlog} sur Trello, qui nous a permis d'avoir une vision très claire du travail à fournir tout au long du projet. Grâce à cela, on savait qui travaillait sur quoi, ce sur quoi on pouvait travailler, mais aussi voir ce qui avait été fini pour ce sprint et gardait la motivation de placer toutes les cartes dans la colonne des tâches accomplies.\\
+
+		Les \textbf{Daily Scrums} sont une autre très bonne expérience de ce projet, malgré la difficulté d'organiser ceux-ci notamment à cause des autres cours et de nos horaires respectifs.\\
+		Ils étaient un bon outil de motivation et ont permis de garder une bonne vision de l'état du projet actuel, et permettaient à tous de savoir qui faisait quoi et qui avait telle difficulté.\\
+		Les membres qui avaient un petit ralentissement du rythme se sentaient aussi un peu gênés de devoir dire s'ils n'avaient pas ou pas beaucoup travaillé la veille, et forcément avaient tendance à se remettre au travail pour avoir de quoi parler le lendemain.\\
+
+	\section{Scrum et ses contreparties}
+
+		Nous pensons que les éléments de Scrum qui n'ont pas fonctionnés sont surtout dûs au manque de formation au préalable, et représentent surtout un manque de connaissance dans la méthodologie.\\
+
+		Les \textbf{Sprint Reviews} et plus précisément le retour des clients nous ont été assez peu utiles.\\
+		Le fait est que nous n'avons pas eu réellement de remarques ou d'implication forte du reste de la classe (jouant le rôle de client lors de ces reviews) dans notre projet. Ceci est compréhensible, nous-même ayant eu du mal à fournir des remarques utiles pour les autres groupes.\\
+
+		Nous avons également eu des problèmes quant à l'utilisation du \textbf{Planning Poker}, dont nous avons compris réellement l'intérêt et l'essence via le cours de Thomas Thiry, dans le courant du dernier sprint.\\
+		Le jeu a tout de même été joué de donner une quote à chaque tâche pour en estimer le temps de travail, mais nous n'avions pas bien saisi que le but recherché était d'obtenir les avis extrêmes des membres de l'équipe qui auraient pensé à certaines difficultés non perçues par les autres.\\
+		L'échelle de 1 à 10 que nous avions choisi n'était pas propice à ce but, et les valeurs n'étant pas choisie en secret, on s'accordait presque toujours sur la même valeur.\\
+
+	\section{Groupe, Scrum Master et Product Owner}
+
+		Les débuts n'ont pas forcément été évidents. Nous étions tous habitués à un mode de fonctionnement dans lequel un leader émerge et donne ses directives aux autres membres du groupe.\\
+		Deux rôles spéciaux étant attribués, Rémy Voet en tant que \txtbf{Scrum Master} et Samuel Monroe en tant que \textbf{Product Owner}, les autres membres avaient au départ tendance à vouloir obtenir leurs directives des ceux-ci au lieu de se référer au Backlog et travailler de sa propre initiative.\\
+
+		Cela dit, les choses ont pris une tournure beaucoup plus fluide dès le premier sprint terminé, Rémy ayant bien tendu son rôle de Scrum Master dès le départ en rappelant aux membres de l'équipe qu'ils devaient oser travailler sans attendre des directives.\\
+		Les Daily Scrums étaient éfficaces et bien encadrés par celui-ci, il s'est révélé un bon gardien de notre motivation générale et des pratiques de la méthodologie.\\
+		Il a vite pu diminuer sa charge de travail dans ce rôles en ayant posé de bonnes bases, et a pu se consacrer de plus en plus au développement.\\
+
+		%% TODO %%
+
+		Le \textbf{Product Owner}
+
+\chapter{Annexes} % CHECKED : []
+	
+	%% TODO
+
+	En annexe, les différents schémas techniques utilisés comme outils de développement : Schémas entité-associations pour les bases de données, schémas réseaux, diagrammes de classe, …
 
 \end{document}
