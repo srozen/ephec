@@ -1,0 +1,112 @@
+\documentclass{report}
+\usepackage{filecontents}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{listings}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage[toc, page]{appendix}
+\usepackage{url}
+
+\definecolor{xcodekw}{rgb}{0.75, 0.22, 0.60}
+\definecolor{xcodestr}{rgb}{0.89, 0.27, 0.30}
+\definecolor{xcodecmt}{rgb}{0.31, 0.73, 0.35}
+
+\titleformat{\chapter}[display]
+  {\centering\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+
+\geometry{hscale=0.75,vscale=0.85,centering}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand\appendixtocname{Annexes}
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
+
+\title{
+\parbox{15cm}
+{ %\includegraphics[width=4cm]{foxhound.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Beer Collection \\
+		\huge Analyse personelle\\
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }}
+\author{Samuel \bsc{Monroe}}
+
+\date{22 Octobre 2015}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\section{Introduction}
+
+	Cette analyse personnelle va vous faire part de la manière dont j'ai vécu ce projet, ainsi que le rôle que j'ai tenu dans la mise en oeuvre de la méthodologie SCRUM.\\
+	Je parlerai ensuite des compétences que je pense avoir acquises ou améliorées, des difficultés que j'ai rencontré, et enfin je terminerai par des suggestions d'amélioration ainsi qu'une conclusion sur ce projet.\\
+
+\section{Ressenti sur le projet}
+	
+	Ce projet a vraiment été une expérience très prenante.\\
+	Le fait de pouvoir s'associer avec plusieurs autres personnes de la classe et se fixer un but, tout en choisissant nous-mêmes l'environnement dans lequel nous allons évoluer et les outils que nous allons utiliser, est vraiment enrichissant.\\
+
+\section{Rôle SCRUM}
+
+	J'ai tenu le rôle de Product Owner lors de ce projet.\\
+	Un autre membre du groupe avait été sélectionné pour ce rôle à la base, mais il s'est vite rendu compte de la charge de travail que cela représentait et de l'implication et des responsabilités qu'il impliquait, je me suis donc porté volontaire pour assumer ce poste au sein de l'équipe.\\
+
+	J'espère avoir bien tenu celui-ci et fourni une vision claire et éfficace du produit au reste du groupe pour mener à bien notre objectif.\\
+
+\section{Compétences Acquises}
+
+	Une des compétences que je suis très heureux d'avoir acquise est une base en Ruby on Rails, framework avec lequel nous avons décidé de baser notre backend et l'API pour l'application, alors que nous n'y connaissions rien du tout à la base.\\
+	Ceci m'a permit nottamment de trouver un stage, que je n'aurais pas pu avoir sans ces connaissances.\\
+
+	L'autre compétence est le travail de groupe via la méthodologie SCRUM.\\
+	Beaucoup de notions se sont eclaircies vers la fin du projet, et surtout grâce aux cours de Mr. Thiry, mais nous avons quand même pu nous organiser et apprendre une nouvelle façon de travailler éfficace.\\
+
+	Enfin, comme son titre l'indique, c'est la partie intégratrice de ce projet qui a été vraiment stimulante. Nous n'avions jusqu'ici jamais du mettre en relation tout un ensemble de technologies et les faire fonctionner entre elles.\\
+	Je garderai de bons souvenirs de soirée coding où on mettait en place ce genre d'interactions, nottamment pour la VoIP où nous avons du faire fonctionner Asterisk, le service Web et l'application Android en même temps. Ou encore le scanner de bière qui fait interagir un script Python, le service web et l'application.\\
+
+\section{Difficultés rencontrées}
+
+	La difficulté principale est probablement celle liée à la mise en place de SCRUM.\\
+	Cette méthodologie nécéssite une implication et une motivation forte de chacun des membres, et cela n'a pas toujours été le cas, un membre traînant un peu beaucoup la patte.\\
+
+	Il y a aussi le fait de se retrouver autonome sans chef de groupe, alors que c'est de cette manière dont nous avions l'habitude de nous organiser.\\
+
+	Nous en sommes coupables aussi, mais le manque général de participation et d'implication des groupes dans les Sprint Reviews des autres groupes a été légèrement handicapante, du feedback constructif de l'ensemble de la classe aurait été vraiment agréable.\\
+
+	La dernière grosse difficulté est évidemment l'investissement un peu trop lourd en temps que chacun de nous (presque) souhaite porter au projet, au détriment des autres évidemment. Mais nous avions été prévenus!\\
+
+\section{Pistes d'amélioration}
+
+	Pour commencer, une petite introduction avant toute chose à Scrum aurait vraiment été appréciable, même si nous nous sommes documentés et avons lu les documents fournis, c'est lors du cours de Mr. Thiry que je me suis rendu compte de la réelle importance du Planning Poker. Non pas dans la simple attribution d'un temps à chacune des tâches, mais du fait que cela pouvait faire ressortir des aspects du travail que les autres n'avaient pas forcément prévu.\\
+
+	Une petite réunion avec les marketing et compatabilité aurait aussi été vraiment bien, par exemple dès la remise des descriptions initiales ou peu avant, de sorte que l'on aie pu vraiment avoir une vision plus précises des enjeux business de notre application. Je pense que la plupart des élèves ont surtout envie d'abord de développer leur idée pour le fun et l'intérêt qu'ils y portent et sans trop réfléchir à comment cela va les faire vivre.\\
+
+
+\section{Conclusion}
+
+	Pour conclure, je pense que ce projet est vraiment quelque chose qui nous a tous fait progresser et me sera vraiment utile pour la suite.\\
+	Cela fait déjà plusieurs fois qu'on s'imagine reproduire cette expérience plus tard, ou qu'on se dit entre nous qu'on pourrait faire tellement mieux en recommencant aujourd'hui.\\
+	Le fait également d'avoir touché à plusieurs technologies et les avoir intégrées nous a fait faire un gros gros pas en avant, et je me sens personellement capable de plus de choses, d'oser plus de choses aussi.\\
+	Merci de nous avoir offert cette opportunité !\\
+
+\end{document}

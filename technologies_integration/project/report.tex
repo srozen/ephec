@@ -43,7 +43,8 @@
 	\end{center}
 	\vspace{3cm}
  }} 
-\author{Samuel \bsc{Monroe}}
+\author{Samuel \bsc{Monroe}, Michaël \bsc{Riffon}, Rémy \bsc{Voet}, Maxime \bsc{Grenier}\\
+ Cyril \bsc{Pierret}, Henry \bsc{Christophe}, Florian \bsc{Feignaert}}
 
 \date{\today}
 
@@ -57,12 +58,7 @@
 
 \tableofcontents
 
-\chapter{Rappel contenu}
-
-Les étudiants veilleront à ce que le document soit de qualité professionnelle, rédigé dans un français correct utilisant le vocabulaire adéquat (public-cible = équipe enseignante), avec une mise en page soigné, et utilisant adéquatement schémas, figures et tableaux.  
-
-
-\chapter{Introduction} % CHECKED : []
+\chapter{Introduction} % Done - CHECKED : [] 
 
 	 Ce document constitue le rapport final du projet BeerCollection dans le cadre du cours d'Intégration des Technologies en 3e année de Bachelier en Informatique à l'Ephec Louvain-la-Neuve.\\
 	 Ce projet résulte de la collaboration de six étudiants de troisième année accompagnés par un étudiant de deuxième, réunis autour d'une idée sortie d'un brainstorming durant les premiers cours de l'année.\\
@@ -77,7 +73,7 @@ Les étudiants veilleront à ce que le document soit de qualité professionnelle
 	 Enfin, vous trouverez une conclusion sur ce projet d'Intégration des Technologies, ainsi qu'une section annexe comprenant schémas réseaux et modes d'emplois.\\
 
 	
-\chapter{Description Initiale} % CHECKED : [V]
+\chapter{Description Initiale} % Done - CHECKED : [V]
 
 	\textbf{Beer Collection} est une application centrée autour de la zythologie (étude de la bière), et ayant également pour but de créer un petit réseau social entre ses utilisateurs.\\
 
@@ -131,41 +127,272 @@ Les étudiants veilleront à ce que le document soit de qualité professionnelle
 
 \chapter{Analyse du produit développé} % CHECKED : []
 
-	%% TODO
+	%% TODO AJOUTER LES PHOTOS
 
 	Une analyse du produit développé par rapport à cette description initiale, avec une réflexion sur les différences obtenues.  Le Product Owner peut se baser sur l’évolution du Backlog Produit pour mener cette discussion.  L’accent sera mis sur les échanges avec le client, afin de démontrer que le développement s’est fait en phase avec les demandes de ce dernier.  Les fonctionnalités présentées doivent être illustrées par des captures d’écran soigneusement choisies (ni trop, ni trop peu) et adéquatement commentées dans le texte. 
 
 	Le produit que nous avons développé s'est quelque peu écarté de la description initiale au fur et à mesure des sprints.\\
 	Il y a déjà eu un petit changement dès le départ, où suite à notre description il nous a été demandé de rajouter des fonctionnalités qui puissent rendrent ce projet plus "intégrateur", nous avions donc envisagés d'ajouter une fonctionnalité VoIP qui permette à un utilisateur de contacter un de ses amis pour aller boire un verre, et également un système de géolocalisation pour dénicher les bons endrois où aller consommer, ainsi que d'y voir ses amis connectés pour les retrouver facilement dans un bar.\\
 
+	\section{Cadre général}
+
+		L'aspect communautaire que nous visions au départ a finalement été réduite au strict minimum, les utilisateurs peuvent se retrouver et s'ajouter en amis, et consulter leurs profils respectifs.\\
+		Les clients n'avaient pas exprimés une volonté de voir ce pan de l'application développée plus loin, l'intérêt du service résidant dans la gestion de sa collection et une interaction avec ses amis.\\
+
 	\section{Web Application}
 
 		Notre application Web n'a au final pas réellement dévié des grandes lignes que nous avions tracées dans la description initiale.\\
 
-		
+		Une page d'accueil présente le produit à l'utilisateur, en indiquant ses diverses fonctionnalités et l'intérêt qu'il aurait à utiliser le service de BeerCollection.\\
+		Le titre était à la base animé, et a été fixé d'une autre manière suite à la demande de notre client.\\
 
+		Un utilisateur peut de manière classique s'enregistrer, se connecter et gérer son profil, ainsi que consulter sa collection.\\
+
+		L'onglet "Bons Plans" consiste en un espace publicitaire où des professionnels peuvent y déposer une offre, et les utilisateurs inscrits ou non peuvent consulter ces offres et de fait axer leurs prochains achats.\\
+
+		Le \textbf{Catalogue} offre à un utilisateur la possibilité de consulter l'ensemble des bières recensées sur l'application, ainsi que les détails sur une bière spécifique et les avis des autres utilisateurs sur celle-ci.\\
+		L'utilisateur connecté verra également un indicateur spécifiant dans le catalogue les bières qu'il possède déjà dans sa collection.\\
+		Un onglet \textbf{Collection} similaire à celui de catalogue offrira à l'utilisateur connecté de consulter sa propre collection de bières bues.\\
+
+		\includegraphics[scale=0.2]{wcollection.png}
+
+		Un gros point non prévu à la base est la \textbf{BeerMap}. Cela consiste en une GoogleMap récupérant la position de l'utilisateur consultant le site et lui permettant de localiser les bars et magasins de bières recommandés par l'équipe du projet.\\
+		Un utilisateur non-inscrit peut dès lors utiliser le site pour trouver de bons endroits où exercer son hobby de Zythologue en étant certain d'y trouver de la qualité et un large choix.\\
+
+		\includegraphics[scale=0.2]{wbeermap.png}
+
+		Un panneau d'administration permet à l'administrateur de gérer le catalogue, surtout en ce qui concerne les requêtes d'ajout de bière soumises par les utilisateurs pour la complétion du catalogue BeerCollection.\\
+		Il permet également la gestion des "Bons Plans" ainsi que des utilisateurs.\\
+		
 	\section{Application Android}
 
+		Cette application Android également n'a pas connu beaucoup de modification car elle a rencontré peu voir pas de demandes de changements de la part du client.\\
+		Les grosses modifications par rapport à l'idée de départ sont l'inclusion d'un système de téléphonie VoIP, ainsi que d'un système de géolocalisation similaire à celui du site Web mais avec des fonctionnalités en plus.\\
+
+		L'utilisateur peut dans un premier temps, soit se connecter, soit s'enregistrer auprès du service.\\
+
+		Celui-ci a dès lors accès au menu de l'application, lui proposant toutes les fonctionnalités du service.\\
+
+		\includegraphics[scale=0.2]{menu.png}
+
+		Comme sur le site Web, le catalogue des bières est consultable par l'utilisateur et indiquera également si celui-ci possède telle ou telle bière, en affichant pour chaque entrée de cette liste la note globale obtenue ainsi que celle de l'utilisateur s'il la possède dans sa collection.\\
+
+		Un appui sur une bière de la liste Catalogue mènera sur la fiche de profil de la bière, lui offrant toutes les informations complémentaires sur celle-ci, et lui proposant l'ajout à sa collection via l'écriture d'un commentaire et l'attribution d'une note sur dix.\\
 
 
-\chapter{Analyse de sécurité} % CHECKED : []
+		Une option Collection permet à l'utilisateur de consulter sa collection de bières et propose un visuel similaire à celui du catalogue.\\
 
-	%% TODO
 
-	Une analyse des aspects sécurité liés au projet
+		La \textbf{BeerMap} est une carte Google dans laquelle l'utilisateur va retrouver les bons bars et magasins tels que sur le site Web.\\
+		Lors du dernier Sprint, le client nous a demandé de pouvoir voir ses amis sur cette carte afin de pouvoir se rejoindre plus facilement dans des bars. C'est chose faite, la carte affichera vos amis pour peu qu'ils se soient connectés récemment et permettra ainsi aux utilisateurs de se retrouver facilement!\\
+
+		\includegraphics[scale=0.2]{beermap.png}
+
+
+		Une option \textbf{BeerScan} permet à un utilisateur de scanner une bière en prenant une photo de son étiquette, il recevra alors une proposition de bière trouvée.\\
+		Si celle-ci correspond, il pourra être emmené vers la page de profil de cette bière, ou dans le cas contraire il pourra soumettre une demande d'ajout de cette bière au catalogue et ainsi contribuer à l'expension de celui-ci.\\
+		Cette requête d'ajout de bière devra être validée par les administrateurs du site, afin d'éviter tout abus, et proposer une fiche descriptive la plus complete de cette bière.\\
+
+		\includegraphics[scale=0.2]{scan.png}
+
+
+
+\chapter{Analyse de sécurité} % Done - CHECKED : []
+
+	Cette analyse de sécurité va être établie sur bases des connaissances que nous avons acquises lors du cours de Sécurité des Réseaux donné par Mme. Van den Schrieck durant cette troisième année.\\
+
+	Elle va consister dans un premier temps en un listing de nos assets et leurs impacts sur une faille dans la trinité \textbf{Confidentialité}, \textbf{Disponibilité} et \textbf{Intégrité}, ainsi qu'un estimation de la valeur de ceux-ci.\\
+	Ensuite, une seconde partie reprendra ces assets et nous identifierons les risques qu'ils encourent et les contre-mesures mises en place pour pallier à ces risques.\\
+
+	\section{Assets et CIA (Confidentiality, Integrity, Availability)}
+
+		Certains éléments de cette triade sont parfois omis car sans intérêt pour le bien analysé.\\
+
+		\subsection{VPS}
+
+			Cet élément est indispensable au bon fonctionnement de BeerCollection, sa valeur est estimée au prix de la location, c'est à dire 20\$ par mois.\\
+
+			\begin{itemize}
+				\item \textbf{A :} L'impact est élevé, l'indisponibilité du service serait une perte de temps et d'argent.\\
+			\end{itemize}
+
+		\subsection{Ordinateurs des membres de l'équipe}
+
+			Ces biens sont estimés à 7 ordinateurs portables moyennés à 700 euros par ordinateur, on arrive donc à une somme de 4900 euros.\\
+
+			\begin{itemize}
+				\item \textbf{C :} Impact \textbf{élevé}, les ordinateurs contiennent beaucoup de données sensibles à propos du produit.\\
+				\item \textbf{A :} Impact \textbf{faible}, ces ordinateurs ne sont pas indispensables ni irremplaçables pour assurer la maintenance de BeerCollection.\\
+			\end{itemize}
+			
+
+		\subsection{Repositories Github}
+
+			Ces repositories sont le point central autour duquel nous travaillons, de plus ils contiennent tout le code source du projet, qui est évidemment un ensemble de données critiques.\\
+
+			\begin{itemize}
+				\item \textbf{C :} Impact \textbf{élevé}, nous ne voudrions pas que quelqu'un puisse accéder à tout le code et détecter des failles dont nous n'aurions pas conscience.\\
+				\item \textbf{I :} Impact \textbf{élevé}, tout notre travail repose sur ce code, des modifications non désirées sur celui-ci serait inacceptable.\\
+				\item \textbf{A :} Impact \textbf{variable}, tout dépend de la durée de l'indisponibilité, sachant que nous pouvons travailler localement sans soucis pendant une certaine période.\\
+			\end{itemize}
+
+		\subsection{Données Client}
+
+			Ces données sont difficilement chiffrables, mais elles sont primordiales pour tout les niveaux CIA, le maximum doit donc être mis en oeuvre pour assurer la protection de ces données.\\
+
+			\begin{itemize}
+				\item \textbf{C :} Impact \textbf{très élevé}, personne ne voudrait voir son mot de passe fuiter d'un site internet.\\
+				\item \textbf{I :} Impact \textbf{élevé}, l'utilisateur doit pouvoir utiliser le service sans rencontrer des erreurs liées à des modifications non souhaitées de ses données.\\ 
+				\item \textbf{A :} Impact de \textbf{moyen} à \textbf{élevé}, leur indisponibilité empêcherait seulement temporairement les utilisateurs d'utiliser le service, mais pourrait entraîner une perte de réputation.\\
+			\end{itemize}
+
+	\section{Assets, risques et contre-mesures}
+
+		Pour chaque bien sera indiqué ici une structure reprenant les risques et les contre-mesures qui vont s'appliquer à ces risques.\\
+		De plus, suivra une liste de risques dits "résiduels", pour lesquels des contre-mesures ne seront pas mises en place mais qu'il importe de répertorier.\\
+
+		\subsection{VPS}
+
+			\begin{itemize}
+				\item \textbf{Interruption de service chez Digital Ocean : }\\
+					\begin{itemize}
+						\item Le risque est \textbf{très faible}, DigitalOcean étant une société de hosting avec une bonne réputation, et son service est assurément protégé contre le risque de pannes ou autre interruption.\\
+						L'impact serait cependant assez \textbf{élevé} car BeerCollection dépend de la disponibilté du VPS.\\
+						\item
+					\end{itemize}
+
+				\item \textbf{Accès non-autorisé : }\\
+					\begin{itemize}
+						\item Le risque de voir notre VPS accédé sans autorisation est \textbf{moyen}, mais l'impact serait \textbf{très élevé}.\\
+						\item Pour pallier à ce risque, nous avons mis en place la gestion de ce VPS via SSH par clé-publique clé-privée uniquement, en prenant soin de sélectionner un passphrase éfficace pour ces clés.\\
+					\end{itemize}
+
+				\item \textbf{Défaut de paiement : }\\
+					\begin{itemize}
+						\item Le risque est assez \textbf{faible}, nous avons pris un plan à 20\$ par mois. L'impact serait assez \textbf{élevé}.\\
+						\item La souscription a été effectuée sur un compte bien provisionné et la facturation est suivie régulièrement afin d'éviter ce cas de figure.\\
+					\end{itemize}
+			\end{itemize}
+
+		\subsection{Ordinateurs des membres de l'équipe}
+
+			\begin{itemize}
+				\item \textbf{Vol ou perte : }\\
+					\begin{itemize}
+						\item Le risque est relativement \textbf{élevé} et cela pourrait arriver n'importe où.\\ L'impact serait également \textbf{très élevé} si la personne possédant l'ordinateur avait la capacité de s'introduire dessus et consulter les fichiers concernant l'application, dans lesquels peuvent apparaître des informations sensibles.\\
+						\item Nous avons tous des mots de passe assez forts (longs, variation majuscules minuscules, caractères spéciaux et alphanumériques).\\
+					\end{itemize}
+
+				\item \textbf{Destruction : }\\
+					\begin{itemize}
+						\item L'équipe travaillant souvant ensemble, en consommant des boissons ou autre, ainsi que le transport de ces ordinateurs portables fait que le risque de destruction malencontreuse est \textbf{très élevée}.\\
+						L'impact serait cependant \textbf{faible} car le code est versionné et ne représenterait qu'un contre-temps et une perte d'argent variable selon l'ordinateur.\\
+						\item Chacun de nous transporte son ordinateur dans une housse de transport, et prends soin de son appareil.\\
+					\end{itemize}
+
+				\item \textbf{Malwares : }\\
+					\begin{itemize}
+						\item Le risque est relativement \textbf{faible} car nous utilisons nos portables à des fins professionnelles uniquement et sommes sensibilisés à ce genr de risques, cependant l'impact pourrait être très \textbf{élevé}.\\
+						\item Il importe que chacun des membres de l'équipe continue à n'utiliser son ordinateur qu'à des fins professionnelles.\\
+					\end{itemize}
+
+			\end{itemize}
+
+		\subsection{Repositories Github}
+
+			\begin{itemize}
+				\item \textbf{Accès non autorisé}\\
+					\begin{itemize}
+						\item Le repository étant actuellement publique, le risque est plus \textbf{élevé} et l'impact serait bien entendu \textbf{très élevé}.
+						\item Nous rendrons ce respository privé, et il est déjà actuellement managé via clés publiques et clés privées.\\
+					\end{itemize}
+			\end{itemize}
+
+		\subsection{Web App}
+
+			\begin{itemize}
+				\item \textbf{Injections SQL, Defacement}\\
+					\begin{itemize}
+						\item Le risque de ce type d'attaques est toujours \textbf{élevé} et peuvent avoir un impact \textbf{très élevé}.\\
+						\item Nous avons sécurisé les inputs utilisateurs et passés ceux-ci sous regex pour éviter tout problème possible, Rails offre également une bonne protection face à ce type d'attaques.\\
+					\end{itemize}
+			\end{itemize}
+
+		\subsection{Android App}
+
+			\begin{itemize}
+				\item \textbf{Usage Malicieux}\\
+					\begin{itemize}
+						\item Le risque est \textbf{faible}, bien que l'impact pourrait être \textbf{élevé}, selon les compétences de l'utilisateur mal intentionné.\\
+						\item Nous avons mis en place un échange sécurisé des données, l'application utilise l'API via HTTPS, de plus nous avons fait en sorte qu'aucun mot de passe ne soit directement échangé malgré la présence du HTTPS.\\
+					\end{itemize}
+			\end{itemize}
+
+		\subsection{Données Client}
+
+			\begin{itemize}
+				\item \textbf{Vol :}\\
+					\begin{itemize}
+						\item Le risque dépend surtout de la manière dont la sécurité a été mise en place pour les menaces précédentes, mais l'impact serait bien évidemment \textbf{très élevé}.
+						\item Dans le cas où ces données seraient malencontreusement accédées, nous avons appliqué une gestion de mots de passe via hashage et salage, avec un algorithme SHA512.\\
+					\end{itemize}
+			\end{itemize}
+
+			\begin{itemize}
+				\item \textbf{Destruction :}\\
+					\begin{itemize}
+						\item Le risque est assez \textbf{élevé} car il peut survenir dans beaucoup de contexte, même en incluant des erreurs de la part des développeurs.\\
+						L'impact serait néanmoins très \textbf{}
+						\item Pour pallier à ce risque, des droits limités ont été accordés à l'utilisateur courant associé à la gestion de la base de données, et les opérations liées à la base de donnée sont confiées à une seule personne possédant le plus de connaissance à ce sujet.\\
+					\end{itemize}
+			\end{itemize}
+
+		\subsection{Risques résiduels :}
+
+			\begin{itemize}
+				\item Exploit
+				\item Destruction serveurs DigitalOcean
+			\end{itemize}
 
 
 \chapter{Etude de marché} % CHECKED : []
 
-	%% TODO
+	Cette étude de marché a été réalisée un peu dans l'urgence, notre business model était relativement imprécis, et c'est suite à la rencontre avec des élèves de marketing et de comptabilité que nous avons pu envisager des moyens de gains d'argents auxquels nous n'avions pas pensé.\\
 
-	Une étude de marché approfondie du produit
+	Suite à cette rencontre, plusieurs pistes de business model sont ressorties, comprenant certaines que nous avions prévues à la base : \\
+
+	\begin{itemize}
+		\item Espace publicitaire bons plans
+		\item Boutique d'objets personnalisés
+		\item Référencement payant des établissements sur la BeerMap
+		\item Notifications d'évènements
+	\end{itemize}
+
+	Nous avons dès lors lancé un Google Form pour essayer de chiffrer l'intérêt que pourrait porter le public à une boutique d'objets personnalisé tels que des verres de bière débloquables selon la progression de la personne dans sa collection de bières.\\
+	Il en est ressorti qu'un public masculin de tranche d'âge 18 à 30 ans serait enclin à utiliser notre produit, et même à acheter ce genre de verres à bière pour un montant d'environ 10 euros.\\
+
+	Les espaces publicitaires devraient être étudiés afin de trouver la meilleure et la plus rentable des solutions, telle qu'un placement payant des offres, ou encore un placement gratuit de celle-ci mais une rémunération au click de ces publicités.\\
+
+	En ce qui concerne la BeerMap, nous avons imaginé une possibilité d'abonnement de la part des établissements pour se voir référencer sur cette carte qui doit garantir aux utilisateurs des établissements de qualité.\\
+
+	Enfin, l'idée d'un système d'évènements a été émise. Ce système offrirait une possibilité payante aux bars ou même aux magasins de lancer une notification chez tout les utilisateurs d'une certaine région faisant la promotion d'un évènement d'une durée limitée telle qu'une "happy hour".\\
 
 \chapter{Comparatif de rentabilité} % CHECKED : []
 
-	%% TODO
-
 	Une comparaison entre la rentabilité espérée au début du projet (rapport remis fin septembre) et la rentabilité espérée en fin de projet, en tenant compte des coûts de développement effectifs (calculés sur base des timesheets)
+
+	La rentabilité espérée en début de projet n'a pas été correctement établie, nous nous sommes lancés autour de l'idée car elle nous plaisait sans réellement réfléchir à la partie financière.\\
+	Nous n'avons donc pas de point de départ pour offrir une comparaison avec la rentabilité que nous pourrions espérer aujourd'hui.\\
+
+	Concernant les coûts de développement, le temps total de travail réuni est de 750 heures, et on estime le salaire brut d'un développeur junior à une vingtaine d'euros brut de l'heure.\\
+	Notre coût de développement total est donc de 15000 euros brut.\\
+	A cela doivent s'ajouter les coûts de maintenance, 
+	Au niveau du coût de l'infrastructure, nous louons un VPN aux alentours de 15 euros par mois depuis 3 mois, nous avons également acheté le nom de domaine pour une année au prix de 10 euros.\\ 
+
+	Afin que ce projet soit rentable, il faudrait donc que ce produit nous ramène au moins 6000 euros par mois en considérant que la charge de travail que nous avons à fournir ne change pas.\\
+	Le projet nécéssite encore évidemment une certaine somme de travail pour constituer un produit réellement fini, ensuite la charge du travail diminuerait pour ne représenter plus que de la maintenance.\\
+	
+	L'obtention de cette somme ne nous semble pas si irréaliste que cela, en combinant nos quatre moyens de rémunération et une base minimum d'utilisateurs actifs, nous pensons que l'objectif est tout de même réalisable bien qu'incertain.\\
 
 \chapter{SCRUM} % CHECKED : []
 
@@ -209,17 +436,24 @@ Les étudiants veilleront à ce que le document soit de qualité professionnelle
 		Le \textbf{Product Owner} a bien pris son rôle au sérieux dès le départ en offrant une vision bien claire des objectifs et du produit final, il a également été un bon représentant lors des Sprint Reviews et a tenu à participer activement au développement de la partie web du projet.\\
 
 \chapter{Conclusion}
+	 
+	Au terme de ce projet, on a pu se rendre compte des apports de ce dernier en ce qui concerne nos compétences.\\
+	Ce travail nous a permis de lier une partie conséquente des acquis de notre cursus au sein de l'EPHEC en réalisant un projet intégrateur réunissant un lot de technologies différentes.\\
+	Ces choix de technologies seront sans doutes un gros plus dans notre parcours et serviront dans notre future vie professionnelle, et le choix de technologies non-apprises au sein de l'EPHEC a été très motivant.\\
+
+	Si le projet était à refaire, nous aurions évalué plus en détail la charge de travail entre la partie Android et Web.\\
+	L'application étant la pierre angulaire du produit, nous aurions dû allouer une personne fixe en plus dans l'équipe dédié à la réalisation de l'application.\\
+	De plus, nous referions plus de séances intensives de travail en commun ( que nous appelons entre nous "Hackathon"), lors desquels nous avon. Lors de ce projet, nous avons commencé à faire ce type  de séances un peu tard cad vers la fin du Sprint 3. On aurait commencé plus tôt, nul doute que nous aurions peut-être un produit plus conséquent.\\
 
 \chapter{Annexes} % CHECKED : []
-	
-	%% TODO
-
-	En annexe, les différents schémas techniques utilisés comme outils de développement : Schémas entité-associations pour les bases de données, schémas réseaux, diagrammes de classe, …
 
 	\section{Base de données}
 
-	\section{Mode d'emploi Web App}
+		Nous avons ici généré un dump de la base de donnée via une gemme Rails nommée RailRoady.\\
+		Celle-ci supporte tout le service puisque l'application Android communique sur base d'une API Rails.\\
 
-	\section{Mode d'emploi App Android}
+		\includegraphics[scale=0.5]{models_complete.png}
+
+	
 
 \end{document}
