@@ -34,5 +34,5 @@ FTP=92.168.1.12
 
 # Processor - Peut communiquer avec le FTP pour obtenir les fichiers
 
-	iptables -A FORWARD -p tcp -s $PROCESSOR -d $FTP --sport 21:22 --dport 21:22 --state NEW, ESTABLISHED -j ACCEPT
-	iptables -A FORWARD -p tcp -s $FTP -d $PROCESSOR --sport 21:22 --dport 21:22 --state ESTABLISHED -j ACCEPT
+	iptables -A FORWARD -p tcp -s $PROCESSOR -d $FTP --sport 20:21 --dport 21:22 --state NEW, ESTABLISHED -j ACCEPT
+	iptables -A FORWARD -p tcp -s $FTP -d $PROCESSOR --sport 20:21 --dport 21:22 --state ESTABLISHED -j ACCEPT
