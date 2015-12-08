@@ -73,14 +73,48 @@ iptables -A LOG_ACCEPT -j ACCEPT
 
 ## Règles d'acceptance
 
+### EXTERIEUR DMZ PUBLIQUE
+
+  iptables -A FORWARD -p tcp -i eth0 -d 192.168.7.10 -o eth1 -m multiport --destination-port 80,443 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.10 -o eth0 -m multiport --source-port 80,443 -m state --state ESTABLISHED -j LOG_ACCEPT
+
+  iptables -A FORWARD -p tcp -i eth0 -d 192.168.7.11 -o eth1 --dport 53 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.11 -o eth0 --sport 53 -m state --state ESTABLISHED -j LOG_ACCEPT
+
+  iptables -A FORWARD -p udp -i eth0 -d 192.168.7.11 -o eth1 --dport 53 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p udp -i eth1 -s 192.168.7.11 -o eth0 --sport 53 -m state --state ESTABLISHED -j LOG_ACCEPT
+
+  iptables -A FORWARD -p tcp -i eth0 -d 192.168.7.12 -o eth1 -m multiport --destination-port 80,873 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.12 -o eth0 -m multiport --source-port 22,873 -m state --state ESTABLISHED -j LOG_ACCEPT
+
 ### Machines DMZ SANDWICH
 
-#### DNS
 
-iptables -A FORWARD -p tcp -i eth3 -s 192.168.2.10 -o eth0 --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
-iptables -A FORWARD -p udp -i eth3 -s 192.168.2.10 -o eth0 --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
-iptables -A FORWARD -p tcp -i eth0 -d 192?168.2.10 -o eth3 --sport 53 -m state --state ESTABLISHED -j ACCEPT
-iptables -A FORWARD -p udp -i eth0 -d 192?168.2.10 -o eth3 --sport 53 -m state --state ESTABLISHED -j ACCEPT
+#### DNS vers extérieur
+
+  iptables -A FORWARD -p tcp -i eth3 -s 192.168.2.10 -o eth0 --dport 53 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p udp -i eth3 -s 192.168.2.10 -o eth0 --dport 53 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth0 -d 192.168.2.10 -o eth3 --sport 53 -m state --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p udp -i eth0 -d 192.168.2.10 -o eth3 --sport 53 -m state --state ESTABLISHED -j LOG_ACCEPT
+
+#### HTTP(S) vers extérieur et vers WEB
+
+  iptables -A FORWARD -p tcp -i eth3 -s 192.168.2.11 -o eth0 --dport 80 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p udp -i eth3 -s 192.168.2.12 -o eth0 --dport 443 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth0 -d 192.168.2.11 -o eth3 --sport 80 -m state --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p udp -i eth0 -d 192.168.2.12 -o eth3 --sport 443 -m state --state ESTABLISHED -j LOG_ACCEPT
+
+  iptables -A FORWARD -p tcp -i eth3 -s 192.168.2.11 -o eth1 -d 192.168.7.10 --dport 80 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.10 -o eth3 -d 192.168.2.11 --sport 80 -m state --state ESTABLISHED -j LOG_ACCEPT
+
+  iptables -A FORWARD -p tcp -i eth3 -s 192.168.2.12 -o eth1 -d 192.168.7.10 --dport 443 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.10 -o eth3 -d 192.168.2.12 --sport 443 -m state --state ESTABLISHED -j LOG_ACCEPT
+
+#### MAIL vers extérieur
+
+  iptables -A FORWARD -p tcp -i eth3 -s 192.168.2.13 -o eth0 -m multiport --destination-port 25,143,993 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+
+  iptables -A FORWARD -p tcp -i eth0 -d 192.168.2.13 -o eth3 -m multiport --source-port 25,143,993 -m state --state ESTABLISHED -j LOG_ACCEPT
 
 ### Machines R1 et R2
 
@@ -90,41 +124,55 @@ iptables -A FORWARD -p udp -i eth0 -d 192?168.2.10 -o eth3 --sport 53 -m state -
 
   iptables -A FORWARD -p tcp -i eth2 -s 192.168.4.10 -o eth4 -d 192.168.3.10 --sport 22 -m state --state ESTABLISHED -j LOG_ACCEPT
 
-#### Autoriser R2 à utiliser le serveur SSH
+#### Autoriser Rs à utiliser le serveur SSH
 
-  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.11 -o eth2 -d 192.168.1.10 --dport 22 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth2 -d 192.168.1.10 --dport 22 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
 
-  iptables -A FORWARD -p tcp -i eth2 -s 192.168.1.10 -o eth4 -d 192.168.3.11 --sport 22 -m state --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth2 -s 192.168.1.10 -o eth4 -d 192.168.3.0/24 --sport 22 -m state --state ESTABLISHED -j LOG_ACCEPT
 
-#### Autoriser Rs à accéder à HTTP(S)
+#### Autoriser Rs à accéder au server Web
 
-  iptables -A FORWARD -p tcp -i eth
+  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth1 -d 192.168.7.10 --dport 80 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+
+  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth1 -d 192.168.7.10 --dport 443 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.10 -o eth4 -d 192.168.3.0/24 --sport 80 -m sate --state ESTABLISHED -j LOG_ACCEPT
+
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.10 -o eth4 -d 192.168.3.0/24 --sport 443 -m sate --state ESTABLISHED -j LOG_ACCEPT
+
+#### Autoriser Rs à accéder à l'internet
+
+  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth0 --dport 80 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth0 --dport 443 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+
+  iptables -A FORWARD -p tcp -i eth0 -d 192.168.3.0/24 -o eth4 --sport 80 -m state --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth0 -d 192.168.3.0/24 -o eth4 --sport 443 -m state --state ESTABLISHED -j LOG_ACCEPT
 
 #### Autoriser Rs à accéder au serveur MAIL
 
-  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.1/24 -o eth3 -d 192.168.5.13 -m multiport --destination-port 25,143,993 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth3 -d 192.168.5.13 -m multiport --destination-port 25,143,993 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
 
-  iptables -A FORWARD -p tcp -i eth3 -s 192.168.5.13 -o eth4 -s 192.168.3.1/24 -m multiport --source-port 25,143,993 -m state --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth3 -s 192.168.5.13 -o eth4 -s 192.168.3.0/24 -m multiport --source-port 25,143,993 -m state --state ESTABLISHED -j LOG_ACCEPT
 
 #### Autoriser Rs à accéder à RSYNC
 
-  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.1/24 -o eth1 -d 192.168.7.12 --dport 873 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth1 -d 192.168.7.12 --dport 873 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
 
-  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.12 -o eth4 -d 192.168.3.1/24 --sport 873 -m state --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.12 -o eth4 -d 192.168.3.0/24 --sport 873 -m state --state ESTABLISHED -j LOG_ACCEPT
 
-  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.1/24 -o eth1 -d 192.168.7.12 --dport 22 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth1 -d 192.168.7.12 --dport 22 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
 
-  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.12 -o eth4 -d 192.168.3.1/24 --sport 22 -m state --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.7.12 -o eth4 -d 192.168.3.0/24 --sport 22 -m state --state ESTABLISHED -j LOG_ACCEPT
 
 #### Autoriser Rs à accéder à NFS
 
-  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.1/24 -o eth2 -d 192.168.1.12 -m multiport --destination-port 111,2049 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth2 -d 192.168.1.12 -m multiport --destination-port 111,2049 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
 
-  iptables -A FORWARD -p tcp -i eth2 -s 192.168.1.12 -o eth4 -d 192.168.1.12 -m multiport --source-port 111,2049 -m state --state ESTABLISHED
+  iptables -A FORWARD -p tcp -i eth2 -s 192.168.1.12 -o eth4 -d 192.168.3.0/24 -m multiport --source-port 111,2049 -m state --state ESTABLISHED
 
-  iptables -A FORWARD -p udp -i eth4 -s 192.168.3.1/24 -o eth2 -d 192.168.1.12 -m multiport --destination-port 111,2049 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p udp -i eth4 -s 192.168.3.0/24 -o eth2 -d 192.168.1.12 -m multiport --destination-port 111,2049 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
 
-  iptables -A FORWARD -p udp -i eth2 -s 192.168.1.12 -o eth4 -d 192.168.1.12 -m multiport --source-port 111,2049 -m state --state ESTABLISHED
+  iptables -A FORWARD -p udp -i eth2 -s 192.168.1.12 -o eth4 -d 192.168.3.0/24 -m multiport --source-port 111,2049 -m state --state ESTABLISHED
 
 #### Autoriser Rs à accéder au DNS et LDNS
 
@@ -135,9 +183,9 @@ iptables -A FORWARD -p udp -i eth0 -d 192?168.2.10 -o eth3 --sport 53 -m state -
 
 #### Autoriser Rs à accéder à FTP
 
-iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.1/24 -o eth2 -d 192.168.1.11 -m multiport --destination-port 20,21 --state NEW, ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth2 -d 192.168.1.11 -m multiport --destination-port 21 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
 
-iptables -A FORWARD -p tcp -i eth2 -s 192.168.1.11 -o eth4 -d 192.168.1.12 -m multiport --source-port 20,21 --state ESTABLISHED
+  iptables -A FORWARD -p tcp -i eth2 -s 192.168.1.11 -o eth4 -d 192.168.3.0/24 -m multiport --source-port 20,21 -m state --state ESTABLISHED
 
 #########
 ## FW2 ##
@@ -223,21 +271,21 @@ iptables -A FORWARD -p tcp -i eth2 -s 192.168.1.11 -o eth4 -d 192.168.1.12 -m mu
 
   * Autorise forwarding d'une connexion NEW ou ETABLIE en ssh depuis R1 vers Processor
 
-  iptables -A FORWARD -p tcp -i eth1 -s 192.168.3.10 -o eth0 -d 192.168.4.10 --dport ssh --state NEW,ESTABLISHED -j LOG_ACCEPT
-  iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.3.10 --sport ssh --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.3.10 -o eth0 -d 192.168.4.10 --dport ssh -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.3.10 --sport ssh -m state --state ESTABLISHED -j LOG_ACCEPT
 
   * Autorise le forwarding d'une connexion NEW ou ETABLIE en ssh depuis SSH vers Processor et inversément pour une
   * établie pour les réponses de SSH
 
-  iptables -A FORWARD -p tcp -i eth1 -s 192.168.1.10 -o eth0 -d 192.168.4.10 --dport ssh --state NEW,ESTABLISHED -j LOG_ACCEPT
-  iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.1.10 --sport ssh --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.1.10 -o eth0 -d 192.168.4.10 --dport ssh -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.1.10 --sport ssh -m state --state ESTABLISHED -j LOG_ACCEPT
 
 ### FTP
 
   * Processor - Peut communiquer avec le FTP pour obtenir les fichiers
 
-  iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.1.12 --sport 20:21 --dport 20:21 --state NEW, ESTABLISHED -j LOG_ACCEPT
-  iptables -A FORWARD -p tcp -i eth1 -s 192.168.1.12 -o eth0 -d 192.168.4.10 --sport 20:21 --dport 20:21 --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.1.12 --dport 21 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.1.12 -o eth0 -d 192.168.4.10 -m multiport --sport 20,21 --state ESTABLISHED -j LOG_ACCEPT
 
 ### POUBELLE
 
