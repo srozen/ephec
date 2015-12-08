@@ -1,13 +1,13 @@
 # Activer internet sur netkit
 
-- Déterminer sur quelle interface tourne netkit sur la vm (nk_tap_user) et
-déterminer l'ip de celle-ci (10.1.0.15)
-- Définir, sur router du netkit, la route par défaut vers cette interface : "route add default gw 10.1.0.15"
-- Sur la vm, activer le nat pour que les paquets transitent.
-- D'abord déterminer sur quelle interface la vm est reliée au pc physique (eth6)
-- "iptables -t nat -I POSTROUTING 1 -o eth6 -j MASQUERADE"
-- "iptables -I FORWARD 1 -i nk_tap_user -j ACCEPT"
-- "echo "1" > /proc/sys/net/ipv4/ip_forward"
+# Déterminer sur quelle interface tourne netkit sur la vm (nk_tap_user) et
+#déterminer l'ip de celle-ci (10.1.0.15)
+# Définir, sur router du netkit, la route par défaut vers cette interface : "route add default gw 10.1.0.15"
+# Sur la vm, activer le nat pour que les paquets transitent.
+# D'abord déterminer sur quelle interface la vm est reliée au pc physique (eth6)
+# "iptables -t nat -I POSTROUTING 1 -o eth6 -j MASQUERADE"
+# "iptables -I FORWARD 1 -i nk_tap_user -j ACCEPT"
+# "echo "1" > /proc/sys/net/ipv4/ip_forward"
 
 # DEBUG
 
@@ -187,6 +187,12 @@ iptables -A LOG_ACCEPT -j ACCEPT
 
   iptables -A FORWARD -p tcp -i eth2 -s 192.168.1.11 -o eth4 -d 192.168.3.0/24 -m multiport --source-port 20,21 -m state --state ESTABLISHED
 
+### POUBELLE
+
+  iptables -A FORWARD -j LOG_DROP
+  iptables -A INPUT -j LOG_DROP
+  iptables -A OUTPUT -j LOG_DROP
+
 #########
 ## FW2 ##
 #########
@@ -194,13 +200,13 @@ iptables -A LOG_ACCEPT -j ACCEPT
 ## Utilisation des proxies Web
 
 ### HTTP
-  * Changer la ligne http_port et ajouter "transparent" a la fin pour faire du proxy transparent (forcément non?)
+  # Changer la ligne http_port et ajouter "transparent" a la fin pour faire du proxy transparent (forcément non?)
 
   iptables -t nat -A PREROUTING -i eth1 -s 192.168.6.0/24 -p tcp --dport 80 -j DNAT --to-destination 192.168.5.11:3128
 
 ### HTTPS
-  * Le SSL a ici une couille dans le pâté, SQUID a pas l'air configuré pour gérer ça, néamoins avec un ajout de transparent
-  * Comme pour l'autre squid, lynx a l'air permissif
+  # Le SSL a ici une couille dans le pâté, SQUID a pas l'air configuré pour gérer ça, néamoins avec un ajout de transparent
+  # Comme pour l'autre squid, lynx a l'air permissif
 
   iptables -t nat -A PREROUTING -i eth1 -s 192.168.6.0/24 -p tcp --dport 443 -j DNAT --to-destination 192.168.5.12:3128
 
@@ -269,20 +275,20 @@ iptables -A LOG_ACCEPT -j ACCEPT
 
 ### SSH
 
-  * Autorise forwarding d'une connexion NEW ou ETABLIE en ssh depuis R1 vers Processor
+  # Autorise forwarding d'une connexion NEW ou ETABLIE en ssh depuis R1 vers Processor
 
   iptables -A FORWARD -p tcp -i eth1 -s 192.168.3.10 -o eth0 -d 192.168.4.10 --dport ssh -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
   iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.3.10 --sport ssh -m state --state ESTABLISHED -j LOG_ACCEPT
 
-  * Autorise le forwarding d'une connexion NEW ou ETABLIE en ssh depuis SSH vers Processor et inversément pour une
-  * établie pour les réponses de SSH
+  # Autorise le forwarding d'une connexion NEW ou ETABLIE en ssh depuis SSH vers Processor et inversément pour une
+  # établie pour les réponses de SSH
 
   iptables -A FORWARD -p tcp -i eth1 -s 192.168.1.10 -o eth0 -d 192.168.4.10 --dport ssh -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
   iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.1.10 --sport ssh -m state --state ESTABLISHED -j LOG_ACCEPT
 
 ### FTP
 
-  * Processor - Peut communiquer avec le FTP pour obtenir les fichiers
+  # Processor - Peut communiquer avec le FTP pour obtenir les fichiers
 
   iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.1.12 --dport 21 -m state --state NEW, ESTABLISHED -j LOG_ACCEPT
   iptables -A FORWARD -p tcp -i eth1 -s 192.168.1.12 -o eth0 -d 192.168.4.10 -m multiport --sport 20,21 --state ESTABLISHED -j LOG_ACCEPT
