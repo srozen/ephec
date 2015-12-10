@@ -1,0 +1,17 @@
+Introduction
+------------
+
+Ce rapport présente notre projet dans le cadre du cours d'architecture des base de données.
+Celui-ci consiste en l'analyse d'un case study, sur base de laquelle va s'appuyer les sections suivantes.
+Vous trouverez d'abord la réalisation d'un schéma entité-association, suivi d'un schéma relationnel sur lequel a été
+produit le DDL.
+Ensuite viennent les Use Cases, complémentés par les Activity Diagrams.
+Enfin vous trouverez le diagramme de classe, réalisation finale du projet.
+
+
+Conclusion
+----------
+
+Ce projet nous aura permis d'appréhender le processus consistant en l'analyse d'un cas concret d'entreprise, afin
+de transposer ce cas en un ensemble de structure de données qui puisse faire naître une application informatique
+qui réponde aux besoins de cette entreprise.

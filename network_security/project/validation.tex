@@ -1,0 +1,125 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{listings}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\GroupeName}{HE201041}
+\newcommand{\CourseAndAPP}{Projet Iptables} % Course/APP
+\newcommand{\Date}{\today}
+
+\title{
+\parbox{15cm}
+{ %\includegraphics[width=4cm]{foxhound.png} \\
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Sécurité des Réseaux \\
+		\huge Validations Projet IpTables
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }}
+\author{Youri Monton, Victorien Derasse, Alexandre Bergiers, Monroe Samuel}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\mbox{}
+
+\section{Procédure de validation}
+
+	Ces procédures de validation répertorient les commandes entrées sur les différentes machines et le résultat obtenu, de manière manuelle et via netcad.\\
+
+	Nous avons donc utilisé entre autre l’outil netcat (nc) permettant de tester les différents services  et vérifier les règles de sécurités utilisées dans le projet iptables. (Ex : nc –z 192.168.2.10). L’option z de netcat est utilisée pour scanner le résultat.\\
+
+	\subsection{R1}
+
+	\begin{itemize}
+		\item Connexion en SSH directement sur Processor, puis connexion sur FTP
+		\item Accès au web distant, accès au site de paranoyak
+		\item Test d'envoi et de réception d'un mail
+		\item NFS - Non fonctionnel suite à des soucis de règles iptables
+		\item Rsync en déplaçant un fichier sur le serveur
+		\item FTP via une connexion au serveur et un échange de fichiers\\
+	\end{itemize}
+
+	Voici également les commandes nc : \\
+
+	ssh:          # nc -z 192.168.1.10 22\\
+	rsync:       # nc -z 192.168.7.12 873\\
+	ftp:          # nc -z 192.168.1.11 21\\
+	ldns:        # nc -z 192.168.2.10 53\\
+	smtp:       # nc -z 192.168.2.13 25\\
+	imap:       # nc -z 192.168.2.13 143\\
+	web:        # nc -z 192.168.7.10 80\\
+	nfs:         # nc -z 192.168.1.12 2049\\
+	pdns:       # nc -z 192.168.7.11 53\\
+	processor: # nc -z 192.168.4.10 22\\
+
+	\subsection{R2}
+
+	\begin{itemize}
+		\item Idem que pour R2 sauf la connexion directe à processor
+		\item COnnexion en SSH à SSH et test d'autres services
+	\end{itemize}
+
+
+	Commandes Netcad : \\
+
+	ssh:    # nc -z 192.168.1.10 22\\
+	rsync: # nc -z 192.168.1.12 873\\
+	ftp:    # nc -z 192.168.1.11 21\\
+	ldns:  # nc -z 192.168.2.10 53\\
+	smtp: # nc -z 192.168.2.13 25\\
+
+	\subsection{U1 et U2}
+
+		\begin{itemize}
+			\item Accès au web
+			\item Echange de mails
+		\end{itemize}
+
+	\subsection{Processor}
+
+		\begin{itemize}
+			\item Accès au ftp pour le téléchargement de fichiers
+		\end{itemize}
+
+	\subsection{T1}
+
+		\begin{itemize}
+			\item Accès aux services web, pdns, rsync et mail.
+		\end{itemize}
+
+\end{document}

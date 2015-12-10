@@ -35,8 +35,8 @@
 
   # Processor - Peut communiquer avec le FTP pour obtenir les fichiers
 
-  iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.1.12 --dport 21 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
-  iptables -A FORWARD -p tcp -i eth1 -s 192.168.1.12 -o eth0 -d 192.168.4.10 -m multiport --sport 20,21 -m state --state ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth0 -s 192.168.4.10 -o eth1 -d 192.168.1.11 --dport 21 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
+  iptables -A FORWARD -p tcp -i eth1 -s 192.168.1.11 -o eth0 -d 192.168.4.10 -m multiport --sport 20,21 -m state --state ESTABLISHED -j LOG_ACCEPT
 
 ### POUBELLE
 

@@ -16,7 +16,7 @@
 \oddsidemargin=0in
 \textwidth=6in
 \textheight=9.0in
-\headsep=0.25in 
+\headsep=0.25in
 
 % Set up the header and footer
 \pagestyle{fancy}
@@ -32,7 +32,7 @@
 \setcounter{tocdepth}{2}
 
 \newcommand{\GroupeName}{HE201041}
-\newcommand{\CourseAndAPP}{BeerCollection} % Course/APP
+\newcommand{\CourseAndAPP}{Projet Iptables} % Course/APP
 \newcommand{\Date}{\today}
 
 \title{
@@ -48,8 +48,8 @@
 		\rule{15cm}{1pt}
 	\end{center}
 	\vspace{3cm}
- }} 
-\author{Monroe Samuel}
+ }}
+\author{Youri Monton, Victorien Derasse, Alexandre Bergiers, Monroe Samuel}
 \date{\today}
 
 \begin{document}
@@ -59,7 +59,7 @@
 \mbox{}
 
 \section{Introduction}
-	
+
 	Ce rapport fait état de notre travail sur le projet Iptables dans le cadre du cours de Sécurité des Réseaux donné par Madame Van Den Schrieck.\\
 
 	Il contiendra une explication des règles haut niveau implémentées, et notre stratégie de validation ainsi que leurs résultats.\\
@@ -72,21 +72,68 @@
 	Ceci a un impact au niveau de la configuration initiale, le labo Netkit n'avait tout simplement pas accès à internet. Quelques petits points de configurations sont donc nécéssaires pour poursuivre l'implémentation de notre solution : \\
 
 	\begin{enumerate}
-		\item Dans la machine virtuelle, il faut déterminer sur quelle interface est liée le labo Netkit, elle s'apelle typiquement \textbf{nk_tap_user}.\\
-		\item Il faut également déterminer quelle adresse ip est assignée à cette interface, ici \textbf{10.0.1.15}\\
-		\item Dans le \textbf{router} du labo Netkit, il faut définir sa route par défaut (gateway) sur l'adresse ip de l'interface nk_tap_user : \textbf{route add default gw 10.0.1.15}.\\
+		\item Dans la machine virtuelle, il faut déterminer sur quelle interface est liée le labo Netkit, elle s'apelle typiquement \textbf{nk\_tap\_user}.\\
+		\item Il faut également déterminer quelle adresse ip est assignée à cette interface, ici \textbf{10.0.1.15} . \\
+		\item Dans le \textbf{router} du labo Netkit, il faut définir sa route par défaut (gateway) sur l'adresse ip de l'interface nk\_tap\_user : \textbf{route add default gw 10.0.1.15}.\\
 		\item Il faut maintenant activer le NAT sur la Vm pour que le tout fonctionne, en déterminant au préalable sous quelle interface la VM elle-même est reliée à l'Internet (eth6): \\
 		\begin{itemize}
 			\item \textbf{iptables -t nat -I POSTROUTING 1 -o eth6 -j MASQUERADE}
-			\item \textbf{iptables -I FORWARD 1 -i nk_tap_user -j ACCEPT}
-			\item \textbf{echo "1" > /proc/sys/net/ipv4/ip_forward}
+			\item \textbf{iptables -I FORWARD 1 -i nk\_tap\_user -j ACCEPT}
+			\item \textbf{echo "1" > /proc/sys/net/ipv4/ip\_forward}
 		\end{itemize}
-
-		\item ????
-		\item PROFIT !!!
 	\end{enumerate}
 
 	Un ping 8.8.8.8 depuis router devrait maintenant fonctionner, et une implémentation des règles NAT au sein du réseau et des règles Firewall peut être commencée.\\
 
+  Un ensemble de règles de POSTROUTING et de PREROUTING sont indispensables pour autoriser le trafic à sortir et entrer dans le réseau.\\
+  Celles-ci sont définies dans la configuration de FW1 et sont basiquement, du POSTROUTING en Masquerade pour les éléments sortants, et un PREROUTING pour les éléments sortants à destination des services publiques de Paranoyak.\\
+\section{Règles de haut niveau}
 
-\end{document} 
+	J'ai ici séparé les requirements par ensemble de machines et en me focalisant à chaque fois autour d'un Firewall. \\
+
+	\subsection{FireWall 1}
+
+  La partie NFS peut subir des problèmes si les machines sont lancées directement avec les scripts de configuration, je n'ai pas identifié les requirements nécéssaires au mouting NFS.\\
+
+		\begin{itemize}
+			\item Les éléments de la DMZ publique doivent être accessibles depuis l'extérieur, nouvelle connexion ou établie depuis l'extérieur, réponses pour des connexions établies depuis l'intérieur.\\
+      \item Les machines de la DMZ Sandwich peuvent contacter l'extérieur et établir de nouvelles connexions
+      \item HTTP(S) de la DMZ Sandwich doivent pouvoir accéder au serveur WEB
+      \item R1 peut contacter Processor en SSH
+      \item R1 et R2 peuvent utiliser le serveur SSH
+      \item R1 et R2 peuvent accéder au serveur Web
+      \item R1 et R2 peuvent accéder à http et https vers l'extérieur
+      \item R1 et R2 peuvent accéder au serveur Mail interne
+      \item R1 et R2 peuvent accéder à RSYNC
+      \item R1 et R2 peuvent accéder à NFS
+      \item R1 et R2 peuvent accéder au DNS extérieur, et au LDNS
+      \item R1 et R2 peuvent accéder au FTP
+      \item Le reste du traffic doit être jeté
+		\end{itemize}
+
+  \subsection{FireWall 2}
+
+    Une redirection du traffic http (nat) a été nécéssaire afin de mettre en place des proxies web transparents.\\
+
+    \begin{itemize}
+      \item Le serveur LDNS, HTTP(S), SMTP/IMAP doit être accessible par U1 et U2
+      \item Jeter le reste
+    \end{itemize}
+
+  \subsection{FireWall 3}
+
+  \begin{itemize}
+    \item Autoriser une connexion en SSH depuis R1 vers Processor
+    \item Autoriser une connexion en SSH depuis SSH vers Processor
+    \item Autoriser Processor à accéder au FTP
+    \item Jeter le reste
+  \end{itemize}
+
+ \section{Conclusion}
+
+ 	Ce projet était une expérience très intéressante, néanmoins un peu complexe vu la diversité des services qui parfois interagissent entre eux aux travers de protocoles différents.\\
+
+ 	Nous pensons cependant avoir réalisé une belle partie de ce qui était demandé, même si certains petits points restent non fonctionnels à cause de difficultés et d'une gestion du temps un peu hasardeuse.\\
+
+
+\end{document}

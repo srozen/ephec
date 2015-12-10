@@ -170,7 +170,7 @@
 
   iptables -A FORWARD -p tcp -i eth4 -s 192.168.3.0/24 -o eth2 -d 192.168.1.11 -m multiport --destination-port 21 -m state --state NEW,ESTABLISHED -j LOG_ACCEPT
 
-  iptables -A FORWARD -p tcp -i eth2 -s 192.168.1.11 -o eth4 -d 192.168.3.0/24 -m multiport --source-port 20,21 -m state --state ESTABLISHED
+  iptables -A FORWARD -p tcp -i eth2 -s 192.168.1.11 -o eth4 -d 192.168.3.0/24 -m multiport --source-port 20,21 -m state --state NEW,ESTABLISHED
 
 ### POUBELLE
 
