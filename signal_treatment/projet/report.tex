@@ -195,7 +195,76 @@
 
 
 \chapter{Codeur de QRCode}
+	
+	Ce chapitre va s'attarder sur notre démarche portant sur le codeur d'un QR Code et son implémentation dans MatLab.\\
+	Le résultat final voulu est l'obtention d'un code possédant les caractéristiques définies au début de ce rapport, uniquement en fournissant au programme une chaîne de caractère qui représentera le message à coder.\\
+
+	Nous allons commencer par voir les spécifications de ce QRCode, et ensuite allons voir pas à pas comment ce QR est généré jusqu'à l'obtention du résultat final.\\
+
+	Cette description des étapes sera volontairement résumée à l'essentiel, l'ensemble de notre code a été commenté, versionné et sera consultable via un lien vers le repository Github dans lequel il repose.\\
+
+	\section{Préambule}
+
+		Pour l'implémentation de notre solution, nous nous sommes basés sur un tutoriel du site Thonky destiné aux étudiants et conçu pour leur permettre d'implémenter leur propre codeur de Qr Code.\\
+		Il explique de manière complète les différentes étapes du codage des données, de la génération du payload et des séquences de correction d'erreur.\\
+
+	\section{Encodage des données}
+
+		La séquence de bits de données utilisateur contient le mode = 0100 , mode byte sur 4 bits et le nombre de caractères du message est de maximum 7 pour ce QRv1 en mode byte.\\
+		Notre message exemple est 'ephec', représenté par 00000101 sur 8 bits.\\
+
+		On découpe ensuite notre message en couple de caractère et leur accordons une valeur selon la table ascii : 'ep' = 01000000, 'he' = 01010110, 'c' = 01010111', sur 8 bits.\\
+
+		Il faut ensuite rajouter un terminateur de données de maximum quatres 0 si un byte n'est pas complété.\\
+
+		L'étape finale est de rajouter une chaîne dite de \textbf{padding} jusqu'à ce que notre chaîne de données soit pleine, c'est-à-dire de 72bits pour une QRv1-h. Les spécifications QR indiquent la chaîne de padding suivante : \textbf{11101100 00010001}.\\
+
+	\section{Encodage des erreurs}
+
+		Cette étape de la génération du QR Code a été confiée au même site Thonky qui propose une interface de calcul des séquences d'erreurs, accédée via un Shell Script utilisant Curl et confiant nos bytes de data en base 10, récupérant ensuite l'output du site.\\
+
+		Les séquences de calculs sont relativement complexes et surtout fastidieuses à implémenter, voici néanmoins un aperçu des outils mathématiques utilisé pour cette génération des codes correcteurs.\\
+
+		\subsection{Reed-Solomon et la division polynomiale}
+
+			Ces codes de correction d'erreurs sont générés en utilisant la méthode appelée Erreur de correction de Reed-Solomon, une partie de ce processus consiste en une division longue polynomiale, donc une division d'un polynome par un autre.\\
+
+		\subsection{Groupe de Galois}
+
+			Reed-Solomon utilise également une méthode appelée le groupe de Galois, qui est essentiellement un ensemble réduit de nombres, sur lesquels un nombre d'opérations mathématiques qui créeront des nombres déjà présent dans cet ensemble.\\
+
+		\subsection{Blocs de corrections d'erreurs}
+
+			Cette succession d'opérations sur les blocs de data vont mener sur la création de 17 blocs de correction d'erreur.\\
+
+	\section{Génération du Qr Code}
+
+		Pour générer le Qr Code une fois les blocs obtenus, il va falloir effectuer le placement des blocs dans la matrice, ainsi que les marqueurs de positionnement.\\
+
+		La structure globale d'un QRCode v1 ainsi que le positionnement des différents blocs est le suivant : \\
+
+		\includegraphics[scale=0.3]{bytes-disposition.png}\\
+
+		Notre programme utilise trois scripts MatLab qui vont successivement placer les marqueurs de positionnement, les séquences de timing, ainsi que les données.\\
+
+		\subsection{Exportation du résultat final}
+
+			Une fois la matrice crée via le script MatLab, on dispose donc d'une matrice binaire de 21x21 prête à l'utilisation.\\
+
+			Un simple \textbf{imshow()} permet d'observer le résultat.\\
 
 \chapter{Conclusion}
+
+	Ce projet a été une bonne expérience et nous a permis de progresser de manière générale dans le cours, nous avons également pu nous rendre compte de la complexité qui peut se cacher derrière un simple code QR, des outils mathématiques qui interviennent dans la génération et le décodage de celui-ci, ainsi que des diverses opérations utiles pour détecter un code dans une image.\\
+
+\chapter{Bibliographie}
+
+	\begin{itemize}
+		\item Thonky - Génération de QR Code - \textbf{http://www.thonky.com/qr-code-tutorial/}
+		\item OpenCV - Capture de QrCode - \textbf{http://dsynflo.blogspot.in/2014/10/opencv-qr-code-detection-and-extraction.html}
+		\item Groupe de Galois - \textbf{https://fr.wikipedia.org/wiki/Groupe_de_Galois}
+		\item QRCode - \textbf{http://www-igm.univ-mlv.fr/~dr/XPOSE2011/QRCode/index.html#1}
+		\item Repository Github - \textbf{https://github.com/yrmt/qr}
+	\end{itemize}
 
 \end{document}
