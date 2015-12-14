@@ -1,0 +1,201 @@
+% A faire, fin de chapitre 4
+
+
+\documentclass{report}
+\usepackage{filecontents}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{listings}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage[toc, page]{appendix}
+\usepackage{url}
+
+\definecolor{xcodekw}{rgb}{0.75, 0.22, 0.60}
+\definecolor{xcodestr}{rgb}{0.89, 0.27, 0.30}
+\definecolor{xcodecmt}{rgb}{0.31, 0.73, 0.35}
+
+\titleformat{\chapter}[display]
+  {\centering\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+
+\geometry{hscale=0.75,vscale=0.85,centering}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand\appendixtocname{Annexes}
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
+
+\title{}
+\author{Nicolas \bsc{Sias}, Youri \bsc{Mouton}, Samuel \bsc{Monroe}}
+
+\date{30 Mai 2015}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\tableofcontents
+
+\chapter{Introduction}
+
+	\section{Préambule}
+
+		Ce rapport va présenter notre travail dans le cadre du cours de Traitement de Signal de 3e, sur le sujet de l'analyse d'un QR Code.\\
+
+		Nous avons choisi de travailler à l'implémentation d'un Codeur-Décodeur de QR Code, ce en utilisant principalement les éléments offerts par MatLab, mais également en utilisant certains outils ou librairies lorsque des éléments de l'implémentation se révélaient trop techniques où ne pouvaient être accomplis sur base de nos connaissance ou du temps qui nous restait avant l'échéance.\\
+
+		Nous allons commencer par exposer les détails d'une analyse sur le fonctionnement du QRCode en général, ainsi que sur la version avec laquelle nous avons choisi de travailler.\\
+		Ensuite, un chapitre sera dédidé à la partie \textbf{décodeur} du code, suivi d'un chapitre sur le \textbf{codeur}.\\
+		Nous terminerons par une conclusion, et une annexe sera présente et repertoriera notre bilbiographie ainsi que tout autre élément ayant servi à ce travail.\\
+
+	\section{QR - Généralités}
+
+		Le QR code est une sorte de code-barre en \textbf{2D}, il est formé d'une matrice de carrés noirs ou blancs dont la disposition définit le message contenu, et a été conçu par les Japonais de Denso-Wave pour permettre l'encodage de Kanji.\\
+
+		Cette matrice est composée de séquences de positionnement ressemblants à trois carrés noirs content un plus petit carré noir également, le reste du contenu de la matrice représente l'information. Précisons nottamment que les versions plus évoluées possèdent aussi d'autres séquences dites d'alignement. \\
+		Ces QR sont classifiés en versions qui précisent principalement la taille de la matrice.\\
+
+		Un point très intéressant à propos des QR Codes est l'inclusion d'une correction d'erreur, composée d'information redondante dans la matrice et qui permet son décodage jusqu'à un certain niveau de dégradation.\\
+		Il y a quatres niveaux de correction d'erreur, qui définissent jusqu'à pourcentage la matrice peut être dégradée et rester lisible par un décodeur : \\
+
+		\begin{itemize}
+			\item \textbf{L} : 7\%
+			\item \textbf{M} : 15\%
+			\item \textbf{Q} : 25\%
+			\item \textbf{H} : 30\%\\
+		\end{itemize}
+
+		Enfin, comme laissé entendre précédemment, les QR peuvent représenter plusieurs types d'informations, et une séquence dans la matrice du code précisera le codage utilisé : \\
+
+		\begin{itemize}
+			\item \textbf{Numerique}
+			\item \textbf{Alphanumérique}
+			\item \textbf{Byte}
+			\item \textbf{Kanji}\\
+		\end{itemize}
+
+	\section{QR - Version de travail et choix de modes}
+
+		Pour des raisons de simplicité, nous avons décidé de se concentrer sur un seul type de code qui possèdera les caractéristiques suivantes : \\
+
+		\begin{itemize}
+			\item \textbf{Version} : 1, la matrice est donc de 21x21
+			\item \textbf{Niveau EC} : H, la correction d'erreur se fera jusqu'à 30\% de dégradation du QR
+			\item \textbf{Mode} : Byte
+		\end{itemize}
+
+\chapter{Décodeur de QRCode}
+
+	\section{Détection et extraction du QR}
+
+		Nous avons pour cette étape de détection et extraction, utilisé une application en C++ utilisant la librairie OpenCV.\\
+		Cet extracteur se base sur l'utilisation d'une caméra et détecte dans le flux vidéo la présence du QRCode.\\
+
+		Le choix d'utiliser une application tierse pour cette étape est déliberée, cette fonctionnalité nécéssite une connaissance très poussée de traitement de l'image ainsi que d'outils mathématiques et de la façon d'intégrer ceux-ci.\\
+
+		Nous allons donc présenter et expliquer ici les différentes étapes qui mènent à la capture du Code.\\
+
+		\subsection{Détection des marqueurs d'identification du QR Code}
+
+			Voici un schéma précisant les éléments qui composent un QR Code de version 2 : \\
+
+			\includegraphics[scale=0.3]{qr-code-parts.png}\\
+
+			Cette première étape consiste, en l'utilisation de la fonctionnalité de détection de contours d'OpenCV.\\
+			OpenCV identifie les contours présents dans une image, mais va également stocker la hierarchie entre ceux-ci, ce qui va permettre d'isoler le countour extérieur des marqueurs de placement au sein de l'image.\\
+
+		\subsection{Détermination de l'indentité des marqueurs}
+
+			Comme répété précédemment, un QR Code comprends trois marqueurs de positionnement, qu'OpenCV à détecter via détection de countours précédemment.\\
+
+			Ces marqueurs sont nommés de la sorte : \\
+
+			\begin{itemize}
+				\item \textbf{TOP} : Celui dans le coin supérieur gauche
+				\item \textbf{RIGHT} : Celui dans le coin supérieur droit
+				\item \textbf{BOTTOM} : Celui dans le coin inférieur gauche\\
+			\end{itemize}
+
+			Leur identification est effectuée assez simplement. Le fait que ces marqueurs soient au nombre de trois, dans les coins d'un carré, permet d'utiliser un triangle rectangle.\\
+			Celui-ci va être établi en utilisant les trois centres de masses établis par la détection de contours précédemment effectuée.\\
+			Dès lors, l'hypothénuse permet d'identifier les points RIGHT et BOTTOM à ses extrémités, le point TOP étant en contact avec les deux côtés plus courts.\\
+
+			La distinction entre BOTTOM et RIGHT se fait ensuite via placement de ce triangle dans un axe XY et en évaluant l'hypothénuse et de la droite passant par TOP et perpendiculaire à cet hypothénuse : \\
+
+			\includegraphics[scale=0.3]{align.png}
+
+		\subsection{Identification des quatres coins des marqueurs de position}
+
+			Cette opération est réalisée via la librairie OpenAR, elle est effectuée via l'utilisation des trois countours identifiées précédemment.\\
+			Cette fonction retrouve les quatres coins des polygones et mesurant la distance de chaque point du périmètre par rapport au centre pour en identifier les points les plus éloignés.\\
+
+		\subsection{Détermination des quatres points du QRCode}
+
+			Une fois les quatres coins de chaque marqueur identifiés, il est aisé d'estimé les quatres coins du QRCode lui-même.\\
+
+			Cette estimation est accomplie en étendant les lignes externes formées par BOTTOM et RIGHT, leur intersection crée le quatrième point N.\\
+
+			\includegraphics[scale=0.3]{naming.png}\\
+
+		\subsection{Orientation du QRCode}
+
+			Celle-ci est obtenue en utilisant la fonction \textbf{warpPerspective()} de OpenCV, pour rétablir le positionnement du QRCode en fonction de l'orientation du côté du triangle formé par TOP et RIGHT.\\
+
+			\includegraphics[scale=0.3]{orient.png}\\
+
+		\subsection{Traitement de l'image acquise dans MatLab}
+
+			Une fois l'image du QRCode acquise via la méthode précédente, il reste à la traiter afin de pouvoir en retirer l'information contenue.\\
+
+			L'image générée n'est pas forcément de la meilleure qualité qui soit, tout dépend des conditions dans lesquelles elle a été capturée, de la caméra utilisée, etc...\\
+
+			\subsubsection{Ouverture de l'image}
+
+				Celle-ci est réalisée via la commande : \textbf{qrcode = imread('qrcode.jpg')}
+
+			\subsubsection{Transformation en image 2D de niveau de gris}
+
+				Pour du traitement, il nous faut maintenant transformer cette image de QR Code en image de niveau de gris.\\
+
+				Ceci est réalisé via la fonction \textbf{im2bw} qui va transformer une image en imagine binaire (composée de points noirs 0 ou blancs 1), sur base d'un niveau passé à cette même fonction.\\
+				L'image retournée est donc une matrice \textbf{binaire}.\\
+
+				Ceci est effectué via la commande : \textbf{qr = im2bw(qrcode, 0.5)}
+
+			\subsubsection{Lissage}
+
+				L'image présente des artefacts liés à sa capture, nous allons donc lui appliquer un filtre médian, plus adapté que le filtre linéaire, afin d'en réduire le bruit impulsionnel.\\
+
+				\textbf{clean = medfilt2(qr)}
+
+			\subsubsection{Redimensionnement de la matrice}
+
+				Afin que l'information soit exploitable, ils nous faut revenir à la matrice d'origine de 21x21.\\
+				Ceci va être accompli en créant une matrice de la taille voulue et en redimensionnant notre image filtrée avec celui-ci.\\
+
+				\begin{itemize}
+					\item \textbf{vector = [21 21]}
+					\item \textbf{final = imresize(clean, vector)}
+				\end{itemize}
+
+
+		\subsection{Décodage de la matrice}
+
+
+\chapter{Codeur de QRCode}
+
+\chapter{Conclusion}
+
+\end{document}
