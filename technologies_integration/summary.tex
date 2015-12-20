@@ -331,7 +331,7 @@
 
 	\section{Les besoins changent}
 
-		Les changements étant \textbf{inévitables}, le mieux serait d'en tirer profit.\\
+		Les changements étant \textbf{inévitables} et le mieux est de les accepter et de faire avec, on pourrait même en tirer profit.\\
 
 		Dans les fonctionnements lourds, le planning étant fixé une fois pour toute, des changements de besoins au niveau du client seront facturés en plus car s'écartant du contrat initial.\\
 
@@ -340,7 +340,7 @@
 
 	\section{Gérer le changement}
 
-		Les changements sont aisément \textbf{anticipables}, les itérations se font sur quelques semaines, proposent à chaque issue des fonctionnalités fonctionnelles et utiles au client, et celui-ci va pouvoir donner son avis sur ce qu'il peut déjà utiliser afin de proposer des modifications utiles si besoin qui seront implémentées dans la prochaine itération.\\
+		Les changements sont inévitables, il faut juste réagir rapidement et éfficacement à ceux-ci. Les itérations se font sur quelques semaines, proposent à chaque issue des fonctionnalités fonctionnelles et utiles au client, et celui-ci va pouvoir donner son avis sur ce qu'il peut déjà utiliser afin de proposer des modifications utiles si besoin qui seront implémentées dans la prochaine itération.\\
 
 	\section{Le Client}
 
@@ -400,7 +400,13 @@
 
 	\section{Agile - Répétition}
 
+		Il faut répéter les opérations d'apparence fastidieuse telles que le testing ou le refactoring, celles-ci mènent à du feedback et à la volonté d'automatiser ces opérations.\\
+
 	\section{Agile - Marketing}
+
+		Contrairement à Prince2, la méthodologie Agile ne fonde pas tout un business autour d'elle-même.\\
+
+		Les labels ne sont pas importants, et le degré d'agilité n'est pas important non plus, tant que les méthodes mises en place contribuent au bon fonctionnement du workflow.\\
 
 	\section{Agile - Excellence Technique}
 
@@ -572,4 +578,224 @@
 		Permet également d'avoir l'avis des personnes qui auraient une valeur assez extrême sur sa carte par rapport aux autres et d'apporter un point de vue peut-être essentiel que les autres auraient oublié.\\
 
 		Enfin, permet d'identifier les tâches trop grosses qu'il faudrait sans doute raffiner.\\
+
+\chapter{Extreme Programming}
+
+	\section{Origines}
+
+		Méthodologie Agile créée par Kent \textbf{Beck}, Ward \textbf{Cunningham} et Ron \textbf{Jeffries} lors d'un projet chez Chrysler.\\
+
+		En 1999, le premier manifeste est édité avec 12 pratiques.\\
+
+	\section{Valeurs}
+
+		XP possède 5 valeurs qui sont toutes reliées entre elles : \\
+
+		\begin{itemize}
+			\item Courage
+			\item Simplicité
+			\item Communication
+			\item Feedback
+			\item Respect\\
+		\end{itemize}
+
+		\subsection{Simplicité}
+
+			Leitmotiv : \textbf{You Ain't Gonna Need It}\\
+
+			Ne pas faire quelque chose si on est pas certain d'en avoir besoin, cela risque de demander plus de travail si jamais on venait à en avoir besoin, mais dans le cas contraire on a pas gaspillé d'argent et cela a permis de se concentrer sur des choses essentielles.\\
+
+		\subsection{Communication}
+
+			La communication doit se faire de manière \textbf{orale}, il doit y avoir une collaboration avec les utilisateurs et les connaissances doivent être partagées.\\
+
+			On évite au maximum la communication par écrit.\\
+
+		\subsection{Feedback}
+
+			Le FeedBack est assuré par le Unit Testing, les démos, on encore les estimations, qui apportent tous une amélioration aux projets.\\
+
+
+		\subsection{Respect}
+
+			Les deux valeurs précédentes nécéssitent le respect de tout les gens impliqués dans le processus.\\
+
+		\subsection{Courage}
+
+			Il faut avoir le courage de changer, de jeter, d'être transparent et ne pas essayer de cacher les choses ni de se protéger lorsqu'il y a un problème, l'équipe est un tout.\\
+
+	\section{Unit Testing}
+
+		Le test unitaire est, comme son nom l'indique, un test qui va vérifier le bon fonctionnement d'une petite partie d'un programme.\\
+
+		Ces tests sont écrits au fur et à mesure du développement, en essayant de couvrir le plus de cas possibles selont les fonctionnalités.\\
+		Chaque itération sur le développement doit toujours pouvoir passer les tests qui ont été écrits plus tôt, si une opération doit retourner tel résultat au début du projet, elle doit toujours le faire à la fin.\\
+
+		Ceci va amener beaucoup de points positifs dans le développement. Il n'y a plus de régression dans le code car on ne peut faire qu'avancer malgré les modifications, on explore les \textbf{cas limite} des fonctionnalités, on a plus peur de \textbf{changer} car on saura contrôler les effets du changement sur la base, et enfin le code est \textbf{modulaire}.\\
+
+		Le unit testing prend du temps, et le temps c'est de l'argent, mais celui-ci devient malgré tout très vite rentable.\\
+
+		La règle : \textbf{Le code doit passer TOUT les tests unitaires avant sa release}.\\
+
+	\section{Tests d'Acceptance - Fonctionnels}
+
+		Rédigés avec le client, trace une ligne conductrice qui définit les critères que doit remplir l'application selon les User Stories.\\
+		Il consiste plus ou moins à répertorier les actions que le client va effectuer pour voir si le programme est fonctionnel.\\
+
+		Le client peut dire qu'il veut faire une addition à tel endroit et que cela doit lui ramener tel résultat, on lorsqu'il clique à tel endroit dans une app web cela doit avoir telle action.\\
+
+		Ces tests sont écrits et ensuite automatisés par un programme de sorte que le développeur puisse savoir si le programme remplit bien les tests d'acceptance.\\
+
+		Ces tests prennent du temps, la maintenance est assez lourde, mais le client peut savoir très facilement si le programme fait bien ce qu'il a demandé.\\
+
+	\section{Test-Driven Development}
+
+		Le principe est d'écrire les tests avant même d'écrire le code qu'il couvre.\\
+
+		Boucle d'états : \textbf{Red} - \textbf{Green} - \textbf{Refractor}, jusqu'à ce que le code soit propre et en état Green.\\
+
+	\section{Exploratory Testing}
+
+		On ouvre l'application pour tester tout et n'importe quoi sans trop réfléchir.\\
+
+		Toujours utile et complémentaire, mais doit être laissé à un non-développeur qui ne connaît pas les rouages de l'application.\\
+
+	\section{Refactor Mercilessly}
+
+		Le \textbf{refactoring} mène à un meilleur code pour de mêmes fonctionnalités.\\
+
+		Il réduit la complexité de celui-ci et facilite beaucoup les évolutions future.\\
+
+	\section{Small Releases - Iterations}
+
+		XP fonctionne sur base de petites releases et non pas une unique finale, les itérations durent de 1 à trois semaines.\\
+
+		Le \textbf{Release Planning Meeting} se fait avec l'équipe et le client, on y discute de la durée de l'itération et des fonctionnalités qui vont être implémentées.\\
+
+		L' \textbf{Iteration Planning Meeting} se fait entre l'équipe, les tâches sont évaluées en termes de complexité et de temps afin d'organiser l'itération.\\
+
+	\section{Velocity}
+
+		L'important est de mesurer la vélocité de l'équipe et non pas la calculer, ceci dans le but d'avoir un point de repaire et se stabiliser sur une somme de travail que l'équipe \textbf{PEUT} effectuer en une itération.\\
+
+		On discute de points et non pas d'heures, l'estimation d'heure dépend des personnes, sont souvent sous-estimées et on a peur des gros chiffres. L'estimation en points est relative et arbitraire.\\
+
+	\section{Sustainable Pace}
+
+		Le but de la quantification en points est de proposer à l'équipe un rythme de travail tenable et confortable, pour garder une bonne motivation au sein de celle-ci.\\
+
+	\section{Stand-Up Meetings}
+
+		Séance très courte en début de journée, tout le monde dit ce qu'il a fait hier, ce qu'il va faire aujourd'hui et ce qui lui pose problème.\\
+
+
+	\section{User Stories}
+
+		Les fonctionnalités sont décrites en quelques lignes de texte, l'objet est concret (post-it), peu de détails car il doit servir à amener la discussion, vocabulaire user et permet une rapide estimation.\\
+
+		Elles doivent être \textbf{INVEST} : \\
+
+		\begin{itemize}
+			\item \textbf{Independant} : Ne dépend pas d'autres stories
+			\item \textbf{Negotiable} : Peut toujours être modifiée
+			\item \textbf{Valuable} : Fournit de la valeur à l'utilisateur
+			\item \textbf{Estimable} : Possible de faire une estimation
+			\item \textbf{Small} : Limite l'incertitude de l'estimation
+			\item \textbf{Testable} : Possible de tester que c'est fait ou non\\
+		\end{itemize}
+
+	\section{Epics}
+
+		Regroupe un ensemble de user stories.\\
+
+	\section{Integrate Often}
+
+		L'intégration des différentes portions du programme doit être continue, sinon on risque de se retrouver avec un \textbf{Integration Hell} : pas moyen de savoir à quel moment du projet un problème a été créé.\\
+
+		Cette intégration continue amène du Feedback tôt, de la confiance et surtout un produit fonctionnel tout au long du projet.\\
+
+		Des programmes Cloud ou locaux peuvent servir à effectuer cette intégration en automatisant le testing, et donc en vérifiant qu'une feature ne pose pas problème dans une autre.\\
+
+	\section{Radiateurs d'informations}
+
+		Présente les états de build, change requests et autres de manière claire et visible à l'équipe.\\
+
+	\section{Big Visible Charts}
+
+		Typiquement le Kanban Agile, il sert surtout à la communication et à la transparence, quiconque peut voir où en est l'équipe et savoir si des imprévus sont survenus.\\
+
+	\section{Coding Standards}
+
+		L'équipe doit s'accorder sur un standard de codage afin de produire un code uniforme et facilement maintenable et opérable par n'importe quelle personne de cette équipe, le standard ne doit pas être imposé.\\
+
+	\section{Collective Ownership}
+
+		La production appartient à tout le monde et pas seulement à l'architecte.\\
+
+	\section{CRC Cards}
+
+		Sorte de cartes représentant une classe, utilisées pour discuter de scénarios et mettre en évidence des attributs ou méthodes qui n'auraient pas été pensés.\\
+
+		\textbf{C}lass, \textbf{R}esponsibilities, and \textbf{C}ollaboration cards.\\
+
+	\section{Pair Programming}
+
+		Deux programmeurs se mettent ensemble, tels un pilote et un copilote, le pilote écrit sur le clavier et le copilote monitore ce que l'autre écrit.\\
+
+		Ces deux personnes sont considérées égales, peuvent changer de rôle.\\
+
+		Ceci va permettre d'éviter certains bugs liés à de l'inatention.\\
+
+	\section{Simplicity Is The Key}
+
+	\section{Never Add Functionnality Early}
+
+
+	\section{Create a Spike Solution}
+
+		Consiste en la création d'un Proof of Concept afin d'évaluer si ce projet est faisable avec telle ou telle nouvelle techno ou contraintes spéciales.\\
+
+		Cette SPike Solution doit être jetée quoiqu'il arrive, même si l'équipe décide que le Spike donne le feu vert pour le projet, les éléments du Spike ne peuvent pas être insérés dans le projet.\\
+
+	\section{Choose a System Metaphor}
+
+		Métaphore type ruche pour les échanges de données avec le système.\\
+
+	\section{Technical Debt Metaphor}
+
+		De la précipitation amène en premier lieu un grain de temps.\\
+
+		Ce gain de temps doit être ensuite payé par du refactor et de la correction de bug.\\
+
+	\section{Dedicated Open Workspace}
+
+		L'OpenSpace est une pièce ouverte sans murs intérieurs où on peut afficher des graphiques, un tableau blanc, il y a une table de discussion et de la place pour des stand-up meetings.\\
+
+	\section{Move People Around}
+
+		Il faut changer les membres de l'équipe de zone, afin qu'ils acquièrent de multiples compétences, qu'ils fassent le lien entre les systèmes, qu'on diminue le risque de problème fatal en cas de perte d'un membre, ou qu'on évite des goulots d'étranglement sur certains points du programme.\\
+
+		Idée précurseur de DevOps?\\
+
+	\section{The Customer Is Always Available}
+
+		Difficile à réaliser en vrai, le client devrait être toujours disponible pour l'équipe.\\
+
+		Il est difficile de faire comprendre au client que la perte de temps qu'il subit en intervenant en direct dans le process est largement rattrapée par les problèmes qui ne sont pas rencontrés en évitant la communication par écrit.\\
+
+	\section{Fix XP when it Breaks}
+
+		XP est une base pour l'équipe qui doit évoluer en fonction de ses besoins, nécéssité de faire des rétrospectives de Sprint.\\
+
+
+\chapter{Behavior Driven Development}
+
+	Consiste en du TDD amélioré.\\
+
+	Les tests portent un nom qui signifie le contenu du test et est compréhensible par le commun de mortels, on sait également déterminer le type d'erreur lorsqu'un test échoue.\\
+
+	Syntaxe \textbf{Give}, \textbf{When}, \textbf{Then}.
+
+
+
 \end{document}
