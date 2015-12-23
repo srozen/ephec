@@ -1,0 +1,69 @@
+% A faire, fin de chapitre 4
+
+
+\documentclass{report}
+\usepackage{filecontents}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{listings}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage[toc, page]{appendix}
+\usepackage{url}
+
+\definecolor{xcodekw}{rgb}{0.75, 0.22, 0.60}
+\definecolor{xcodestr}{rgb}{0.89, 0.27, 0.30}
+\definecolor{xcodecmt}{rgb}{0.31, 0.73, 0.35}
+
+\titleformat{\chapter}[display]
+  {\centering\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+
+\geometry{hscale=0.75,vscale=0.85,centering}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand\appendixtocname{Annexes}
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
+
+\title{Administration\\\includegraphics[scale=0.3]{foxhound.png}}
+\author{Samuel "Big Boss" \bsc{Monroe}}
+
+\date{30 Mai 2015}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\tableofcontents
+
+%% \textbf{}
+
+\chapter{Avant-Propos}
+
+	Et oui ma biche, c'est le challenge, l'examen sans cours, l'examen de la mort.\\
+
+	Maintenant, grâce à moi, tu as entre les mains ton ticket pour la grande dis mon asti. Voici le cours condensé d'Administration des Réseaux, le cours pour les gouverner tous et dans les ténèbres les lier.\\
+
+\chapter{Structure}
+\chapter{Les Réseaux}
+\chapter{Datacenter}
+\chapter{Virtualisation}
+\chapter{Windows Server}
+\chapter{Domain et Active Directory}
+\chapter{Services Réseaux}
+\chapter{Sécurité}
+\chapter{Monitorign}
+
+\end{document}
