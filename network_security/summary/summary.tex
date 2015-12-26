@@ -55,6 +55,208 @@
 
 \chapter{Généralités}
 
+	Identification des différents concepts et principes de la sécurité informatique.\\
+
+	\section{Concepts de sécurité informatique}
+
+		\textbf{Sécurité Informatique} : Protection fournie à un SI automatisé pour atteindre les objectifs de préservation \textbf{CIA} des ressources (matériel, logiciels, données, etc..) du SI.\\
+
+		\textbf{CIA} est un concept clé dans la sécurité : \\
+
+		\begin{itemize}
+			\item \textbf{Confidentiality} : Préserve les autorisations et restrictions sur l'accès à l'information ainsi que sur la vie privée.\\
+			\item \textbf{Integrity} : Protection contre la modification ou suppression impropre de données, incluant l'assertion de l'authenticité des données.\\
+			\item \textbf{Availability} : Assure la disponibilité et accessibilité sûre aux données et services.\\
+		\end{itemize}
+
+		Ces trois concepts forment la triade \textbf{CIA}, aussi représentée en triangle, et indique les trois objectifs de préservation des assets (\textbf{data} \& \textbf{services}).\\
+		Cette triade peut être additionnée de deux autres concepts : \\
+
+		\begin{itemize}
+			\item \textbf{Authenticity} : Propriété d'être authentique, et capable d'être vérifié et digne de confiance.\\
+			\item \textbf{Accountability} : Besoin de pouvoir tracer les actions à des fins d'identification.\\
+		\end{itemize}
+
+	\section{Terminologie}
+
+		Voyons ici quelques termes reliés à la sécurité qu'il est nécéssaire de maîtriser : \\
+
+		\subsection{Asset}
+
+			Les assets, ressources, sont des éléments que les utilisateurs ou propriétaires souhaitent protéger.\\
+
+			Les assets peuvent être \textbf{hardware}, \textbf{software}, \textbf{données} et \textbf{réseux et moyens de communications}. Des ressources non physiques telles que la \textbf{réputation} doivent également être prises en compte.\\
+
+		\subsection{Security Policy}
+
+			Une \textbf{politique de sécurité} est un ensemble de règles ou pratiques qui spécifient ou régulent la manière dont un système ou organisation fournit des services de sécurité pour protéger les \textbf{assets}.\\
+
+			Composée de \textbf{contre-mesures}, ensemble de \textbf{règles} et de \textbf{procédures}.\\
+
+		\subsection{Vulnerability}
+
+			Faille ou faiblesse dans la conception, implémentation, opération ou gestion d'un système, qui peut être \textbf{exploitée} pour violer la \textbf{security policy}.\\
+
+			Ces vulnérabilités peuvent être la \textbf{corruption système} (I) , des \textbf{fuites} (C) ou des \textbf{indisponibilités} (A).\\
+
+		\subsection{Threats and Attacks}
+
+			Une \textbf{menace} est un danger potentiel de sécurité pour une ressource.\\
+
+			L'\textbf{attaque} est la réalisation de ce danger potentiel.\\
+			Elles peuvent êtres \textbf{actives} ou \textbf{passives} selon qu'elles altèrent le système ou non, et \textbf{internes} ou \textbf{externes} selon la position de l'attaquant par rapport à l'entreprise.\\
+
+		\subsection{Countermeasures}
+
+			La \textbf{contremesure} est une action visant à réduire une menace, vulnérability ou attaque via prévention, élimination.\\
+
+		\subsection{Risk}
+
+			Le \textbf{risque} est la prévision d'une perte exprimée par la probabilité qu'une menace particulière exploire une vulnérabilité particulière avec un résultat négatif particulier.\\
+
+			Un risque est \textbf{évalué} par la \textbf{probabilité que l'incident} survienne multiplié par \textbf{l'impact} que cet incident causerait.\\
+
+	\section{Menaces, attaques et actifs}
+
+		\subsection{Divulgation non autorisée - Unauthorised Disclosure}
+
+			Menace sur \textbf{Confidentiality}, attaques liées : \\
+
+			\begin{itemize}
+				\item \textbf{Exposition} : Exposition d'informations sensibles
+				\item \textbf{Interception} : Interception d'informations dans une communication
+				\item \textbf{Inférence} : Accession à des infos sensibles de manière indirecte
+				\item \textbf{Intrusion}\\
+			\end{itemize}
+
+		\subsection{Tromperie - Deception}
+
+			Transmission de fausses infos à une entité en faisant croire que les infos sont conformes. \\
+
+			\begin{itemize}
+				\item \textbf{Masquerade} : Accès au système et agissement malicieux sous couvert d'une entité autorisée
+				\item \textbf{Falsification} : Alteration de données valides
+				\item \textbf{Répudiation}\\
+			\end{itemize}
+
+		\subsection{Perturbations - Disruptions}
+
+			Menaces sur \textbf{Availability} et \textbf{Integrity}.\\
+
+			\begin{itemize}
+				\item \textbf{Neutralisation} : Destruction physiques ou endommagement du matériel
+				\item \textbf{Corruption}
+				\item \textbf{Obstruction} : Interruption d'un service, DoS\\
+			\end{itemize}
+
+		\subsection{Usurpation}
+
+			Prise de contrôle d'un service ou système par une entité non autorisée.\\
+
+			\begin{itemize}
+				\item \textbf{Détournement} : Entité contrôle les ressoruces d'un système
+				\item \textbf{Mauvais usage} : Composant système effectue une opération au détriment de la sécurité.\\
+			\end{itemize}
+
+	\section{Principes de conception de systèmes sécurisés}
+
+		Pas de techniques pour empêcher totalement des \textbf{failles}, mais des principes existent pour tendre vers un \textbf{système sécurisé} : \\
+
+		\begin{itemize}
+		 	\item \textbf{Economy of Mechanisms} : Solutions les moins complexes possibles pour éviter les failles (\textbf{KISS}).\\
+		 	\item \textbf{Fail-Safe Default} : Comportement d'exclusion par défault
+		 	\item \textbf{Complete Mediation} : Chaque accès système doit être validé, pas de caches
+		 	\item \textbf{Open Design} : Elements de conception publiques
+		 	\item \textbf{Separation of Privilege}
+		 	\item \textbf{Least Privilege} : Droits minimum suffisant pour la tâche
+		 	\item \textbf{Least Common Mechanisms} : Il faut minimiser les éléments partagés par les différents programmes ou utilisateurs.
+		 	\item \textbf{Psychological Acceptability} : Les mécanismes de sécurité ne doivent pas interférer sans raison avec les tâches des users, qui pourraient les désactiver.
+		 	\item \textbf{Isolation} : Systèmes publiques isolés des critques, processus et fichiers utilisateurs isolés de ceux des autres, accès aux mécanismes isolés
+		 	\item \textbf{Encapsulation} : Isolation appliquée à l'orienté-objet
+		 	\item \textbf{Modularity} : Partage des fonctions et services de sécurité pour une seule implémentation d'un prtocole de sécurité.
+		 	\item \textbf{Layering} : Plusieurs couches de protection
+		 	\item \textbf{Least Astonishment} : Une GUI doit se comporter comme l'attendrait un utilisateur\\
+		 \end{itemize} 
+
+	\section{Stratégies de sécurité informatique}
+
+		Trois étapes pour mettre au point une stratégie : \\
+
+		\begin{enumerate}
+			\item \textbf{Définir} la politique de sécurité
+			\item \textbf{Implémenter} la politique
+			\item \textbf{Valider} la politique\\
+		\end{enumerate}
+
+		\subsection{Politiques de sécurité}
+
+			Il faut dans un premier temps définir les \textbf{assets} à protéger et leur \textbf{valeur} qui peut être définie en termes d'objectifs \textbf{CIA}.\\
+
+			Ensuite, il faut identifier les \textbf{vulnérabilités} et \textbf{attaques} potentielles, ainsi que leur \textbf{probabilité} de survenir, et l'\textbf{impact} qu'elles causeraient.\\
+
+			Pour chaque \textbf{vulnérabilité}, on peut mettre en place un série de contre-mesures, dont le choix s'établit sur des compromis tels que la \textbf{facilité d'utilisation et la sécurité}, ainsi que le rapport entre \textbf{coût de la mesure et coût des pertes}.\\
+
+			Les policies sont une décision \textbf{stratégique importante}, chaque choix est un renoncement.\\
+			Il faut lister les risques pour lesquels de conte-mesures ne sont pas prises, appelés \textbf{risques résiduels}.\\
+
+		\subsection{Mise en place des contre-mesures}
+
+			Implémentation des mécanismes de sécurité impliques quatre groupes d'actions complémentaires : \\
+
+			\begin{enumerate}
+				\item \textbf{Prévention} : Permet de restreindre le nombre d'attaques potentielles
+				\item \textbf{Détection} : Pas toujours possible d'éviter une attaque, mais il faut pouvoir la détecter pour prendre action
+				\item \textbf{Réaction} : Que faire en cas d'une attaque découverte pour en minimiser les conséquences
+				\item \textbf{Récupération} : Comment réagir suite à une perte (backups, etc...)\\
+			\end{enumerate}
+
+		\subsection{Validation}
+
+			Le bon fonctionnement du système de sécurité doit être évalué et analysé, il faut donc établir des procédures de validation pour ce faire.\\
+
+	\section{Connaître Son Ennemi}
+
+		Important de connaître l'adversaire pour savoir ce qu'il recherche, ses buts et méthodes et s'en protéger.\\
+
+		\subsection{Types d'attaquants}
+
+
+			\begin{itemize}
+				\item \textbf{Attaques Automatisées} : Virus et vers conçus pour se propager automatiquement sur internet.
+
+				\item \textbf{Scripts Kiddies} : Amateurs utilisants des scripts afin d'expérimenter.
+
+				\item \textbf{Vandale} : Attaquant souhaitant montrer ce dont il est capable pour sa réputation.
+
+				\item \textbf{Activiste} : Attaquant expérimenté ciblant des entités pour raisons politiques.
+
+				\item \textbf{Expert} : Tente de mettre en évidence des failles en réalisant les intrusions, pas de but de destruction.
+
+				\item \textbf{Espion} : Professionel disposant d'outils et méthodes sophistiqués, attaques sur de longues périodes.
+
+				\item \textbf{Cybercrime Organisé} : Organisations à buts financiers, volent par exemple les numéros de cartes de crédit.
+
+				\item \textbf{Cyberterrorisme} : Groupes d'experts bien organisés, buts terroristes et de destruction.\\
+			\end{itemize}
+
+		\subsection{Methodes d'attaques}
+
+			Attaquent des cibles \textbf{aléatoires} ou \textbf{spécifiques}.\\
+
+			Les cibles \textbf{spécifiques} nécéssitent une préparation minutieuse, celles \textbf{aléatoires} sont parfois utilisées comme point d'attaques par rebond.\\
+
+		\subsection{Outils privilégiés}
+
+			Les outils utilisés servent principalement à la collecte d'information.\\
+
+			\begin{itemize}
+				\item \textbf{WHOIS} : Infos sur Ip, Domain Name
+				\item \textbf{Mailing Lists} : Consultation d'archives avec descriptifs de certains problème et infos techniques précises
+				\item \textbf{Social Engineering} : Ingénierie Sociale, le but est d'exploiter les failles humaines afin d'en retirer des informations
+				\item \textbf{Port Scan} : Montre les services ouverts
+				\item \textbf{OS Fingerprinting} : Permettent d'identifier le type d'OS sur base de réponses, ainsi que versions des services etc, utile pour trouver une cible appropriée pour une faille sur une certaine version d'un logiciel.\\
+			\end{itemize}
+
 	\section{Exercices}
 
 		\subsection{Questions de révision}
@@ -160,6 +362,16 @@
 			%%%%%%%%%%%%
 
 \chapter{Bases de Cryptographie}
+
+	\section{Chiffrement Symétrique}
+
+	\section{Hashage et authenticatio des messages}
+
+	\section{Chiffrement Clé Publique}
+
+	\section{Signatures Digitales}
+
+	\section{Gestion des clés}
 	
 	\section{Exercices}
 
