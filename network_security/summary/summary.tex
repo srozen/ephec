@@ -1747,11 +1747,11 @@
 
 				\item \textbf{Pourquoi est-ce que beaucoup d'attaques DoS utilisent le spoofing d'adresses? : }\\
 
-					Pour ne pas que l'on puisse remonter à la source de ces attaques.\\
+					Pour ne pas que l'on puisse remonter à la source de ces attaques, mais également pour pouvoir rediriger les attaques vers la source spoofée.\\
 
 				\item \textbf{Quelles sont les défenses possibles contre les attaques TCP SYN flooding? : }\\
 
-					Identifier l'attaquant.\\
+					Identifier l'attaquant et peu d'autres possibilités, les SYN TCP sont censé être du traffic légitime.\\
 
 				\item \textbf{Que faut-il faire lorsqu'une attaque DoS est détectée? : }\\
 
@@ -1761,7 +1761,7 @@
 
 					\begin{itemize}
 						\item Réflexion : Se base sur des relais intermédiaires pour rediriger un flux vers la cible.
-						\item Amplification : Rediriger des paquets amplifiés (réponses DNS) sur une IP spoofée.
+						\item Amplification : Rediriger des paquets amplifiés à partir de réseaux broadcast qui vont démultiplier le message et inonder la source spoofée.\\
 					\end{itemize}
 
 			\end{itemize}
@@ -2459,7 +2459,7 @@ Slide de merde..
     \item Evaluer régulièrement les vulnérabilités potentielles
     \item Disk logging : Gestion de l'espace disque et analyse
     \item Backup et archivage des données. Détermination lors de la planification dans l'idéal et déterminer la localisation du backup (local, distant, je sais pas moi, ...)
-\end{enumerate}~
+\end{enumerate}
 
 Voici un mauvais exemple de politique de backup :
 \begin{itemize}
@@ -2881,7 +2881,7 @@ Il y a 3 questions fondamentales qu'il faut se poser :
     \item Quels sont les avoirs à protéger ?
     \item En quoi sont-ils menacés ?
     \item Que pouvons-nous faire pour contre ces menaces ?
-\end{itemize}~
+\end{itemize}
 
 Par gestion de la sécurité, on entend également :
 \begin{itemize}
@@ -2917,7 +2917,7 @@ Il existe différents \textbf{standards de sécurité} qui représentent un cons
     \end{enumerate}
 
     \item \textbf{Validation} : Comment s'assurer que la contre-mesure fonctionne ?
-\end{enumerate}~
+\end{enumerate}
 
 Voici un exemple d'analyse des risques :
 
@@ -2937,7 +2937,7 @@ Il s'agit d'action, appareil, procédure ou tout autre mesure qui réduit le ris
     \item \textbf{Contrôles opérationnels} : S'occupent de l'implémentation et de l'application des politiques et des standards de sécurité
 
     \item \textbf{Contrôles techniques}
-\end{itemize}~
+\end{itemize}
 
 Ces contrôles peuvent agir à différents niveaux/moments :
 \begin{itemize}
@@ -3127,7 +3127,7 @@ Définition des règles d'accès et d'utilisation des emails et du web :
     \item Actions disciplinaires
     \item Empêcher les personnes comme Sergen d'aller voir des sites plus que douteux avec Cortex les pyramides qui b**** une s****** française. (Celui-ci c'est pour rire, je précise on sait jamais)
 \end{itemize}
-
+			
 \end{document}
 
 
