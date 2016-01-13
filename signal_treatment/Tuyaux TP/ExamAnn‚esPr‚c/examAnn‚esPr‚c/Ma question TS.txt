@@ -1,0 +1,9 @@
+-cameraman.tiff avec bruit :
+
+filtrer par un filtre moyenneur 3x3
+
+déterminer un seuil sur les points
+
+-sin 440 + 0.5 sin 500
+
+filtrer avec sptool et filter

@@ -1,0 +1,550 @@
+\documentclass[a4paper,10pt,final,fleqn]{article}
+\usepackage[frenchb]{babel}
+\usepackage{fontenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage[utf8]{inputenc}
+\usepackage{apacite}
+\usepackage{url}
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6in
+\textheight=9.0in
+\headsep=0.25in 
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\GroupeName} % Top left header
+\chead{\CourseAndAPP} % Top center header
+\rhead{\Date} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{\ \thepage\ / 	\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\CourseAndAPP}{Réseaux} % Course/APP
+\newcommand{\Date}{Mai 2015}
+
+\title{
+\parbox{15cm}
+{ 
+  \vspace{3cm}
+	\begin{center}\sf\bfseries\Huge
+		\rule{15cm}{1pt}
+		\medskip
+		Pratique des Réseaux \\
+		\huge Sacro-Saint Tutoriel \\
+        \begin{center}
+		\includegraphics[scale=0.3]{intro.jpg}
+		\end{center}
+		\vspace{.5cm}
+		\rule{15cm}{1pt}
+	\end{center}
+	\vspace{3cm}
+ }} 
+\author{Notre Seigneur}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\newpage
+\section{Avant-Propos}
+
+	Voilà Wackbar le Saint-Tutoriel bande de saisis.\\
+
+	Cette année, chers amis, je n'ai pas été aussi assidu que la précédente au niveau des examens Cisco.\\
+	J'ai triché, oui j'ai triché je l'avoue, et ça me brise les baboules.\\
+	Cette année pas de screens en boucle non plus, j'avais pas le putain de courage mes amis.\\
+
+	Le plus dur dans tout ça, c'est que je me suis explosé le cul à essayer de finir cette merde correctement (pas totalement dans cette version malheureusement), en ayant oublié blindé de bazar, pour vous bandes de boyards (surtout Sergen).\\
+	
+	Je remercie Martin qui a contribué à ce tutoriel également, sauf si cet enfoiré sort une version avant moi, et vous lui devez tous une bière.\\
+	
+	Puisse le demi-saint tutoriel (je l'ai dit cette année le cru est assez moyen), parvenir à te faire réussir l'avant dernier examen de la peeeeerte totale, je lève mon verre aux cours de merde Cisco qui cette année étaient particulièrement à quicher, et que je n'ai pas su finir (ni tenté d'ailleurs) avec tout ces projets de merde.\\
+
+\section{Introduction}
+
+	Ceci est juste un rappel de l'énoncé : \\
+
+	R1 est connecté à internet. Vous simulez cela grâce au PC ISP.\\
+	PC0 et PC2 peuvent communiquer entre eux sans exception ainsi que PC1 et PC3.\\
+	Mais PC0 ne peut pas pinguer PC1 et PC3. De même PC2 ne peut pas pinguer PC1 et PC3.\\
+
+	L'adresse vers Internet est 1.1.1.9/30\\
+	Le réseau global disponible pour tout le reste est 192.168.10.192/26. Prévoyez que l'on puisse mettre un maximum de PC par sous réseau et que tout le monde puisse aller sur Internet.\\
+
+	On a en plus 3 serveurs connectés au routeur3. Pour ce réseau-là, 4 ip suffisent.\\
+	R3 est connecté à R2 avec un câble série. Ajoutez ce qui est nécessaire.\\
+	R3 fournit automatiquement leurs ip à tous les PC. (pas aux serveurs évidemment).\\
+	Le serveur web met la page www.3TI.be à disposition.\\
+	Le serveur mail a 2 comptes configurés : paul@3TI.be et jacques@3TI.be\\
+
+	L'encapsulation entre R1 et R2 est PPP avec authentification chap. Le mot de passe est cisco.\\
+
+	Le routage est OSPF.\\
+
+	R2 est plus performant que R1. Tenez-en compte.\\
+
+	Le vlan natif doit être le vlan 99. Il contient les deux switch.\\
+
+	Configurez le Switch 0 comme vtp serveur. Les noms pour les vlan sont sudent et admin.\\
+	Pour le plan d’adressage, vous ne notez que le dernier octet de toutes les ip. Vous ne mettez le masque que sur l’adresse réseau.\\
+	Donc, par exemple, pour une adresse réseau, on a .0/30 et pour une ip normale .1\\
+	Si ces consignes ne sont pas respectées, vous perdez des points.\\
+
+	Faites en sorte de profiter réellement de la redondance entre les deux switch en jouant sur les priorités de STP.\\
+
+
+\section{Création des sous-réseaux}
+
+	Je vais être concis, pour la création des sous-réseaux : \\
+	\begin{itemize}
+		\item Empruntez un bit au /26, l'un des deux est votre VLAN 1 /27	
+		\item Empruntez un bit au deuxième /27, l'un des deux est votre deuxième VLAN 2 /28
+		\item Empruntez un bit au deuxième /27, l'un des deux est votre Servers /29
+		\item Empruntez un bit au deuxième /29, vous avez deux /30 pour les Subnets inter-réseaux\\
+	\end{itemize}
+
+
+
+\section{Plan d'adressage logique}
+
+
+	Et voici un beau tableau d'adressage pour toi (en tableau LATEX c'est chiant à faire (pense à ma bière)) : \\
+
+	\begin{table}[]
+		\centering
+		\caption{Nigger}
+		\label{my-label}
+			\begin{tabular}{|l|l|l|l|l|l|}
+			\hline
+			\textbf{Hôte} & \textbf{Interface} & \textbf{IP}    & \textbf{/x} & \textbf{Masque} & \textbf{Wildcard} \\ \hline
+			Router 3      & f0/0               & 192.168.10.241 & /29         & 255.255.255.248 & 0.0.0.7           \\
+			              & s0/0/0             & 192.168.10.253 & /30         & 255.255.255.252 & 0.0.0.3           \\ \hline
+			DNS           & f0                 & 192.168.10.242 & /29         & 255.255.255.248 & 0.0.0.7           \\ \hline
+			WEB           & f0                 & 192.168.10.243 & /29         & 255.255.255.248 & 0.0.0.7           \\ \hline
+			Mail          & f0                 & 192.168.10.244 & /29         & 255.255.255.248 & 0.0.0.7           \\ \hline
+			R1            & f0/0.1 (VLAN1)     & 192.168.10.193 & /27         & 255.255.255.224 & 0.0.0.31          \\
+			              & f0/0.2 (VLAN2)     & 192.168.10.225 & /28         & 255.255.255.240 & 0.0.0.15          \\
+			              & f1/0               & 1.1.1.9        & /30         & 255.255.255.252 & 0.0.0.3           \\
+			              & s2/0               & 192.168.10.249 & /30         & 255.255.255.252 & 0.0.0.3           \\ \hline
+			R2            & f0/0.1 (VLAN1)     & 192.168.10.194 & /27         & 255.255.255.224 & 0.0.0.31          \\
+			              & f0/0.2 (VLAN2)     & 192.168.10.226 & /27         & 255.255.255.240 & 0.0.0.15          \\
+			              & s3/0               & 192.168.10.254 & /30         & 255.255.255.252 & 0.0.0.3           \\
+			              & s2/0               & 192.168.10.250 & /30         & 255.255.255.252 & 0.0.0.3           \\ \hline
+			\end{tabular}
+	\end{table}\\
+
+	Voici aussi la découpe en zone et donc le plan d'adressage logique : \\
+
+	\includegraphics[scale=0.5]{1.jpg}\\
+
+\section{VLANS et Etherchannel}
+
+	Maintenant nous allons configurer les VLANS en les créant sur les switches, et en activant leurs interfaces.\\
+	Retenez bien que ceux-ci sont en double liaisons, donc il faut faire du EtherChannel qu'on va configurer en même temps via les commandes \textbf{channel-group} et \textbf{interface port channel}.\\
+
+	\begin{itemize}
+		\item On crée les vlans
+		\item On active le mode trunk sur les interfaces non reliées à des ordinateurs
+		\item On active l'accès VLAN sur l'interface liée au PC correspondant, donc PC0 = VLAN 1\\
+	\end{itemize}
+
+	Pour le Switch 0 : \\
+
+	\begin{itemize}
+		\item vlan 2
+		\item name student
+		\item exit
+		\item vlan 3
+		\item name admin
+		\item exit
+		\item interface f0/5
+		\item switchport mode trunk
+		\item exit
+		\item interface range f0/3-4
+		\item switchport mode trunk
+		\item channel-group 1 mode active
+		\item exit
+		\item interface f0/2
+		\item switchport mode access
+		\item switchport access vlan 2
+		\item exit
+		\item interface f0/1
+		\item switchport mode access
+		\item switchport access vlan 3
+		\item exit
+		\item interface port-channel 1
+		\item switchport mode trunk
+		\item exit 
+		\item vtp mode server
+		\item vtp domain ephec
+		\item vtp password cisco\\
+	\end{itemize}
+
+	Pour le Switch 1 : \\
+
+	\begin{itemize}
+		\item vtp mode client
+		\item vtp domain ephec
+		\item vtp password cisco (faite p-e un FFT après pour qu'il charge les vlan)
+		\item interface f0/5
+		\item switchport mode trunk
+		\item exit
+		\item interface range f0/3-4
+		\item switchport mode trunk
+		\item channel-group 1 mode active
+		\item exit
+		\item interface f0/1
+		\item switchport mode access
+		\item switchport access vlan 2
+		\item exit
+		\item interface f0/2
+		\item switchport mode access
+		\item switchport access vlan 3
+		\item exit
+		\item interface port-channel 1
+		\item switchport mode trunk
+		\item exit \\
+	\end{itemize}
+
+	Maintenant vous devriez avoir les bouboules vertes entre les switches et entre switches et PC ! \\
+
+	Si jamais il était demandé de sécuriser un port de PC avec son addresse MAC, répérez le switch lié au pc, entrez dans l'interface et faites ceci : \textbf{switchport port-security mac-address macdupc}\\
+
+
+\section{Adressage}
+
+	Pour l'instant rien de chaud, on met les adresses comme sur le plan d'adressage, on ne s'occupe pas des PC qui seront configurés à la fin via le DHCP.\\
+	Je vais pas vous remettre les étapes pour les serveurs sauf si vous êtes complètement amortis comme dans la cours des miracles, oubliez pas les putain de \textbf{Gateway}, où je vous met en article 60.\\
+
+	Pour le R1 : \\
+
+	\begin{itemize}
+		\item interface f0/0.1
+		\item encapsulation dot1Q 2
+		\item ip address 192.168.10.193 255.255.255.224
+		\item no shu
+		\item exit
+		\item interface f0/0.2
+		\item encasulation dot1q 3
+		\item ip address 192.168.10.225 255.255.255.240
+		\item no shu
+		\item exit
+		\item interface f0/0
+		\item no shu
+		\item exit\\
+		\item interface f1/0
+		\item ip address 1.1.1.9 255.255.255.252
+		\item no shu
+		\item exit
+		\item interface s2/0
+		\item ip address 192.168.10.249 255.255.255.252
+		\item no shu
+		\item exit\\
+	\end{itemize}
+
+	Ensuite pour R2 : \\
+
+	\begin{itemize}
+		\item interface f0/0.1
+		\item encapsulation dot1Q 2
+		\item ip address 192.168.10.194 255.255.255.224
+		\item no shu
+		\item exit
+		\item interface f0/0.2
+		\item encasulation dot1q 3
+		\item ip address 192.168.10.226 255.255.255.240
+		\item no shu
+		\item exit
+		\item interface f0/0
+		\item no shu
+		\item exit\\
+		\item interface s2/0
+		\item ip address 192.168.10.250 255.255.255.252
+		\item no shu
+		\item exit\\
+		\item interface s3/0
+		\item ip address 192.168.10.254 255.255.255.252
+		\item no shu
+		\item exit\\
+	\end{itemize}
+
+	Enfin pour R3 : \\
+
+	\begin{itemize}
+		\item interface f0/0
+		\item ip address 192.168.10.241 255.255.255.248
+		\item no shu
+		\item exit
+		\item interface s0/0/0
+		\item ip address 192.168.10.253 255.255.255.252
+		\item no shu
+		\item exit\\
+	\end{itemize}
+
+
+\section{Routage}
+	
+	Pour le routage qui ici est en \textbf{OSPF}, il suffit pour chaque routeur d'indiquer ses zones adjaçantes, et de mettre l'interface en passif si elle mène à une zone cul-de-sac.\\
+
+	Router 3 : \\
+
+	\begin{itemize}
+		\item router ospf 1 
+		\item network 192.168.10.240 0.0.0.7 area 0
+		\item network 192.168.10.252 0.0.0.3 area 0 
+		\item passive-interface f0/0\\
+	\end{itemize}
+
+	Router 2 : \\
+
+	\begin{itemize}
+		\item router ospf 1
+		\item network 192.168.10.252 0.0.0.3 area 0
+		\item network 192.168.10.224 0.0.0.15 area 0
+		\item network 192.168.10.192 0.0.0.31 area 0
+		\item network 192.168.10.248 0.0.0.3 area 0
+		\item passive-interface f0/0
+		\item passive-interface f0/0.1
+		\item passive-interface f0/0.2\\
+	\end{itemize}
+
+	Router 1 : \\
+
+	\begin{itemize}
+		\item router ospf 1
+		\item network 1.1.1.9 0.0.0.3 area 0
+		\item network 192.168.10.224 0.0.0.15 area 0
+		\item network 192.168.10.192 0.0.0.31 area 0
+		\item network 192.168.10.248 0.0.0.3 area 0
+		\item passive-interface f1/0
+		\item passive-interface f0/0
+		\item passive-interface f0/0.1
+		\item passive-interface f0/0.2\\
+	\end{itemize}
+
+	Testez deux trois ping genre du R1 vers vos serveurs, normalement ça doit marcher, si pas vous avez fait une connerie et je suis pas responsable, désolé.\\
+
+	Je le répète, en cas d'échec Marty et moi-même ne pouvont être tenus pour responsables de votre médiocrité.\\
+
+
+\section{Spanning-Tree}
+	
+	Cette section est dédiée à Martin Bonheur (émission vraiment à chier en passant), qui a trouvé cette solution pour le spanning-tree, car vos pc sans ip sont des gros saisis et cette espèce de croisement dégeulasse entre les switches et routeurs fout la merde.\\
+
+	Pour Switch 0 : \\
+
+	\begin{itemize}
+	 	\item spanning-tree mode rapid pvst
+	 	\item spanning-tree vlan 2 root primary
+	 	\item spanning-tree vlan 3
+	 	\item spanning-tree vlan 2\\
+	 \end{itemize} 
+
+	Et pour Switch 1 : \\
+
+	\begin{itemize}
+		\item spanning-tree mode rapid pvst
+		\item spanning-tree vlan 3 root primary
+		\item spanning-tree vlan 2
+		\item spanning-tree vlan 3
+	\end{itemize}
+
+	Les petits LEDs devraient faire des couleurs bizarres puis rétablir le vert, et former un réseau bien dur, comme...\\
+
+
+\section{DHCP}
+
+	Nos coquins de PC ont maintenant besoin d'une IP, on va leur permettre de l'avoir en créant deux pools (un pour chacun des VLANS) dhcp sur R3, et en indiquant aux autres routers de relayer ces demandes vers R3.\\
+
+	C'est ici par contre qu'une question se pose, le fait que deux routeurs soient impliqués au niveau des VLANS pose une question sur la possible redondance via HSRP ou VRRP, je ne sais pas si on l'a vu
+
+	Pour R3 : \\
+
+	\begin{itemize}
+		\item ip dhcp pool 1
+		\item network 192.168.10.192 255.255.255.224
+		\item default-router 192.168.10.193
+		\item ip dhcp pool 2
+		\item network 192.168.10.224 255.255.255.240
+		\item default-router 192.168.10.226\\
+	\end{itemize}
+
+	Pour R1 : \\
+
+	\begin{itemize}
+		\item interface f0/0
+		\item ip helper-address 192.168.10.250\\
+	\end{itemize}
+
+	Pour R2 : \\
+
+	\begin{itemize}
+		\item interface f0/0
+		\item ip helper-address 192.168.10.253\\
+	\end{itemize}
+
+
+\section{DNS}
+
+	Entrez juste un A record avec le nom de domaine pointant sur l'adresse IP du serveur Web.\\
+
+	Ajoutez également deux entrées pour le mail, à savoir \textbf{pop.ephec.be}, et \textbf{smtp.ephec.be} dirigées vers le serveur Mail en A Record.\\
+
+	Entrez le DNS lui-même dans les champs ! \\
+
+
+\section{Web}
+
+	Activez uniquement le service WEB.\\
+
+
+\section{Mail}
+
+	Mettez le domain name sur \textbf{ephec.be}, ensuite ajoutez les deux utilisateurs : \\
+
+	\begin{itemize}
+		\item paul@ephec.be - ephec
+		\item jacques@ephec.be - ephec\\
+	\end{itemize}
+
+	Je sais que normalement c'est 3TI, mais je m'en bat les couilles.\\
+
+	Configurez ensuite deux clients, un sur PC0 et un sur PC1 et testez l'envoi et réception.\\
+
+\section{Routage statique}
+
+	Bordel ca ressemble tellement à l'examen de l'année passée.\\
+
+	Cette route statique va permettre de balancer tout le traffic sans cible vers l'internet par défaut, même chose pour l'ensemble des routeurs qui vont utiliser une interface précise pour diriger vers R1, qui est en lien direct avec internet.\\
+
+	Enfin, une route statique dira de ramener ce qui vient d'internet dans notre réseau local.\\
+
+	Sur R1 : \\
+
+	\begin{itemize}
+		\item ip route 0.0.0.0 0.0.0.0 f1/0
+		\item ip route 192.168.10.192 255.255.255.192 1.1.1.10 (qui est ISP, à configurer si jamais pas fait)\\
+	\end{itemize}
+
+
+	Sur R2 : \\
+
+	\begin{itemize}
+		\item ip route 0.0.0.0 0.0.0.0 s2/0\\
+	\end{itemize}
+
+	Et sur R3 : \\
+
+	\begin{itemize}
+		\item ip route 0.0.0.0 0.0.0.0 s0/0/0\\
+	\end{itemize}
+
+\section{NAT}
+
+	Putain j'en chie, je vous assure...\\
+
+	D'abord, on va créer une ACL qui reprend notre réseau de base entier sur R1.\\
+	Ensuite, on va surcharger l'interface en sortie, en utilisant notre access-list 1 afin de faire du PAT.\\
+	Après on va juste définir quelles interfaces sont dans ou hors du réseau local.\\
+
+	R1 : \\
+
+	\begin{itemize}
+		\item access-list 1 permit 192.168.10.192 255.255.255.192 
+		\item ip nat inside source list 1 interface f1/0 overload\\
+		\item interface s1/0
+		\item ip nat outside
+		\item interface s2/0
+		\item ip nat inside
+		\item interface f0/0
+		\item ip nat inside\\
+	\end{itemize}
+	
+
+\section{Access-Lists}
+
+	Je demanderais bien une bière mais ce tuto vaut tellement pas celui de l'année passée. Pardonnez-moi chers disciples..\
+
+	On va, sur les deux routeurs reliés aux VLANS, préciser des ACLs qui vont empêcher ceux-ci de se contacter entre eux.\\
+
+	R1 : \\
+
+	\begin{itemize}
+		\item access-list 2 deny 192.168.10.224 0.0.0.15
+		\item access-list 2 permit 192.168.10.192 0.0.0.31\\
+
+		\item access-list 3 deny 192.168.10.192 0.0.0.31 \\
+		\item access-list 3 permit 192.168.10.224 0.0.0.15\\
+
+		\item interface f0/0.1
+		\item ip access-group 2 out\\
+
+		\item interface f0/0.2
+		\item ip access-group 3 out\\
+	\end{itemize}
+
+	R2 : \\
+
+	\begin{itemize}
+		\item access-list 2 deny 192.168.10.224 0.0.0.15
+		\item access-list 2 permit 192.168.10.192 0.0.0.31\\
+
+		\item access-list 3 deny 192.168.10.192 0.0.0.31
+		\item access-list 3 permit 192.168.10.224 0.0.0.15\\
+
+		\item interface f0/0.1
+		\item ip access-group 2 out\\
+
+		\item interface f0/0.2
+		\item ip access-group 3 out\\
+
+	\end{itemize}
+
+	Voilà normalement c'est bon ma bêche.\\
+
+\section{Chap}
+
+	Une encapsulation (on verra après les examens pour les décapsulations, lelelelelele), doit être opérée sur le traffic entre R1 et R2.\\
+
+	On va procéder de la sorte, d'abord R1 : \\
+
+	\begin{itemize}
+		\item hostname R1 (si vous l'avez pas fait)
+		\item username R1 password cisco
+		\item interface S2/0
+		\item encapsulation ppp
+		\item ppp authentication chap\\
+	\end{itemize}
+
+	Et pour R2 : \\
+
+	\begin{itemize}
+		\item hostname R2 (oubliez pas les hostname)
+		\item username R2 password cisco
+		\item interface s2/0
+		\item encapsulation ppp
+		\item ppp authentication chap\\
+	\end{itemize}
+
+\section{Remerciements}
+
+	Les mecs, je remercierai qui que ce soit quand je serai rafraîchit par une bière peu importe sa nature.\\
+
+	C'est à dire que, comme je l'ai dis, cette année j'ai putain de rien fait en Routage, bordel de merde.\\
+
+	Alors c'était hardcore de vous pondre ça, en mauvaise qualité qui plus est, c'est triste, vraiment.\\
+
+
+\end{document}

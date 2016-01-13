@@ -1,0 +1,70 @@
+Question 1
+Citation
+1. j'ai eu la même question que l'an dernier avec le cameraman_bruit ou il fallait faire un filtre moyenneur matrice 3 puis 
+faire une fonction avec un "seuil" qui ne filtre que la ou il y a des points.
+
+Pour faire un filtre moyenneur tu fais une matrice (ici 3x3) et tu fais un truc style
+h = ones(3)/9 => paske 3x3 élément = 9 donc pour avoir une moyenne tu divise par 9 et 
+si il te dit de pas tenir compte du pixel central alors tu met un 0 au centre de la matrice et tu divise par 8 car il reste 8 élément à 1...
+imgfilt = imfilter(img, h);
+
+et avec un seuil tu fais comme ca
+
+seuil = 0.05;
+for i=2:1:size(img)-1;
+for j=2:1:size(img)-1;
+if (img(i,j)<seuil)
+x = [img(i-1,j+1) img(i,j+1) img(i+1,j+1) img(i-1,j) img(i,j) img(i+1,j) img(i-1,j-1) img(i,j-1) img(i+1,j-1)];
+img(i,j) = mean(x);
+end;
+end;
+end;
+imshow(img);
+
+
+2. créer un battement avec deux sons de 440 et 500Hz, le voir, l'enregistrer, l'entendre.
+    filtre de maniere a enlever le battement (ordre max =4 ) avec sptool et avec filter.
+
+	
+	Question 2
+Citation
+- Ouvrir une image : "pleiades_i.jpg " se trouvant sur le réseau, représentant un champs d'étoiles, il faut pourvoir isoler les étoiles les plus brillantes.
+     
+Pour se faire il faut convertir l'image en noir et blanc (rgb2gray), convertir le noir et blanc en binaire en utilisant un bon niveau (im2bw(im,graythresh(im))), labeliser l'image ( [im,n] = bwlabeln(imng) ), déterminer les propriétés des régions de l'image (regionprops) et isoler les plus grosses étoiles (ismember(find([stats.Area]>250)));
+
+- Ouvrir un fichier son : "dtmf.wav", en sachant que les touches dtmf sont composées d'une fréquence ligne additionnée à une fréquence colonne, déterminer à partir du fichier son sur quelles touches on a appuyé. Il nous donne un tableau des fréquences DTMF pour nous aider.
+   
+Utiliser specgram pour voir les fréquences en fonction du temps.
+
+
+	Question 3
+Citation
+1) Faire un signal composé de 10 sinus de 2 secondes chacun (gamme musicale). La fréquence du premier sinus est de 150hz, les suivantes sont les octaves (300, 600,...). La fréquence d'échantillonage est de 8000Hz. Il faut prédire les fréquences fantomes qui apparaissent et prouver avec Matlab.
+
+2) Enlever des points d'une image avec bwlabel, ismember, regionprop
+Question 4
+Citation
+1. On dispose d'un fichier genre morse.wav avec plein de parasites. Le but est de tout filtré à l'aide SPTool et sans SPTool.  Bien entendu chaque résultat devrait être affiché (spectre, signal, etc). Il faudra donc utilisé fft, Filter & Butter...
+Question 5
+Citation
+signal morse_bruité à filtrer avec sptool,fft et filter (c'était un filtre passe bande de 700 à 720hz).
+
+Question 6
+Citation
+1. Un fichier avec de la parole et on entendait un tuuuuuut (bruit)
+
+Méthode la même que pour l'alien  ===> avec specgram(son,512,Fs)  ==> distinguer les fréquences parasite ici 400 et 950  +/-
+==> choisir le bon coupe bande ===> si c'est 400  prendre 300 - 500   et lui expliquer pq le choix de telles frequences (frequence de coupure -3db et puis pente de -6 db * ordre filtre)
+
+2. question sur les images
+
+Carré de 300 Rouge
+utiliser improvide un truc du style je me rappelle plus trop
+et detecter les bords avec Edge voila
+Question 7
+Citation
+Le son à filtrer était comic_bruit.wav, qui contenait deux fréquences parasites. La solution était D'appliquer un filtre coupe-bande pour chaque fréquence parasite. Je devais réaliser le filtrage dans SpTool et dans un fichier m, donc avec butter et filter.
+
+Il fallait aussi définir le type de parasite et le type de filtre à utiliser, en spécifiant l'ordre qu'on allait utiliser. Mr Ernotte avait l'air d'insister sur la bonne utilisation de specgram, aussi. Faites attentions à ça aussi
+
+Je devais aussi faire une représentation fft du signal

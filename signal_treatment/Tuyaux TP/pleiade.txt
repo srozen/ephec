@@ -1,0 +1,6 @@
+im = imread('pleiades.jpg'); // lire l'image
+gray = graythresh(im); // passer l'image en niveau de gris
+b=im2bw(im,gray); // pour labeliser une image il faut que celle-ci soit en binaire
+[L,N] = bwlabel(b);// On labelise l'image , alors la fonction label renvoie un vecteur L ,et le nombre d'element trouvé N
+S =regionprops(L,'all'); // En gros region propre permet de choper des propiétés d'une image j'ai mis all comme ca on a tt pour plus d'info go voir le help
+final=ismember(L,find([S.Area]>250)); // alors en tres resumé ici on va chercher les 4 etoiles les plus brillantes grace a find , le plus grand que 250 est tout simplement le fait que l'image est noir et blanc et on sait qu'une image en noir et blanc a une valeur qui va de 0 a 255 contrairement a une image RGB qui va de 0 a 1 

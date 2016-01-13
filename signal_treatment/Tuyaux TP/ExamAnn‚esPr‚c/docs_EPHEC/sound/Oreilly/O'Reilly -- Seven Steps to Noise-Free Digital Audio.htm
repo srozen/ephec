@@ -1,0 +1,784 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0080)http://digitalmedia.oreilly.com/pub/a/oreilly/digitalmedia/2005/06/22/noise.html -->
+<HTML><HEAD><TITLE>O'Reilly -- Seven Steps to Noise-Free Digital Audio</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META 
+content="O'Reilly,O'Reilly Network,oreillynet,oreillynet.com,O'Reilly,OREILLY,Audio,Digital Media,Bruce Fries,noise reduction,cleaning audio,audio restoration,denoise,declick,decrackle,60 cycle hum,60 Hz hum,50 cycle hum,50 Hz hum,broadband noise reduction,Steinberg Clean,Digidesign DINR,Audio Laundry,DART,Sound Soap,Waves,turntable rumble,tape hiss,clicks and pops,vinyl noise,vinyl restoration,Bruce Fries,Marty Fries,Digital Audio Essentials" 
+name=keywords>
+<META 
+content="Learn what causes noise in digital audio files, how to avoid it, and how to remove it." 
+name=description>
+<META content="Jun. 22, 2005" name=date>
+<META content="Seven Steps to Noise-Free Digital Audio" name=pagename>
+<META content="O'Reilly" name=site>
+<META content="Bruce Fries" name=author>
+<META 
+content=http://digitalmedia.oreilly.com/pub/a/oreilly/digitalmedia/2005/06/22/noise.html 
+name=safariu_url>
+<SCRIPT 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/common.js" 
+type=text/javascript></SCRIPT>
+<LINK 
+href="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/main.css" 
+type=text/css rel=stylesheet><LINK 
+href="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/sans-serif.css" 
+type=text/css rel=stylesheet><LINK 
+href="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/style.css" 
+type=text/css rel=stylesheet><!--  feed autodiscovery links  --><LINK 
+title="Digital Media Articles and Weblogs" 
+href="http://www.oreillynet.com/pub/feed/26" type=application/atom+xml 
+rel=alternate><LINK title="Digital Media DevCenter Articles and Weblogs" 
+href="http://www.oreillynet.com/pub/feed/26?format=rss1" 
+type=application/rdf+xml rel=alternate><LINK 
+title="Digital Media DevCenter Articles and Weblogs" 
+href="http://www.oreillynet.com/pub/feed/26?format=rss2" 
+type=application/rss+xml rel=alternate>
+<META content="MSHTML 6.00.2900.2802" name=GENERATOR></HEAD>
+<BODY>
+<DIV id=page>
+<DIV id=header>
+<UL id=menubar>
+  <LI><A href="http://digitalmedia.oreilly.com/">Digital Media Home</A> </LI>
+  <LI><A href="http://www.oreilly.com/">O'Reilly Home</A> </LI>
+  <LI><A href="http://www.oreillynet.com/">O'Reilly Network</A> </LI>
+  <LI><A href="http://safari.oreilly.com/">Safari Bookshelf</A> </LI>
+  <LI><A href="http://conferences.oreilly.com/">Conferences</A> </LI>
+  <LI class=r><A href="https://epoch.oreilly.com/account/default.orm">Sign In/My 
+  Account</A> </LI>
+  <LI class=r><A href="http://epoch.oreilly.com/shop/cart.asp">View Cart</A> 
+  </LI></UL>
+<H1><A href="http://digitalmedia.oreilly.com/"><IMG alt="O'Reilly Digital Media" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/digitalmedia_header.gif"></A> 
+<SPAN class=hide>O'Reilly Digital Media</SPAN></H1>
+<P class=hide>Explore the Future of Audio, Video &amp; Photography</P></DIV><!--  Leaderboard 728 x 90  -->
+<DIV id=leaderboard-ad align=center><IMG style="FLOAT: right" height=90 
+alt=advertisement 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/ad-tag-vertical.gif" 
+width=11> 
+<TABLE class=adtag cellSpacing=0 width=728 border=0>
+  <TBODY>
+  <TR>
+    <TD><!-- dy --><!-- begin ad tag -->
+      <SCRIPT language=JavaScript type=text/javascript>
+ord=Math.random()*10000000000000000;
+document.write('<script language="JavaScript" src="http://ad.doubleclick.net/adj/digitalmedia.oreilly.ds/digitalmediaart;sz=728x90;ord=' + ord + '?" type="text/javascript"><\/script>');
+</SCRIPT>
+      <NOSCRIPT><A 
+      href="http://ad.doubleclick.net/jump/digitalmedia.oreilly.ds/digitalmediaart;sz=728x90;ord=123456789?" 
+      target=_blank><IMG height=90 alt="" 
+      src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/ajax_728x90.gif" 
+      width=728 border=0></A></NOSCRIPT> <!-- End ad tag --><!--
+<iframe src="http://ad.doubleclick.net/adi/digitalmedia.oreilly.ds/digitalmediaart;pos=_digitalmediaart;sz=728x90;ord=1453807226?" width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" scrolling="no">
+				<script type="text/javascript" language="JavaScript1.1" src="http://ad.doubleclick.net/adj/digitalmedia.oreilly.ds/digitalmediaart;abr=!ie;pos=_digitalmediaart;sz=728x90;ord=1453807226?"></script>
+				</iframe>
+				<noscript>
+				<a href="http://ad.doubleclick.net/jump/digitalmedia.oreilly.ds/digitalmediaart;abr=!ie;pos=_digitalmediaart;sz=728x90;ord=1453807226?"><img src="http://ad.doubleclick.net/ad/digitalmedia.oreilly.ds/digitalmediaart;abr=!ie;pos=_digitalmediaart;sz=728x90;ord=1453807226?" border="0" width="728" height="90" alt="Advertisement" /></a>
+				</noscript>
+--></TD></TR></TBODY></TABLE></DIV>
+<DIV class=secondary id=page-content><!--  http://digitalmedia.oreilly.com/pub/a/oreilly/digitalmedia/2005/06/22/noise.html  --><!-- /oreilly/digitalmedia/2005/06/22/noise.html --><!--  add Google ads to article pages ONLY  -->
+<DIV 
+style="PADDING-LEFT: 6px; FLOAT: right; MARGIN-BOTTOM: 6px; MARGIN-LEFT: 6px; OVERFLOW: hidden; BORDER-LEFT: #ccc 2px solid; WIDTH: 160px; BORDER-BOTTOM: #ccc 2px solid; HEIGHT: 600px"><!--  Creative for 160x600 format  -->
+<DIV class=google-digital-media 
+style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #fff; PADDING-BOTTOM: 6px; WIDTH: 100%; PADDING-TOP: 6px; TEXT-ALIGN: center">
+<SCRIPT type=text/javascript><!--
+google_ad_client = "oreilly_160x600";
+google_ad_width = "160";
+google_ad_height = "600";
+google_ad_format = "160x600_as";
+google_safe = "high";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000ff";
+google_color_url = "0000ff";
+google_color_text = "000000";
+//--></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/show_ads.js" 
+type=text/javascript></SCRIPT>
+<NOSCRIPT><IMG height=1 alt="" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/imp.gif" 
+width=1 border=0> </NOSCRIPT></DIV><!--  End Creative  --></DIV><!--  begin  print-safariu-del.icio.us options  -->
+<TABLE id=article-tools style="MARGIN: 0px 0px 6px 6px" cellSpacing=0 
+cellPadding=1 width=150 align=right border=0>
+  <TBODY>
+  <TR>
+    <TD class=secondary vAlign=top width=70><A class=tool 
+      title="Go to a print-friendly version of this page." 
+      href="http://digitalmedia.oreilly.com/lpt/a/5974"><IMG height=18 
+      alt=Print. hspace=3 
+      src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/print_18.gif" 
+      width=18 border=0>Print</A><BR></TD>
+    <TD width=10>&nbsp;&nbsp;&nbsp;</TD>
+    <TD class=secondary vAlign=top width=70><A class=tool 
+      title="Add to Project." 
+      onclick="window.open('https://www.safariu.com/sadd?uri=http%3A%2F%2Fdigitalmedia.oreilly.com%2F2005%2F06%2F22%2Fnoise.html&amp;type=article','AddToProject','toolbar=no,width=425,height=420,status=no,location=no,scrollbars=yes,resizable=yes,menubar=yes');return false" 
+      href="https://www.safariu.com/sadd?uri=http%3A%2F%2Fdigitalmedia.oreilly.com%2F2005%2F06%2F22%2Fnoise.html&amp;type=article"><IMG 
+      height=18 alt="Add to Project." hspace=3 
+      src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/add-to-project.gif" 
+      width=18 border=0>Add to Project</A><BR></TD></TR>
+  <TR>
+    <TD style="FONT-SIZE: 2px" colSpan=3>&nbsp;</TD></TR>
+  <TR>
+    <TD class=secondary 
+    style="PADDING-RIGHT: 1px; BORDER-TOP: #ccc 2px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; BORDER-BOTTOM: #ccc 2px solid" 
+    colSpan=3>Tags: <A 
+      href="http://www.oreillynet.com/tags.csp?tag=audio">audio</A> <A 
+      href="http://www.oreillynet.com/tags.csp?tag=music">music</A> <A 
+      href="http://www.oreillynet.com/tags.csp?tag=recording">recording</A> <A 
+      href="http://www.oreillynet.com/tags.csp?tag=howto">howto</A> <A 
+      href="http://www.oreillynet.com/tags.csp?tag=noise">noise</A> <BR><A 
+      href="http://del.icio.us/post?url=http%3A%2F%2Fdigitalmedia.oreilly.com%2Fpub%2Fa%2Foreilly%2Fdigitalmedia%2F2005%2F06%2F22%2Fnoise.html&amp;title=Seven%20Steps%20to%20Noise-Free%20Digital%20Audio">Bookmark 
+      with del.icio.us</A></TD></TR>
+  <TR>
+    <TD colSpan=3>&nbsp;</TD></TR></TBODY></TABLE><!--  end print-safariu-del.icio.us options  --><!--  content here  --><SPAN 
+id=intelliTxt><!-- mega preparse mp: --><!-- CS_PAGE_BREAK -->
+<H2>Seven Steps to Noise-Free Digital Audio</H2>by <A 
+href="http://digitalmedia.oreilly.com/pub/au/1774">Bruce Fries</A><BR>06/22/2005 
+
+<P><A 
+href="http://digitalmedia.oreilly.com/pub/a/oreilly/digitalmedia/2005/06/22/noise.html#music">Jump 
+to music examples</A><BR><BR>[<EM>This article is based on the Fries's new book, 
+</EM><A href="http://www.oreilly.com/catalog/digaudio/index.html">Digital Audio 
+Essentials</A>.]<BR><BR>Virtually all audio recordings, no matter how they were 
+created, will contain some amount of noise. Noise is simply any unwanted sound, 
+from hiss, clicks, and static to a door slamming or someone coughing. Noise 
+levels are typically higher in analog recordings, but some noise exists in all 
+digital recordings as well.</P>
+<TABLE class=adtag cellSpacing=0 cellPadding=8 width=336 align=right border=0>
+  <TBODY>
+  <TR>
+    <TD><!-- dy --><!-- begin ad tag -->
+      <SCRIPT language=JavaScript type=text/javascript>
+ord=Math.random()*10000000000000000;
+document.write('<script language="JavaScript" src="http://ad.doubleclick.net/adj/digitalmedia.oreilly.ds/digitalmediaart;sz=336x280;ord=' + ord + '?" type="text/javascript"><\/script>');
+</SCRIPT>
+      <NOSCRIPT><A 
+      href="http://ad.doubleclick.net/jump/digitalmedia.oreilly.ds/digitalmediaart;sz=336x280;ord=123456789?" 
+      target=_blank><IMG height=280 alt="" 
+      src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/rubyOnRails_336x280.gif" 
+      width=336 border=0></A></NOSCRIPT> <!-- End ad tag --><!--
+<iframe src="http://ad.doubleclick.net/adi/digitalmedia.oreilly.ds/digitalmediaart;pos=_digitalmediaart;sz=336x280;ord=2107661830?" width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" scrolling="no">
+				<script type="text/javascript" language="JavaScript1.1" src="http://ad.doubleclick.net/adj/digitalmedia.oreilly.ds/digitalmediaart;abr=!ie;pos=_digitalmediaart;sz=336x280;ord=2107661830?"></script>
+				</iframe>
+				<noscript>
+				<a href="http://ad.doubleclick.net/jump/digitalmedia.oreilly.ds/digitalmediaart;abr=!ie;pos=_digitalmediaart;sz=336x280;ord=2107661830?"><img src="http://ad.doubleclick.net/ad/digitalmedia.oreilly.ds/digitalmediaart;abr=!ie;pos=_digitalmediaart;sz=336x280;ord=2107661830?" border="0" width="336" height="280" alt="Advertisement" /></a>
+				</noscript>
+--></TD></TR></TBODY></TABLE><!--  me  -->
+<P>The good news is that noise is only a problem if its level is above the 
+threshold of hearing. If a small amount of noise is present, but at such a low 
+level that no one can hear it, who cares? Well, some people might, but if you 
+can’t hear it, it’s not really doing any harm.</P>
+<P>Even noise above the threshold of hearing is not necessarily a problem if the 
+noise is masked by louder material. For example, hiss, clicks, and pops that 
+would be very annoying in a classical piano recording might be completely 
+unnoticeable in a heavy metal song. </P>
+<P>Distortion is similar to noise, but there is a key difference: Noise is 
+something that’s introduced to the signal from outside, such as hum, whereas 
+distortion is a modification of the signal itself. Hit the Pause button and the 
+distortion goes away, but the noise will remain. Another type of noise called 
+<I>thermal noise</I> is generated by the electronic circuits themselves and can 
+never be eliminated, though it can be minimized by the use of the higher quality 
+components typically found in high-end sound cards and audio interfaces.</P><!--  sidebar begins  --><!--  don't move sidebars  --><!--  sidebar ends  -->
+<H3>Types of Noise</H3>
+<P>Following are descriptions of several common types of noise. Different tools 
+are needed to remove each type.</P>
+<P><B>Broadband noise, </B>also called continuous noise, includes sounds such as 
+hiss and static that span a wide range of frequencies. There's a certain amount 
+of broadband noise in all recorded audio—even in recordings made by professional 
+engineers with top-of-the-line equipment. The important measure here is the 
+ratio of the average level of the program material to the average level of 
+noise. This is called the <I>signal-to-noise ratio</I> (SNR) and is specified by 
+the relative difference between those levels in Decibels (dB). </P>
+<P><B>Figure 1</B> shows the typical signal-to-noise ratios for several types of 
+recording media in good condition. <B>Figure 2 </B>shows how broadband noise 
+appears in the “silence” at the beginning of a track and how a click appears at 
+different zoom levels.</P>
+<DIV align=center>
+<DIV style="WIDTH: 500px; TEXT-ALIGN: left"><IMG height=255 alt="Fig. 1: SNR" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/noise_fig1_gradient.jpg" 
+width=500> <I><B>Figure 1.</B> This illustration shows the relative 
+signal-to-noise ratios of typical recording media in good condition. The average 
+level of noise is called the </I>noise floor. </DIV></DIV><BR>
+<DIV align=center>
+<DIV style="WIDTH: 600px; TEXT-ALIGN: left"><IMG height=178 
+alt="Fig. 2: Types of Noise" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/noise_fig2_gradient.jpg" 
+width=600> <B><I>Figure 2.</I></B><I> In the image on the left, broadband noise 
+appears as a fuzzy horizontal line in the </I><I>“silence” at the beginning of 
+the track. The first beat of the song contains a vertical line that indicates a 
+click. In the image on the right, a zoomed-in view of the click reveals several 
+smaller clicks.</I> </DIV></DIV>
+<P><B>Narrowband noise </B>is limited to a narrow range of frequencies—typically 
+a fundamental frequency and its harmonics, or whole-number multiples.<I> 
+</I>Examples include 60-cycle hum and the whine of an electric motor. A 
+recording containing 60-cycle hum will likely also contain hum at 120Hz and 
+180Hz (two and three times the fundamental frequency, respectively). Hum is 
+often caused by incorrect grounding and poorly shielded cables.</P>
+<P><B>Impulse noises </B>include brief, sharp sounds such as clicks and pops. 
+Clicks are usually caused by small scratches or specks of dust on a record. They 
+also crop up during digital recording when digital devices aren't synchronized. 
+Pops are caused by more severe scratches. When you view a recording in a 
+waveform editor, clicks and pops show up as steep spikes or dips (see <B>Figure 
+3</B>). Clicks are narrow spikes and may span just a few samples. (Each sample 
+or data point at standard CD resolution is 1/44100 of a second.) Pops last 
+longer than clicks, and can affect the signal for several dozen samples.</P>
+<DIV align=center>
+<DIV style="WIDTH: 600px; TEXT-ALIGN: left"><IMG height=195 alt="" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/noise_fig3_gradient.jpg" 
+width=600> <I><B>Figure 3. </B>This illustration shows examples of common 
+</I><I>“impulse” noises. From left to right: a large pop, a typical click, a 
+smaller “tick,” and a digital click.</I> </DIV></DIV>
+<P><B>Irregular noise </B>includes sounds such as background conversation, 
+traffic, and rain. These types of sounds are very difficult to remove because 
+they are made up of many random sounds that vary in frequency and loudness.</P>
+<H3>Noise Sources</H3>
+<P>There are many places where noise can get into an audio signal. Most are when 
+the signal is in analog format. Following are some common sources of noise.</P>
+<P><B>Original recording environment. </B>When an original recording is made, 
+noise will be picked up by any microphones and from the cables and circuits that 
+handle the signal while it is in analog form. Once the signal is captured or 
+converted to a digital format, it will be fairly immune from noise unless you 
+edit it or re-encode it.</P>
+<P><B>Defects and wear of analog media. </B>When you make a digital recording 
+from analog media, such as a record or tape, noise will be picked up from the 
+media when it’s played, even if it is in good condition. Even more noise will be 
+introduced if the media is worn, dirty, or damaged.</P>
+<P><B>Analog equipment and cables. </B>When you play an analog recording to 
+capture it in digital format, noise will be picked up as the signal passes 
+through the analog circuits of the tape deck or turntable, the preamp, and any 
+interconnect cables.</P>
+<P><B>Analog circuits in your sound card. </B>A poorly shielded sound card will 
+pick up noise as the signal passes through its analog circuits on the way to the 
+digital-to-analog converter (DAC or A/D). The converter adds more noise from 
+<EM>quantization errors</EM> as the voltage of the analog signal is sampled and 
+rounded to whole numbers.</P>
+<P><B>Errors during digital signal processing. </B>Even when audio is in digital 
+format, it’s not totally immune to noise. When you edit digital audio you can 
+easily introduce noise in the form of digital clicks and noise from quantization 
+errors that are an unavoidable result of digital signal processing.</P>
+<H3>Noise Removal Strategies</H3>
+<DIV 
+style="PADDING-RIGHT: 10px; MARGIN-TOP: 10px; PADDING-LEFT: 10px; FLOAT: right; PADDING-BOTTOM: 10px; WIDTH: 300px; PADDING-TOP: 10px; TEXT-ALIGN: left">
+<H3>Tip: Listen with Your Heart (Shape) </H3>
+<P>If you plan to record voice or live music, you’ll pick up less background 
+noise if you use a <I>cardioid </I>microphone, because it has a directional 
+pickup pattern that cancels out noise from the sides or rear. Professional 
+quality microphones usually have 1/4-inch <EM>phone</EM> or <EM>XLR</EM> 
+connectors, which are not compatible with most consumer sound cards. You can get 
+an adapter, but an even better choice would be to use an external audio 
+interface like the Roland UA-3FX, which has a 1/4-inch microphone input 
+built-in. </P>
+<P></P></DIV>
+<P>Noise removal always involves trade-offs, and often it can end up doing more 
+harm than good. The type and severity of noise, the nature of the recorded 
+material, and the noise removal software you use will all affect how much noise 
+can be effectively removed. Your goal should be to reduce noise to an acceptable 
+level, without excessively altering the desired material. </P>
+<P>If you're too aggressive in removing noise, you'll also remove some of the 
+desired program material. Even worse than losing good sounds, you may get sonic 
+artifacts that are produced when noise removal tools are pushed to the limit. If 
+you overdo it, you’ll hear sounds that resemble singing birds, robotic voices, 
+and breathing. You can hear examples of both proper and excessive noise 
+reduction at the <A 
+href="http://digitalmedia.oreilly.com/pub/a/oreilly/digitalmedia/2005/06/22/noise.html#music">end 
+of this article</A>. Following are seven strategies for effective noise 
+removal.</P>
+<H3>1. Minimize Noise Before You Record</H3>
+<P>The first rule of recording is to minimize noise <I>before</I> you record. 
+Properly cleaning your media and using decent playback equipment and cabling 
+will eliminate many noises that are difficult, if not impossible, to remove 
+later on.</P>
+<P>When recording from a turntable, clean the record and make sure your stylus 
+and cartridge are in good shape. When recording from a tape deck, make sure the 
+heads are clean and demagnetized. In either case, use good quality shielded 
+cables to reduce noise from electrical interference. </P>
+<P>The components inside a computer generate a tremendous amount of electrical 
+noise. This noise can be introduced into the audio signal whenever it is in an 
+analog format. Poor shielding allows noise to leak into the signal, and low 
+quality D/A converters add even more noise.</P>
+<P>If you have a poorly shielded sound card, it’s fairly straightforward to 
+replace it with a higher quality card. The Creative Labs Sound Blaster Live! and 
+the Turtle Beach Santa Cruz cards are good choices for PC users. If you have a 
+Mac with an open PCI slot, you can upgrade with an M-Audio Audiophile sound 
+card. For notebook users, a PC Card (PCMCIA) audio interface such as the Echo 
+Indigo offers a compact upgrade. </P>
+<P>The best way to avoid picking up electrical noise from inside the computer is 
+to use an external audio interface, which typically connects to your computer 
+via a USB or FireWire port. If you have an iMac or other computer with a 
+built-in sound card and no free expansion slots, an external audio interface 
+might be your only option for cleaner audio. These devices often offer 
+additional features. </P>
+<P>The <A href="http://www.edirol.com/">Edirol</A> UA-3FX shown in 
+<STRONG>Figure 4 </STRONG>is a USB audio interface that also functions as a 
+simple mixer. It uses 24-bit A/D converters and supports both Macs and PCs. The 
+UA-3FX has optical and S/PDIF (coax) digital input and output jacks, and stereo 
+RCA jacks for analog connections. It also includes a headphone jack and a 
+switchable phone jack for plugging in a guitar or microphone.</P>
+<DIV align=center>
+<DIV style="WIDTH: 410px; TEXT-ALIGN: left"><IMG height=299 
+alt="Fig. 4: Edirol Interface" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/noise_fig4_edirol.jpg" 
+width=410> <I><STRONG>Figure 4.</STRONG> A USB audio interface, such as the 
+Edirol UA-3FX, moves the digital-to-analog conversion outside of the computer, 
+so it's less susceptible to noise than an internal sound card.</I> </DIV></DIV>
+<H3>2. Set Proper Recording Levels</H3>
+<DIV 
+style="PADDING-RIGHT: 10px; MARGIN-TOP: 10px; PADDING-LEFT: 10px; FLOAT: right; PADDING-BOTTOM: 10px; WIDTH: 300px; PADDING-TOP: 10px; TEXT-ALIGN: left">
+<H3>Tip: Play Your Cards Smart </H3>
+<P>Place your sound card in the slot farthest away from the computer’s power 
+supply and processor and place your video card as far away from the sound card 
+as possible. That can help reduce the introduction of electrical noise from 
+other components inside the computer.</P></DIV>
+<P>Any time you record audio, it’s important to set the recording level as high 
+as possible to minimize noise. However, you don’t want to set levels so high the 
+signal “clips,” because that will cause ugly distortion.</P>
+<P>Waveform editing programs like Sound Forge and Peak have level meters that 
+are more precise than the simple meters in the volume control panels of Macs and 
+PCs. Level meters are usually labeled in dB (Decibels) with 0dB equal to the 
+maximum level. Levels below the maximum are shown in negative dB, and the lowest 
+possible level is referred to as infinity, which is indicated by a character 
+that looks like the number eight laying on its side.</P>
+<P>When using dB meters to set recording levels, make sure the peaks average 
+around –6 dB and don’t exceed –3 dB. That will normally provide enough headroom 
+to avoid clipping, while maintaining a good signal-to-noise ratio. If your 
+recording level is set too low, any noise picked up by the analog circuits in 
+your sound card will be more apparent, because it will be proportionally louder. 
+<STRONG>Figure 5</STRONG> shows examples of recording levels set too low, too 
+high, and just right.</P>
+<DIV align=center>
+<DIV style="WIDTH: 600px; TEXT-ALIGN: left"><IMG height=95 alt="Fig. 5: Levels" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/noise_fig5_wh.gif" 
+width=600> <I><STRONG>Figure 5.</STRONG> The level on the left is too low, with 
+the peaks around –6 dB and the average around –12 dB. The level in the center is 
+too high, with the peaks at 0 dB, and clipping in one channel. The meter on the 
+right shows optimum levels with the average around –6 dB and peaks around 
+</I><I>–3 dB.</I> </DIV></DIV>
+<H3>3. Use Different Approaches for Different Types of Noises</H3>
+<DIV 
+style="PADDING-RIGHT: 10px; MARGIN-TOP: 10px; PADDING-LEFT: 10px; FLOAT: right; PADDING-BOTTOM: 10px; WIDTH: 300px; PADDING-TOP: 10px; TEXT-ALIGN: left">
+<H3>Tip: Hum a Bar and I'll Static </H3>
+<P>A good test, before recording from source like a turntable or tape deck, is 
+to record a few seconds of silence from the gaps between tracks and then play it 
+back. Listen for hum, hiss, and static. Hum may indicate a faulty cable or 
+improperly grounded equipment. Hiss is unavoidable on tapes. Static or hiss when 
+the source is paused indicates electrical noise from the external audio 
+equipment, or from inside the computer.</P></DIV>
+<P>You’ll find a variety of noise removal tools in good audio restoration 
+programs and in many waveform editors. These range from general purpose “notch” 
+and broadband noise filters to specialized click and pop removal tools and 
+rumble filters. Most of these tools are highly configurable, so you can fine 
+tune them to remove noises with different characteristics.</P>
+<P>For example, the clicks, pops, and surface noise on a 1930s shellac record 
+will have different characteristics from those on a vinyl LP, so the parameters 
+that worked well for your Led Zeppelin platter are probably inappropriate for 
+those Benny Goodman 78s. But if you have a 20-disc album of Beethoven’s sonatas, 
+the noise reduction settings that worked well for the first disc should work 
+well for all the others.</P>
+<P>Some audio restoration programs, such as Diamond Cut DC6, have a wealth of 
+noise reduction presets for common types of vintage recordings, from wax 
+cylinders and acetate discs to shellac records and vinyl LPs. If you find other 
+settings that work particularly well for certain types of recordings, you can 
+create your own presets.</P>
+<H3>4. Be Conservative; Work in Stages</H3>
+<P>You can never remove all the noise without noticeably damaging the source 
+material. Be conservative, work in stages, and keep backup files.</P>
+<P>Noise removal tools can be effective when applied correctly, but if you 
+process an entire file with settings that are aggressive enough to get rid of 
+all the noise, chances are you’ll also get rid of a lot of music, especially 
+“spiky” sounds, like cymbals and snare drum hits. You also risk adding audio 
+artifacts such as the dreaded singing birds and robotic voices.</P>
+<P>When working with a recording that contains a variety of clicks and pops it’s 
+best to be conservative and shoot for the major clicks in one pass, the smaller 
+clicks in a another pass, and then manually remove any stubborn clicks that are 
+left. It’s always a good idea to work on a copy of the original file and to 
+experiment with different settings until you're satisfied with the results.</P>
+<H3>5. Preview the Result; Listen to Just the Noise </H3>
+<P>Better audio restoration programs and plug-ins have preview, bypass, and 
+noise-only options. The <I>preview</I> option lets you listen to the result and 
+fine tune the settings before applying the change. The <I>bypass</I> option lets 
+you switch back and forth between the processed and unprocessed signal to 
+compare the results. The <I>noise only</I> option (sometimes called 
+<I>difference</I> or <I>keep residue</I>) lets you hear exactly what is going to 
+be removed. If you hear too much music mixed in with the noise, you can back off 
+the settings a bit and try again.</P>
+<P>If your program doesn't have a preview option, run the noise removal tool and 
+then listen to the result. If you don't like what you hear, use the Undo 
+command, and then repeat the process with different settings. </P>
+<H3>6. Record at a Higher Resolution</H3>
+<P>Any type of digital signal processing (including noise reduction) introduces 
+quantization errors that accumulate and add noise to the signal. If you apply 
+different types (or the same type with different settings) of digital signal 
+processing, these errors can quickly add up to the point where they are 
+objectionable. To retain the best possible fidelity, record at 24-bit 
+resolution, remove the noise, and then convert back to 16 bits before you save 
+the file. This takes up more disk space, but that’s only temporary. Quantization 
+errors are not an issue if you are removing a few clicks individually or just 
+trimming off silence. </P>
+<P>Another option if you need to remove several different types of noise is to 
+use a program like Diamond Cut DC6 or a plug-in like Sound Soap Pro that allows 
+you to chain, or apply, multiple noise-removal filters in one process. All 
+signal processing is done at a high resolution and the result is converted back 
+to 16-bit resolution when the processing is complete.</P>
+<DIV align=center>
+<DIV style="WIDTH: 450px; TEXT-ALIGN: left"><IMG height=450 
+alt="Fig. 6: Sound Soap" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/noise_fig6_soundsoap.jpg" 
+width=450> <I><STRONG>Figure 6.</STRONG> SoundSoap Pro from BIAS is available in 
+both Mac and Windows versions.</I> </DIV></DIV>
+<H3>7. Use the Right Software </H3>
+<P>Although you could drop thousands of dollars on high-end audio restoration 
+hardware and software, such as CEDAR Audio or the Sonic Studio HD system, you 
+can get decent results from dedicated programs and plug-ins without breaking the 
+bank. The following table lists several capable audio restoration programs and 
+plug-ins. Roxio's CD Spin Doctor is fairly limited compared to the rest, but 
+it’s worth trying if you already have it as part of the Toast Titanium 
+bundle.</P>
+<TABLE cellSpacing=0 cellPadding=6 width=600 align=center border=1>
+  <TBODY>
+  <TR>
+    <TD>
+      <P><B>Program</B></P></TD>
+    <TD>
+      <P><B>Manufacturer</B></P></TD>
+    <TD>
+      <P><B>Platforms</B></P></TD>
+    <TD>
+      <P><B>Price</B></P></TD></TR>
+  <TR>
+    <TD>
+      <P>CD Spin Doctor (Part of Toast Titanium)</P></TD>
+    <TD>
+      <P><A href="http://www.roxio.com/">Roxio</A></P></TD>
+    <TD>
+      <P>Mac</P></TD>
+    <TD>
+      <P align=right>$79.95</P></TD></TR>
+  <TR>
+    <TD>
+      <P>Diamond Cut Millennium</P></TD>
+    <TD>
+      <P><A href="http://www.diamondcut.com/">Diamond Cut </A></P></TD>
+    <TD>
+      <P>Windows</P></TD>
+    <TD>
+      <P align=right>$59</P></TD></TR>
+  <TR>
+    <TD>
+      <P>Diamond Cut DC6</P></TD>
+    <TD>
+      <P><A href="http://www.diamondcut.com/">Diamond Cut</A> </P></TD>
+    <TD>
+      <P>Windows</P></TD>
+    <TD>
+      <P align=right>$199</P></TD></TR>
+  <TR>
+    <TD>
+      <P>Noise Reduction 2.0 (plug-in only)</P></TD>
+    <TD>
+      <P><A href="http://www.mediasoftare.sonypictures.com/">Sony Pictures 
+      Media</A> </P></TD>
+    <TD>
+      <P>Windows</P></TD>
+    <TD>
+      <P align=right>$279.97</P></TD></TR>
+  <TR>
+    <TD>
+      <P>SoundSoap 2.0 (no click and pop removal)</P></TD>
+    <TD>
+      <P><A href="http://www.bias-inc.com/">BIAS</A></P></TD>
+    <TD>
+      <P>Mac, Windows </P></TD>
+    <TD>
+      <P align=right>$99</P></TD></TR>
+  <TR>
+    <TD>
+      <P>SoundSoap Pro</P></TD>
+    <TD>
+      <P><A href="http://www.bias-inc.com/">BIAS</A></P></TD>
+    <TD>
+      <P>Mac, Windows </P></TD>
+    <TD>
+      <P align=right>$599</P></TD></TR></TBODY></TABLE>
+<P>If you're digitizing LPs that are in good shape except for some occasional 
+clicks, you may be able to get by with the vinyl restoration tools included in 
+“lite” versions of professional programs such as Peak and Sound Forge. If your 
+budget is really tight, you could even turn to the basic restoration tools found 
+in CD burning programs such as Easy Media Creator, Toast, and Nero. </P>
+<DIV align=center>
+<DIV style="WIDTH: 451px; TEXT-ALIGN: left"><IMG height=450 alt="Fig. 7: DC Pro" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/noise_fig7_dcpro.gif" 
+width=451> <I><STRONG>Figure 7.</STRONG> The continuous noise filter in DC6 
+includes presets for many different types of recordings. It lets you sample 
+noise from recordings, fine-tune the settings, and create your own presets.</I> 
+</DIV></DIV>
+<P>But if you're dealing with vintage records or any recording that has 
+excessive noise, consider purchasing a full-blown audio restoration program or 
+plug-in. If your time or your recordings are valuable, the investment will pay 
+off many times over. These programs use more sophisticated noise removal 
+algorithms, let you save and reapply settings, and offer such essentials as a 
+“noise print” feature that determines the frequency distribution of the noise to 
+remove. Just as important, you can preview the noise removal before actually 
+processing the audio. </P>
+<P>Mac users with Peak and PC users with Sound Forge can turn to the $99 Sound 
+Soap noise removal plug-in, but it does not have tools for click and pop 
+removal. SoundSoap Pro adds click and pop removal, and other advanced features, 
+but it will set you back $599. PC users with DirectX-compatible sound editors 
+such as Sound Forge can turn to Sony’s $279.97 Noise Reduction suite of plug-ins 
+(which comes bundled with a click and crackle removal tool), or the $199 Diamond 
+Cut DC6, one of the best audio restoration programs on the market.</P>
+<H3><B><A id=music name=music></A></B>Music Examples</H3>
+<P>Following are clips of Scott Joplin's “Solace” recorded from a vintage 
+record: first with no noise removed, then with noise reduction applied 
+correctly, and finally with noise reduction applied using settings that are too 
+aggressive.</P>
+<UL>
+  <LI><A 
+  onclick="javascript:PlayerOpen('Ex. 1: Original',this.href); return false" 
+  href="http://digitalmedia.oreilly.com/examples/oreilly/digitalmedia/2005/06/noise_ex1_original.mp3" 
+  target=_blank>Original Recording</A> (69KB MP3) 
+  <LI><A 
+  onclick="javascript:PlayerOpen('Ex. 2: Broadband Noise Out',this.href); return false" 
+  href="http://digitalmedia.oreilly.com/examples/oreilly/digitalmedia/2005/06/noise_ex2_dehiss.mp3" 
+  target=_blank>Broadband Noise Removed</A> (69KB MP3) 
+  <LI><A 
+  onclick="javascript:PlayerOpen('Ex. 3 No Noise or Clicks',this.href); return false" 
+  href="http://digitalmedia.oreilly.com/examples/oreilly/digitalmedia/2005/06/noise_ex3_dehiss-click.mp3" 
+  target=_blank>Broadband Noise and Clicks Removed</A> (69KB MP3) 
+  <LI><A 
+  onclick="javascript:PlayerOpen('Ex. 4: Noise Floor Too Hi',this.href); return false" 
+  href="http://digitalmedia.oreilly.com/examples/oreilly/digitalmedia/2005/06/noise_ex4_dull.mp3" 
+  target=_blank>Noise Floor Set Too High</A> (69KB MP3) 
+  <LI><A 
+  onclick="javascript:PlayerOpen('Ex. 5: Pop Click Overdone',this.href); return false" 
+  href="http://digitalmedia.oreilly.com/examples/oreilly/digitalmedia/2005/06/noise_ex5_artifacts.mp3" 
+  target=_blank>Too Much Pop and Click Removal</A> (69KB MP3) </LI></UL><!--  article_sidebar2.view begins  -->
+<DIV align=center>
+<DIV 
+style="PADDING-RIGHT: 0px; BORDER-TOP: #8d8d8d 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 0.5em; MARGIN: 0.5em 0px; WIDTH: 70%; PADDING-TOP: 0.5em; BORDER-BOTTOM: #8d8d8d 1px solid">
+<TABLE cellSpacing=0 cellPadding=0 width="70%" align=center border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=middle width="50%"><A 
+      href="http://www.oreilly.com/catalog/digaudio/index.html?CMP=ILL-4GV796923290"><IMG 
+      alt="Digital Audio Essentials" hspace=20 
+      src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/digaudio.s.gif" 
+      border=0></A> </TD>
+    <TD vAlign=top width="50%">
+      <P class=headline>Related Reading</P>
+      <P class=medlist><SPAN class=title><A 
+      href="http://www.oreilly.com/catalog/digaudio/index.html?CMP=ILL-4GV796923290">Digital 
+      Audio Essentials</A></SPAN><STRONG><BR>A comprehensive guide to creating, 
+      recording, editing, and sharing music and other audio<BR>By <A 
+      href="http://www.oreillynet.com/cs/catalog/view/au/1774?x-t=book.view&amp;CMP=IL7015">Bruce&nbsp;Fries</A>, 
+      <A 
+      href="http://www.oreillynet.com/cs/catalog/view/au/1889?x-t=book.view&amp;CMP=IL7015">Marty&nbsp;Fries</A></STRONG> 
+      </P>
+      <DIV class=secondary><!--  builds links to list in sidebar  --><A 
+      href="http://www.oreilly.com/catalog/digaudio/toc.pdf?CMP=ILL-4GV796923290">Table 
+      of Contents</A><BR><A 
+      href="http://www.oreilly.com/catalog/digaudio/inx.pdf?CMP=ILL-4GV796923290">Index</A><BR><A 
+      href="http://www.oreilly.com/catalog/digaudio/chapter/index.html?CMP=ILL-4GV796923290">Sample 
+      Chapter</A><BR><BR><B><A href="http://safari.oreilly.com/0596008562">Read 
+      Online--Safari</A></B><BR><SPAN class=tiny>Search this book on 
+      Safari:</SPAN> 
+      <FORM action=http://safari.oreilly.com/JVXSL.asp method=post><INPUT 
+      type=hidden value=1 name=s><INPUT type=hidden value=1 name=b> <INPUT 
+      type=hidden value=1 name=t><INPUT type=hidden value=1 name=f> <INPUT 
+      type=hidden value=1 name=c><INPUT type=hidden value=1 name=l> <INPUT 
+      type=hidden value=section name=view> <INPUT tabIndex=1 size=15 
+      name=se_text>&nbsp;<INPUT title="Execute the search" type=image height=17 
+      alt=Go width=23 
+      src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/safari_btn_go.gif" 
+      align=absMiddle border=0 name=go><BR><SELECT name=se_isbn> <OPTION 
+        value=0-596-00856-2 selected>Only This Book</OPTION> <OPTION 
+        value="">All of Safari</OPTION></SELECT><BR><INPUT type=checkbox value=1 
+      name=code><SPAN class=tiny>Code Fragments only</SPAN> 
+  </FORM></DIV></TD></TR></TBODY></TABLE></DIV></DIV><!--  article_sidebar2.view ends  -->
+<P><I><A href="http://digitalmedia.oreilly.com/pub/au/1774">Bruce Fries</A> is a 
+writer, technology consultant and entrepreneur, as well as an associate of the 
+Audio Engineering Society, and founder of several high-tech companies. </I></P>
+<HR noShade SIZE=1>
+
+<P>Return to the <A 
+href="http://www.digitalmedia.oreilly.com/">digitalmedia.oreilly.com</A></P></SPAN><!--  end content  --><IMG 
+height=1 alt=" " 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/trans.gif" 
+width=490><BR>
+<HR noShade SIZE=1>
+
+<H3>Related Articles:</H3>
+<P class=secondary><A 
+href="http://digitalmedia.oreilly.com/pub/a/oreilly/digitalmedia/2005/05/04/reasonbeat.html">Hands 
+On: Create Insane Reason Grooves</A><BR>Don’t settle for the same loop everyone 
+else is using! This MP3-packed tutorial shows how to blast beats apart in 
+Propellerhead Reason, then shape them into unique, twisted grooves. </P><A 
+name=thread></A>
+<DIV class=feedback>
+<DIV class=rbox><!--  closed in cs_disc/thread_header.view  -->
+<DIV class=rboxtop>
+<DIV></DIV></DIV>
+<DIV class=rbcontent><!--  closed in cs_disc/thread_header.view  --><B 
+class=headline>What are your noise reduction strategies?</B><BR><SPAN 
+class=smalltext>You must be <A 
+href="http://www.oreillynet.com/cs/user/login?x-redirect=http://digitalmedia.oreilly.com/pub/a/oreilly/digitalmedia/2005/06/22/noise.html">logged 
+in</A> to the O'Reilly Network to post a talkback.</SPAN> 
+<DIV class=clear></DIV>
+<DIV class=tb_left><A 
+href="http://www.oreillynet.com/cs/user/create/cs_msg?x-lr=cs_disc/14245&amp;x-lr2=a/5974&amp;page="><IMG 
+height=20 alt="Post Comment" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/button_post.gif" 
+width=118 border=0></A></DIV><!--  thread_header.view  -->
+<DIV class=tb_right></DIV><!-- end .tb_right  -->
+<DIV class=clear></DIV><!--  closing divs from a/print.view, et al  --></DIV><!-- end div.rbcontent  -->
+<DIV class=rboxbot>
+<DIV></DIV></DIV></DIV><!-- end div.rbox  --><!--  thread_footer.view  --></DIV><!--  end div.feedback  --><BR><BR></DIV>
+<DIV id=footer 
+style="CLEAR: both; BORDER-TOP: #ccc 1px solid; TEXT-ALIGN: center"><!--  Creative for 728x90 format  -->
+<DIV 
+style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #fff; PADDING-BOTTOM: 6px; WIDTH: 100%; PADDING-TOP: 6px; BORDER-BOTTOM: #ccc 1px solid; TEXT-ALIGN: center">
+<SCRIPT type=text/javascript><!--
+google_ad_client = "oreilly_728x90";
+google_ad_width = "728";
+google_ad_height = "90";
+google_ad_format = "728x90_as";
+google_safe = "high";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000ff";
+google_color_url = "0000ff";
+google_color_text = "000000";
+//--></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/show_ads.js" 
+type=text/javascript></SCRIPT>
+<NOSCRIPT><IMG height=1 alt="" 
+src="C:\Ephec\annee3\Labo\Labo_fichiers\sound\Oreilly\O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers\imp(1).gif" 
+width=1 border=0> </NOSCRIPT></DIV><!--  End Creative  -->
+<P><A href="http://www.oreillynet.com/pub/feed/26"><IMG 
+style="PADDING-RIGHT: 10px" height=15 alt="Atom 1.0 Feed" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/atom.gif" 
+width=80 border=0></A> <A 
+href="http://www.oreillynet.com/pub/feed/26?format=rss1"><IMG 
+style="PADDING-RIGHT: 10px" height=15 alt="RSS 1.0 Feed" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/rss1.gif" 
+width=80 border=0></A> <A 
+href="http://www.oreillynet.com/pub/feed/26?format=rss2"><IMG height=15 
+alt="RSS 2.0 Feed" 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/rss2.gif" 
+width=80 border=0></A> </P>
+<DIV class=tiny>
+<P><B><A href="http://www.oreilly.com/">O'Reilly Home</A> | <A 
+href="http://www.oreillynet.com/pub/a/mediakit/privacy.html">Privacy 
+Policy</A></B><BR><IMG height=6 alt=" " 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/trans.gif" 
+width=1><BR><I>© 2006, O'Reilly Media, Inc.<BR>Website:
+<SCRIPT type=text/javascript>
+<!--
+var name = "webmaster";
+var domain = "oreilly.com";
+var display = "";
+var subject = "";
+var ending = "";
+var style = "";
+document.write('<a class="' + style + '" href="mailto:' + name + '&#64;' + domain + '?subject=' + subject + '">');
+if (display) {
+ document.write(display);
+} else {
+ document.write(name + '&#64;' + domain);
+}
+document.write('</a>' + ending);
+
+// -->
+</SCRIPT>
+ | Customer Service:
+<SCRIPT type=text/javascript>
+<!--
+var name = "orders";
+var domain = "oreilly.com";
+var display = "";
+var subject = "";
+var ending = "";
+var style = "";
+document.write('<a class="' + style + '" href="mailto:' + name + '&#64;' + domain + '?subject=' + subject + '">');
+if (display) {
+ document.write(display);
+} else {
+ document.write(name + '&#64;' + domain);
+}
+document.write('</a>' + ending);
+
+// -->
+</SCRIPT>
+ | Book issues:
+<SCRIPT type=text/javascript>
+<!--
+var name = "booktech";
+var domain = "oreilly.com";
+var display = "";
+var subject = "";
+var ending = "";
+var style = "";
+document.write('<a class="' + style + '" href="mailto:' + name + '&#64;' + domain + '?subject=' + subject + '">');
+if (display) {
+ document.write(display);
+} else {
+ document.write(name + '&#64;' + domain);
+}
+document.write('</a>' + ending);
+
+// -->
+</SCRIPT>
+ </I></P>
+<P>All trademarks and registered trademarks appearing on oreilly.com are the 
+property of their respective owners.</P></DIV></DIV><!--WEBSIDESTORY CODE HBX1.0 (Universal)--><!--COPYRIGHT 1997-2004 WEBSIDESTORY,INC. ALL RIGHTS RESERVED. U.S.PATENT No. 6,393,479B1. MORE INFO:http://websidestory.com / privacy-->
+<SCRIPT language=javascript type=text/javascript>
+        var _hbEC=0,_hbE=new Array;function _hbEvent(a,b){b=_hbE[_hbEC++]=new Object();b._N=a;b._C=0;return b;}
+    var hbx=_hbEvent("pv");hbx.vpc="HBX0100u";hbx.gn="ehg-oreilly.hitbox.com";
+
+var jlw = "JLW: digitalmedia.oreilly.com,/a/oreilly/digitalmedia/2005/06/22/noise.html";
+
+    hbx.acct="DM550610GDMA;DM520404M4ZR"; //ACCOUNT NUMBER(S)
+    hbx.pn="Seven+Steps+to+Noise-Free+Digital+Audio"; //PAGE NAME(S)
+    hbx.mlc="/a/oreilly/digitalmedia/2005/06/22/;/DigitalMedia/a/oreilly/digitalmedia/2005/06/22/"; //MULTI-LEVEL CONTENT CATEGORY
+    hbx.pndef="title"; //DEFAULT PAGE NAME
+    hbx.ctdef="full"; //DEFAULT CONTENT CATEGORY
+
+    hbx.lt="auto"; //LINK TRACKING 
+    hbx.dlf="n"; //DOWNLOAD FILTER
+    hbx.dft="n"; //DOWNLOAD FILE NAMING
+    hbx.elf="n"; //EXIT LINK FILTER
+
+    //SEGMENTS AND FUNNELS
+    hbx.seg=""; //VISITOR SEGMENTATION
+    hbx.fnl=""; //FUNNELS
+
+    //CAMPAIGNS
+    hbx.cmp=""; //CAMPAIGN ID
+    hbx.cmpn="CMP"; //CAMPAIGN ID IN QUERY
+    hbx.hra=""; //RESPONSE ATTRIBUTE
+    hbx.hqsr=""; //RESPONSE ATTRIBUTE IN REFERRAL QUERY
+    hbx.hqsp="ATT"; //RESPONSE ATTRIBUTE IN QUERY
+    hbx.hlt=""; //LEAD TRACKING
+    hbx.hla=""; //LEAD ATTRIBUTE
+    hbx.gp=""; //CAMPAIGN GOAL
+    hbx.gpn=""; //CAMPAIGN GOAL IN QUERY
+    hbx.hcn=""; //CONVERSION ATTRIBUTE
+    hbx.hcv=""; //CONVERSION VALUE
+    hbx.cp="null"; //LEGACY CAMPAIGN
+    hbx.cpd=""; //CAMPAIGN DOMAIN
+
+    //CUSTOM VARIABLES
+    hbx.ci="";//CUSTOMER ID
+    hbx.hc1="";//CUSTOM 1
+    hbx.hc2="";//CUSTOM 2
+    hbx.hc3="";//CUSTOM 3
+    hbx.hc4="";//CUSTOM 4 
+    hbx.pec="";//ERROR CODES
+    </SCRIPT>
+
+<SCRIPT language=javascript1.1 
+src="O'Reilly -- Seven Steps to Noise-Free Digital Audio_fichiers/hbx.js" defer 
+type=text/javascript></SCRIPT>
+<!--//--><!-- END WEBSIDESTORY CODE  --></DIV></BODY></HTML>

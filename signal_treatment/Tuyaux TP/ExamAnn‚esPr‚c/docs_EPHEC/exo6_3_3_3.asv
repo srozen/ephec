@@ -1,0 +1,9 @@
+clear all;close all; clc;
+I=imread('Image/bwlabel_exc.jpg');
+subplot(1,2,1)
+imshow('Image/bwlabel_exc.jpg');
+S.
+I = im2bw(I);
+I = bwareaopen(I,10);
+subplot(1,2,2);
+imshow(I);

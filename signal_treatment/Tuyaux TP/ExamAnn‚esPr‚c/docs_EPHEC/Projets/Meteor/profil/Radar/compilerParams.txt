@@ -1,0 +1,6 @@
+compiler other options: `pkg-config --cflags gtk+-2.0`
+linker settings: 
+	`pkg-config --libs gtk+-2.0`
+	link libraries
+		libsndfile
+		libfftw3

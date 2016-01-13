@@ -1,0 +1,362 @@
+1.1
+---
+
+; sert à ne pas afficher la réponse
+
+% mise en commentaire
+
+nombre complexe : a=2+3j ou a=2+3i
+
+conj(a)
+abs(a) : module
+angle(a) : en radian
+
+real(a) : donne la partie réele
+imag(a) : donne la partie imaginaire
+
+help fonction : donne l'aide de la fonction
+
+edit fonction : ouvre le fichier .m de la fonction
+
+t=1:2:10 : vecteur de 1 à 10 par pas de 2
+
+who : variable en mémoire
+whos : variable en mémoire + info de taille
+
+t(1,5) : élément 5 de la ligne 1 du vecteur t
+
+size(t) : dimensions de t
+
+length(t) : max(size(t))
+
+get(0,'format') : donne le format utilisé : défaut : 5 décimales (short)
+
+format long : utilise le format long : 15 décimales
+
+format hex : format héxadécimal
+
+format rat : fraction
+
+a = wavread('morse2.wav') : stock un son dans a
+syntaxe complète : [a,Fs,bits]=wavread('morse2.wav')
+
+sound(a) : joue le son a
+sound(a,Fs) : pour spécifier une fréquence d'échantillonage
+
+vec = a(1:100) : vec prend les 100 premiers éléments de a
+
+vec3 = [vec1,vec2] : concaténation de 2 vecteurs
+
+
+1.2
+---
+
+for n=1:10 instructions; end;
+
+while condition instructions; end;
+
+if condition1 instructions; elseif condition2 instructions; else instructions; end;
+
+< <= > >= == ~= (pas égal à)
+
+& (et) | (ou) ~ (non)
+
+
+1.3
+---
+
+Matlab travaille en Radian : deg -> radian : * PI / 180
+
+
+1.4
+---
+
+M = [1 2;3 4] : matrice à 2 lignes 2 colonnes
+
+M(:,1) : on sélectionne la première colonne
+
+M' : donne la transposée des conjugués
+
+M.' : donne la transposée
+
+ones(4) : crée une matrice 4x4 avec que des 1
+
+eye(n,n) : crée une matrice unité de dimension nxn
+
+M^(-1) : donne la matrice inverse
+
+M^2 = M*M : donne le carré de la matrice M
+
+X.*Y : donne une multiplication terme à terme
+
+A=imread('lenna.bmp') : lit une image et la stocke dans A
+
+imshow(A) : montre l'image
+
+mean(mean(A)) : donne la moyenne des points de A
+
+A(100:200,120:130) : on prend les points sur les lignes 100 à 200 et sur les colonnes 120 à 130
+
+
+1.5
+---
+
+plot(t,s) : dessine le graphe de s en fonction de t
+
+title 'le titre choisi' : donne un titre au graphe
+
+figure : permet d'ouvrir un nouveau graphe
+
+subplot(2,3,5) : divise un graphe en une grille 2 * 3 et utilise la place 5
+
+stem(t,s) : donne un graphe avec des points non reliés
+
+rand(n) = rand(n,n) : matrice carrée de dimension n avec des nombres aléatoires
+
+wavwrite(s,22000,16,'test.wav') : crée un fichier test.wav avec le signal s avec Fs = 22 KHz sur 16 bits
+
+somme de deux sinus : battement
+
+f*2^(1/6) : donne la note suivante d'une gamme
+
+Pour rajouter du bruit, ajouter un rand
+
+Une oscillation amortie : exp(-delta*t).sin(2*pi*f*t)
+
+square(2*pi*30*t) : crée un signal carré
+
+sawtooth(2*pi*30*t) : crée un signal en dents de scie
+
+sinc(2*pi*t) : génère un sinus cardinal
+
+pulstran(t,d,'tripuls',0.1,1) : crée un signal pulsation avec t comme échantillons de temps, d comme fréquence, de type tripulse, de largeur de pique 0.1 et de hauteur 1. Il existe aussi rectpuls et gauspuls
+
+chirp(t,0,1,150) : crée un signal cosinus qui change de fréquence en fonction du temps
+
+
+
+3.3.2
+-----
+
+sptool : lance sptool
+
+sptool n'ouvre que les fichiers *.mat, pour le créer :
+Fs=valeur;t=0:1/Fs:2;s=signal(t);
+save('file.mat','s','Fs')
+
+file > import : ouvre un fichier *.mat
+
+Choisir le signal et la Fs
+
+Spectra > Create > method fft > apply : pour afficher le spectre
+
+options > magnitude scale > linear : échelle linéaire
+
+Signals > view : visualiser le signal et l'écouter
+
+changer les marqueurs pour écouter tou le signal
+
+Mettre Frequency range à 0 -> Fs
+
+Dans Nfft : mettre la valeur lue dans x by 1 real
+
+Pour filtrer un signal : construire le spectre en mettant
+Filters > new > algorithm : butterworth > ordre 1 > f3db : Fc
+
+Pour l'appliquer : appuyer sur filter > apply
+
+Pour filtrer 20dB : prendre une décade : Fc < 10*F
+
+
+3.4.4
+-----
+
+un signal échantillonné a un spectre périodique de période Fs -> apparition fausses fréquences
+
+Le spectre reste bien évidemen symétrique
+
+On entend jamais plus que Fs/2
+
+Changer la Fs revient à allonger ou racourcir le signal : sound(s(1:2:102184),Fs) on prend 1 échantillon sur 2
+
+wavwrite(s,Fs,16,'tarzanmodifie.wav') : pour l'enregistrer
+
+avec structure.champ : on obtient le champ d'une structure
+
+pour charger un fichier *.mat : load fichier.mat
+
+decimate(s,4) : ré échantillonne (1/4 échantillons) et filtre anti repliement s(filtre passe bas d'ordre 8 chebychev à Fc=Fs/2).Lissage : Cela vient du fait qu'on applique un filtre passe bas d'ordre 8 quii va atténuer fortement les F > Fs/2 et donc les hautes fréquences qui font de petites ondulations
+
+simplement ré échantillonner ne filtre pas les fréquences ne respectant pas Shannon et donc : repliement de spectre
+
+
+3.4.5
+-----
+
+specgram(s,512,Fs) : permet d'afficher en rouge les zones où sont les fréquences (Fs est celle de s)
+
+y=fft(s) : donne la transformée de Fourier de s
+
+y=fftshift(fft(s)) : décale la transformée de Fourier de 0->Fs vers -Fs/2->Fs/2
+
+si on veut la fft de 0 à Fs/2 :
+F=0:1/duree:Fs/2;
+plot(F,imag(y(1:1+length(y)/2)))
+
+[b,a]=butter(ordre,Fc/(Fs/2)) : crée un filtre de butterworth d'ordre n avec Fc et Fs
+
+y=filter(b,a,s) : filtre le signal s avec le filtre créé
+
+
+Electronic Workbench
+--------------------
+
+Fc=1/(2*pi*r*c) : pour 159 Hz de Fc prendre 1Kohm et 10^(-6) F
+
+
+Le micro
+--------
+
+Pour enlever la composante continue du spectre, on n'affiche pas le point 0 du spectre cad F=0
+
+
+Images
+------
+
+I=imread('File.tif') : stocke limage dans I
+
+imshow(I) : lit l'image
+
+imhist(I) : affiche l'histogramme de l'image
+
+I2=histeq(I) : réparti l'histogramme sur toute la gamme
+Cela homogénise le contraste (autre fonction pour le faire : imadjust)
+
+imwrite(I2,'nom.png','BitDepth',8) = imwrite(I2,'nom.png') : écris l'image dans un fichier png
+
+imfinfo(nom.png) : donne des infos sur l'image
+
+Une image est une matrice de points(pixel)
+
+Niveau de gris : 0 = noir et 1 = blanc
+
+[x,y]=meshgrid(1:291,1:240) : défini deux axes pour un graphe 3D : les valeurs sont les dimensions de l'image
+
+mesh(x',y',double(I)) : donne un graphe avec les axes X et Y et I de l'image. Ce qui permet de voir la distribution 3D des niveau de gris ! attention !!!!! Prendre la transposée !!!!
+
+Une image 24 Bit RGB est une matrice X * Y * 3 avec des élément entre 0 et 1
+
+I(:,:,1) : donne la composante rouge
+I(:,:,2) : donne la composante verte
+I(:,:,3) : donne la composante bleue
+
+Pour afficher les composantes RGB d'une seule ligne : imshow(I);improfile et sélectionner une ligne sur le dessin
+
+one=ones(400);
+zero=zeros(400); pour définir la matrice 1 et 0
+
+im(:,:,1)=one;
+im(:,:,2)=zero;
+im(:,:,3)=zero; pour réaliser un carré rouge
+
+im=double(im); conversion double
+imflo=uint8(imflo); conversion entière
+
+im=imread('flowers.tif');
+imfinfo('flowers.tif')
+imflo(:,:,1)=zero;
+imflo(:,:,2)=zero;
+couleur=im(361,499,3);
+imflo=uint8(imflo);
+imflo(:,:,3)=couleur; pour afficher un carré de couleur dun pixel dune autre image
+
+I2=im2double(I) : convertit une image en double precision
+
+I2=rgb2gray(I) : donne l'image en niveau de gris en réduisant les dimensions
+idem que I3=I2(:,:,1)*0.299+I2(:,:,2)*0.587+I2(:,:,3)*0.114 : luminance
+
+Pour convertir une image de entier vers double (valeur entre 0 et 1)
+brol=imread('flowers.tif');
+brol=double(brol);imshow(brol) -> rien ne se lit
+brol=brol./255;
+figure;imshow(brol)
+
+
+Operations sur image
+--------------------
+
+I1=imread('file.png');
+I2=imread('file2.png');
+I3=imadd(I1,I2); donne la somme de 2 images
+
+I4=imadd(I1,50) : ajoute 50 aux images : éclaircir
+
+I5=imsubtract(I1,I2) : soustraire deux images : donne la différence de 2 images
+
+imabsdiff(I1,I2) : valeur absolue de la différence pour éviter les valeurs négatives
+
+immultiply(I1,I2) : multiplie deux images
+immultiply(I1,0.34) : multiplie (.*) par un facteur et conserve mieu le contraste que imadd. Si facteur > 1 éclairci
+et si < 1 assombri
+
+quand les valeurs sont trop grandes, elles sont tronquées : il faut les convertir avant l'opération en type plus grand en utilisant : I=im2uint16(I)
+
+imdivide(I1,I2) : divise (./) deux images terme à terme : donne le ratio de différence entre images
+
+imdivide(imadd(I1,I2),2) : donne la moyenne de 2 images
+
+on lui préfère la fonction : imlincomb(.5,I1,.5,I2) : recommandé
+
+coordonnée spaciale : I(5.3,2.4)
+coordonnée pixel : I(5,2)
+
+toujours la ligne et puis la colonne avec l'origine en haut à gauche
+
+origine pixel : 1,1
+origine spaciale : 0.5,0.5
+
+pour changer l'origine : image(I,'XData',xi,'YData',yi)
+
+
+Filtre moyenneur
+----------------
+
+I2=imfilter(I,h) : filtre moyenneur I avec une matrice h : cette matrice h comprend la pondération de chaque point dans la somme finale que l'on donnera au point
+
+voir la feuille sur les filtre moyenneurs
+
+
+5.3.3
+-----
+
+I2=im2bw(I); converti en image binaire
+
+I3=im2bw(I,graythresh(I)); pour garder un seuil acceptable et ne pas avoir d'objets qui disparaissent
+greythresh ne fonctionne que sur des images en niveau de gris
+
+[L,NUM]=bwlabeln(I) : défini les objets dans L et leur nombre dans num
+
+stats = regionprops(L) :  mesure les propriétés des objets
+
+Area = [stats.Area]  : surface
+Centroid =[ stats.Centroid] %coordonnées du centre 
+BoundingBox = [stats.BoundingBox] : coordonnées des limites
+
+
+Détection de bords
+------------------
+
+edge(I,'sobel')
+edge(I,'canny') : affichent les bords des objets de l'image I
+
+h=fspecial('sobel') : donne le h du filtre sobel
+
+
+Ajustement d'image
+------------------
+
+imadjdemo
+
+I=imadjust(pout,[],[],1.3); améliore le gamme pour l'image pout
+
+histeq(pout) : réalise l'équalisation de l'histogramme

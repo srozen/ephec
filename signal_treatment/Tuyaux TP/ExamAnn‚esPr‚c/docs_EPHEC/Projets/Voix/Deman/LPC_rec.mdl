@@ -1,0 +1,989 @@
+Model {
+  Name			  "LPC_rec"
+  Version		  5.0
+  RequirementInfo	  "9"
+  SaveDefaultBlockParams  on
+  SampleTimeColors	  off
+  LibraryLinkDisplay	  "none"
+  WideLines		  on
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ExecutionOrder	  off
+  RecordCoverage	  off
+  CovPath		  "/"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "d"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName	  "covCumulativeData"
+  CovCumulativeReport	  off
+  DataTypeOverride	  "UseLocalSettings"
+  MinMaxOverflowLogging	  "UseLocalSettings"
+  MinMaxOverflowArchiveMode "Overwrite"
+  BlockNameDataTip	  off
+  BlockParametersDataTip  on
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  PreLoadFcn		  "load mtlb;"
+  Created		  "Mon Jul 20 16:50:05 1998"
+  Creator		  "dshpak"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "Miky"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Mon Jun 05 11:43:37 2006"
+  ModelVersionFormat	  "1.%<AutoIncrement:207>"
+  ConfigurationManager	  "none"
+  SimParamPage		  "Solver"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  AccelSystemTargetFile	  "accel.tlc"
+  AccelTemplateMakefile	  "accel_default_tmf"
+  AccelMakeCommand	  "make_rtw"
+  TryForcingSFcnDF	  off
+  ExtModeMexFile	  "ext_comm"
+  ExtModeBatchMode	  off
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "oneshot"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  off
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock off
+  BufferReuse		  on
+  RTWExpressionDepthLimit 5
+  SimulationMode	  "normal"
+  Solver		  "FixedStepDiscrete"
+  SolverMode		  "SingleTasking"
+  StartTime		  "0.0"
+  StopTime		  "inf"
+  MaxOrder		  5
+  MaxStep		  "auto"
+  MinStep		  "auto"
+  MaxNumMinSteps	  "-1"
+  InitialStep		  "auto"
+  FixedStep		  "auto"
+  RelTol		  "1e-3"
+  AbsTol		  "auto"
+  OutputOption		  "RefineOutputTimes"
+  OutputTimes		  "[]"
+  Refine		  "1"
+  LoadExternalInput	  off
+  ExternalInput		  "[t, u]"
+  LoadInitialState	  off
+  InitialState		  "xInitial"
+  SaveTime		  off
+  TimeSaveName		  "tout"
+  SaveState		  off
+  StateSaveName		  "xout"
+  SaveOutput		  off
+  OutputSaveName	  "yout"
+  SaveFinalState	  off
+  FinalStateName	  "xFinal"
+  SaveFormat		  "Structure"
+  Decimation		  "1"
+  LimitDataPoints	  off
+  MaxDataPoints		  "1000"
+  SignalLoggingName	  "sigsOut"
+  ConsistencyChecking	  "none"
+  ArrayBoundsChecking	  "none"
+  AlgebraicLoopMsg	  "warning"
+  BlockPriorityViolationMsg "warning"
+  MinStepSizeMsg	  "warning"
+  InheritedTsInSrcMsg	  "warning"
+  DiscreteInheritContinuousMsg "warning"
+  MultiTaskRateTransMsg	  "error"
+  SingleTaskRateTransMsg  "none"
+  CheckForMatrixSingularity "none"
+  IntegerOverflowMsg	  "none"
+  Int32ToFloatConvMsg	  "warning"
+  ParameterDowncastMsg	  "error"
+  ParameterOverflowMsg	  "error"
+  ParameterPrecisionLossMsg "warning"
+  UnderSpecifiedDataTypeMsg "none"
+  UnnecessaryDatatypeConvMsg "none"
+  VectorMatrixConversionMsg "none"
+  InvalidFcnCallConnMsg	  "error"
+  SignalLabelMismatchMsg  "none"
+  UnconnectedInputMsg	  "warning"
+  UnconnectedOutputMsg	  "warning"
+  UnconnectedLineMsg	  "warning"
+  SfunCompatibilityCheckMsg "none"
+  RTWInlineParameters	  off
+  BlockReductionOpt	  off
+  BooleanDataType	  off
+  ConditionallyExecuteInputs on
+  ParameterPooling	  on
+  OptimizeBlockIOStorage  on
+  ZeroCross		  on
+  AssertionControl	  "UseLocalSettings"
+  ProdHWDeviceType	  "Microprocessor"
+  ProdHWWordLengths	  "8,16,32,32"
+  RTWSystemTargetFile	  "grt.tlc"
+  RTWTemplateMakefile	  "grt_default_tmf"
+  RTWMakeCommand	  "make_rtw"
+  RTWGenerateCodeOnly	  off
+  RTWRetainRTWFile	  off
+  TLCProfiler		  off
+  TLCDebug		  off
+  TLCCoverage		  off
+  TLCAssertion		  off
+  RTWOptions		  "-aEnforceIntegerDowncast=1 -aExtMode=0 -aExtModeTes"
+"ting=0 -aFoldNonRolledExpr=1 -aForceParamTrailComments=0 -aGenerateComments=1"
+" -aGenerateReport=0 -aIgnoreCustomStorageClasses=1 -aIncDataTypeInIds=0 -aInc"
+"HierarchyInIds=0 -aInlineInvariantSignals=0 -aInlinedPrmAccess=\"Literals\" -"
+"aLocalBlockOutputs=1 -aLogVarNameModifier=\"rt_\" -aMaxRTWIdLen=31 -aPrefixMo"
+"delToSubsysFcnNames=1 -aRTWVerbose=1 -aRollThreshold=5 -aShowEliminatedStatem"
+"ents=1"
+  BlockDefaults {
+    Orientation		    "right"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      Clock
+      DisplayTime	      off
+    }
+    Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      ShowAdditionalParam     off
+      OutDataTypeMode	      "Inherit from 'Constant value'"
+      OutDataType	      "sfix(16)"
+      ConRadixGroup	      "Use specified scaling"
+      OutScaling	      "2^0"
+    }
+    Block {
+      BlockType		      Display
+      Format		      "short"
+      Decimation	      "10"
+      Floating		      off
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      FrameConversion
+      OutFrame		      "Frame-based"
+    }
+    Block {
+      BlockType		      FromWorkspace
+      VariableName	      "simulink_input"
+      SampleTime	      "-1"
+      Interpolate	      on
+      OutputAfterFinalValue   "Extrapolation"
+    }
+    Block {
+      BlockType		      Inport
+      Port		      "1"
+      PortDimensions	      "-1"
+      SampleTime	      "-1"
+      ShowAdditionalParam     off
+      LatchInput	      off
+      DataType		      "auto"
+      OutDataType	      "sfix(16)"
+      OutScaling	      "2^0"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Product
+      Inputs		      "2"
+      Multiplication	      "Element-wise(.*)"
+      ShowAdditionalParam     off
+      InputSameDT	      on
+      OutDataTypeMode	      "Same as first input"
+      OutDataType	      "sfix(16)"
+      OutScaling	      "2^0"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+    }
+    Block {
+      BlockType		      RelationalOperator
+      Operator		      ">="
+      ShowAdditionalParam     off
+      InputSameDT	      on
+      LogicOutDataTypeMode    "Logical (see Advanced Sim. Parameters)"
+      LogicDataType	      "uint(8)"
+      ZeroCross		      on
+    }
+    Block {
+      BlockType		      "S-Function"
+      FunctionName	      "system"
+      PortCounts	      "[]"
+      SFunctionModules	      "''"
+    }
+    Block {
+      BlockType		      Stop
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      on
+      Permissions	      "ReadWrite"
+      RTWSystemCode	      "Auto"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      MinMaxOverflowLogging   "UseLocalSettings"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
+      Decimation	      "1"
+      SampleTime	      "0"
+    }
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  System {
+    Name		    "LPC_rec"
+    Location		    [2, 80, 997, 711]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    Block {
+      BlockType		      Constant
+      Name		      "0.5 seconde"
+      Position		      [1195, 1015, 1225, 1045]
+      Value		      "0.5"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "0.5 seconde (rec)"
+      Position		      [300, 510, 330, 540]
+      Value		      "0.5"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Autocorrelation"
+      Ports		      [1, 1]
+      Position		      [1365, 630, 1415, 680]
+      SourceBlock	      "dspstat3/Autocorrelation"
+      SourceType	      "Autocorrelation"
+      AllPositiveLags	      off
+      maxlag		      "12"
+      bias		      "Biased"
+      domain		      "Time"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Autocorrelation(rec)"
+      Ports		      [1, 1]
+      Position		      [470, 125, 520, 175]
+      SourceBlock	      "dspstat3/Autocorrelation"
+      SourceType	      "Autocorrelation"
+      AllPositiveLags	      off
+      maxlag		      "12"
+      bias		      "Biased"
+      domain		      "Time"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Chevauchement"
+      Ports		      [1, 1]
+      Position		      [1175, 628, 1225, 682]
+      SourceBlock	      "dspbuff3/Buffer"
+      SourceType	      "Buffer"
+      N			      "160"
+      V			      "80"
+      ic		      "0"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Chevauchement \nsignal rec"
+      Ports		      [1, 1]
+      Position		      [280, 123, 330, 177]
+      SourceBlock	      "dspbuff3/Buffer"
+      SourceType	      "Buffer"
+      N			      "160"
+      V			      "80"
+      ic		      "0"
+    }
+    Block {
+      BlockType		      Clock
+      Name		      "Clock"
+      Position		      [935, 725, 955, 745]
+      Decimation	      "10"
+    }
+    Block {
+      BlockType		      Clock
+      Name		      "Clock(rec)"
+      Position		      [40, 220, 60, 240]
+      Decimation	      "10"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "Coefficients LPC"
+      Position		      [1650, 643, 1725, 667]
+      VariableName	      "LPC"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Fenetre \nde\nHamming"
+      Ports		      [1, 1]
+      Position		      [1260, 627, 1320, 683]
+      SourceBlock	      "dspsigops/Window\nFunction"
+      SourceType	      "Window Function"
+      winmode		      "Apply window to input"
+      wintype		      "Hamming"
+      N			      "64"
+      Rs		      "50"
+      beta		      "10"
+      winsamp		      "Symmetric"
+      UserWindow	      "hamming"
+      OptParams		      off
+      UserParams	      "{1.0}"
+      datatype		      "Double"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Fenetre \nde\nHamming (rec)"
+      Ports		      [1, 1]
+      Position		      [365, 122, 425, 178]
+      SourceBlock	      "dspsigops/Window\nFunction"
+      SourceType	      "Window Function"
+      winmode		      "Apply window to input"
+      wintype		      "Hamming"
+      N			      "64"
+      Rs		      "50"
+      beta		      "10"
+      winsamp		      "Symmetric"
+      UserWindow	      "hamming"
+      OptParams		      off
+      UserParams	      "{1.0}"
+      datatype		      "Double"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Levinson-\nDurbin"
+      Ports		      [1, 1]
+      Position		      [1480, 630, 1560, 680]
+      SourceBlock	      "dspsolvers/Levinson-Durbin"
+      SourceType	      "Levinson-Durbin"
+      coeffOutFcn	      "A"
+      outP		      off
+      zeroInpHandling	      on
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Levinson-\nDurbin(rec)"
+      Ports		      [1, 1]
+      Position		      [585, 125, 665, 175]
+      SourceBlock	      "dspsolvers/Levinson-Durbin"
+      SourceType	      "Levinson-Durbin"
+      coeffOutFcn	      "A"
+      outP		      off
+      zeroInpHandling	      on
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "Longueur du tableau\nEstimation et rec"
+      Position		      [435, 255, 495, 285]
+      VariableName	      "longrec"
+      MaxDataPoints	      "1"
+      SampleTime	      "-1"
+      SaveFormat	      "StructureWithTime"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "Longueur du tableau\nEstimation et voix"
+      Position		      [1330, 760, 1390, 790]
+      VariableName	      "long"
+      MaxDataPoints	      "1"
+      SampleTime	      "-1"
+      SaveFormat	      "StructureWithTime"
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Multiplication"
+      Ports		      [2, 1]
+      Position		      [1070, 805, 1110, 845]
+      Inputs		      "**"
+      ShowAdditionalParam     on
+      InputSameDT	      off
+      OutDataTypeMode	      "single"
+      OutScaling	      "2^-10"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Multiplication par\n1/2"
+      Ports		      [2, 1]
+      Position		      [1310, 1000, 1350, 1040]
+      Inputs		      "**"
+      ShowAdditionalParam     on
+      InputSameDT	      off
+      OutDataTypeMode	      "double"
+      OutScaling	      "2^-10"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Multiplication par\n1/2 (rec)"
+      Ports		      [2, 1]
+      Position		      [415, 495, 455, 535]
+      Inputs		      "**"
+      ShowAdditionalParam     on
+      InputSameDT	      off
+      OutDataTypeMode	      "double"
+      OutScaling	      "2^-10"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Multiplication par\n1/4000"
+      Ports		      [2, 1]
+      Position		      [1170, 910, 1210, 950]
+      Inputs		      "**"
+      InputSameDT	      off
+      OutDataTypeMode	      "single"
+      OutScaling	      "2^-10"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Multiplication par\n1/4000 (rec)"
+      Ports		      [2, 1]
+      Position		      [275, 405, 315, 445]
+      Inputs		      "**"
+      InputSameDT	      off
+      OutDataTypeMode	      "single"
+      OutScaling	      "2^-10"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Product
+      Name		      "Multiplication(rec)"
+      Ports		      [2, 1]
+      Position		      [175, 300, 215, 340]
+      Inputs		      "**"
+      ShowAdditionalParam     on
+      InputSameDT	      off
+      OutDataTypeMode	      "single"
+      OutScaling	      "2^-10"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Display
+      Name		      "Nombre d'echantillons dans le signal"
+      Ports		      [1]
+      Position		      [1185, 810, 1275, 840]
+      Decimation	      "1"
+    }
+    Block {
+      BlockType		      Display
+      Name		      "Nombre d'echantillons dans le signal rec"
+      Ports		      [1]
+      Position		      [290, 305, 380, 335]
+      Decimation	      "1"
+    }
+    Block {
+      BlockType		      Display
+      Name		      "Nombre de demi seconde\nqu'il faut pour une sim"
+"ulation complète"
+      Ports		      [1]
+      Position		      [1300, 915, 1390, 945]
+      Decimation	      "1"
+    }
+    Block {
+      BlockType		      Display
+      Name		      "Nombre de demi seconde\nqu'il faut pour une sim"
+"ulation complète1"
+      Ports		      [1]
+      Position		      [405, 410, 495, 440]
+      ShowName		      off
+      Decimation	      "1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Pre-Emphasis"
+      Ports		      [1, 1]
+      Position		      [1085, 635, 1155, 675]
+      SourceBlock	      "dsparch4/Digital Filter"
+      SourceType	      "Digital Filter"
+      TypePopup		      "FIR (all zeros)"
+      IIRFiltStruct	      "Direct form II transposed"
+      AllPoleFiltStruct	      "Direct form"
+      FIRFiltStruct	      "Direct form"
+      CoeffSource	      "Specify via dialog"
+      NumCoeffs		      "[1 -.95]"
+      DenCoeffs		      "[1 0.1]"
+      BiQuadCoeffs	      "[1 0.3 0.4 1 0.1 0.2]"
+      LatticeCoeffs	      "[0.2 0.4]"
+      denIgnore		      on
+      FiltPerSampPopup	      "One filter per frame"
+      IC		      "0"
+      ICnum		      "0"
+      ICden		      "0"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Pre-Emphasis \nsignal rec"
+      Ports		      [1, 1]
+      Position		      [190, 130, 260, 170]
+      SourceBlock	      "dsparch4/Digital Filter"
+      SourceType	      "Digital Filter"
+      TypePopup		      "FIR (all zeros)"
+      IIRFiltStruct	      "Direct form II transposed"
+      AllPoleFiltStruct	      "Direct form"
+      FIRFiltStruct	      "Direct form"
+      CoeffSource	      "Specify via dialog"
+      NumCoeffs		      "[1 -.95]"
+      DenCoeffs		      "[1 0.1]"
+      BiQuadCoeffs	      "[1 0.3 0.4 1 0.1 0.2]"
+      LatticeCoeffs	      "[0.2 0.4]"
+      denIgnore		      on
+      FiltPerSampPopup	      "One filter per frame"
+      IC		      "0"
+      ICnum		      "0"
+      ICden		      "0"
+    }
+    Block {
+      BlockType		      RelationalOperator
+      Name		      "Relational\nOperator"
+      Position		      [1620, 727, 1650, 758]
+      Operator		      ">"
+      InputSameDT	      off
+    }
+    Block {
+      BlockType		      RelationalOperator
+      Name		      "Relational\nOperator(rec)"
+      Position		      [725, 222, 755, 253]
+      InputSameDT	      off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Signal From\nWorkspace"
+      Ports		      [0, 1]
+      Position		      [935, 638, 990, 672]
+      SourceBlock	      "dspsrcs4/Signal From\nWorkspace"
+      SourceType	      "Signal From Workspace"
+      X			      "voix"
+      Ts		      "1/8000"
+      nsamps		      "160"
+      OutputAfterFinalValue   "Setting to zero"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Signal enregistré"
+      Ports		      [0, 1]
+      Position		      [40, 133, 95, 167]
+      SourceBlock	      "dspsrcs4/Signal From\nWorkspace"
+      SourceType	      "Signal From Workspace"
+      X			      "rec"
+      Ts		      "1/8000"
+      nsamps		      "160"
+      OutputAfterFinalValue   "Setting to zero"
+    }
+    Block {
+      BlockType		      Stop
+      Name		      "Stop"
+      Position		      [895, 222, 930, 258]
+    }
+    Block {
+      BlockType		      Stop
+      Name		      "Stop Simulation"
+      Position		      [1790, 727, 1825, 763]
+    }
+    Block {
+      BlockType		      Display
+      Name		      "Temps que doit durer la simulation"
+      Ports		      [1]
+      Position		      [1465, 1005, 1555, 1035]
+      Decimation	      "1"
+    }
+    Block {
+      BlockType		      Display
+      Name		      "Temps que doit durer la simulation LPC_rec"
+      Ports		      [1]
+      Position		      [570, 500, 660, 530]
+      Decimation	      "1"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      Position		      [740, 135, 800, 165]
+      VariableName	      "RLPC"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Array"
+    }
+    Block {
+      BlockType		      FromWorkspace
+      Name		      "duree de l'acquisition"
+      Position		      [930, 783, 995, 807]
+      VariableName	      "time"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      FromWorkspace
+      Name		      "duree de l'acquisition rec"
+      Position		      [35, 278, 100, 302]
+      VariableName	      "time_rec"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "nombre d'echantillons\ntraités par 0.5 seconde "
+"avec LPC"
+      Position		      [950, 925, 980, 955]
+      Value		      "1/4000"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "nombre d'echantillons\ntraités par 0.5 seconde "
+"avec LPC_rec"
+      Position		      [110, 420, 140, 450]
+      Value		      "1/4000"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "nombre d'echantillons\ntraités par seconde"
+      Position		      [945, 840, 975, 870]
+      Value		      "8000"
+      ShowAdditionalParam     on
+      OutDataTypeMode	      "double"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "nombre d'echantillons\ntraités par seconde (rec"
+")"
+      Position		      [50, 335, 80, 365]
+      Value		      "8000"
+      ShowAdditionalParam     on
+      OutDataTypeMode	      "double"
+    }
+    Line {
+      SrcBlock		      "Autocorrelation"
+      SrcPort		      1
+      DstBlock		      "Levinson-\nDurbin"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Fenetre \nde\nHamming"
+      SrcPort		      1
+      DstBlock		      "Autocorrelation"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Levinson-\nDurbin"
+      SrcPort		      1
+      Points		      [35, 0]
+      DstBlock		      "Coefficients LPC"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Signal From\nWorkspace"
+      SrcPort		      1
+      DstBlock		      "Pre-Emphasis"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Pre-Emphasis"
+      SrcPort		      1
+      DstBlock		      "Chevauchement"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Chevauchement"
+      SrcPort		      1
+      DstBlock		      "Fenetre \nde\nHamming"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Clock"
+      SrcPort		      1
+      DstBlock		      "Relational\nOperator"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Relational\nOperator"
+      SrcPort		      1
+      DstBlock		      "Stop Simulation"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "nombre d'echantillons\ntraités par seconde"
+      SrcPort		      1
+      Points		      [35, 0; 0, -20]
+      DstBlock		      "Multiplication"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Multiplication"
+      SrcPort		      1
+      Points		      [0, 0; 20, 0]
+      Branch {
+	Points			[0, 95]
+	DstBlock		"Multiplication par\n1/4000"
+	DstPort			1
+      }
+      Branch {
+	Points			[20, 0]
+	Branch {
+	  DstBlock		  "Nombre d'echantillons dans le signal"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, -50]
+	  DstBlock		  "Longueur du tableau\nEstimation et voix"
+	  DstPort		  1
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Multiplication par\n1/4000"
+      SrcPort		      1
+      Points		      [0, 0; 25, 0]
+      Branch {
+	DstBlock		"Nombre de demi seconde\nqu'il faut pour une s"
+"imulation complète"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 80]
+	DstBlock		"Multiplication par\n1/2"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "nombre d'echantillons\ntraités par 0.5 seconde "
+"avec LPC"
+      SrcPort		      1
+      DstBlock		      "Multiplication par\n1/4000"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "0.5 seconde"
+      SrcPort		      1
+      DstBlock		      "Multiplication par\n1/2"
+      DstPort		      2
+    }
+    Line {
+      Labels		      [0, 0]
+      SrcBlock		      "Multiplication par\n1/2"
+      SrcPort		      1
+      Points		      [0, 0; 85, 0]
+      Branch {
+	DstBlock		"Temps que doit durer la simulation"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -270]
+	DstBlock		"Relational\nOperator"
+	DstPort			2
+      }
+    }
+    Line {
+      SrcBlock		      "duree de l'acquisition"
+      SrcPort		      1
+      Points		      [25, 0; 0, 20]
+      DstBlock		      "Multiplication"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Autocorrelation(rec)"
+      SrcPort		      1
+      DstBlock		      "Levinson-\nDurbin(rec)"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Fenetre \nde\nHamming (rec)"
+      SrcPort		      1
+      DstBlock		      "Autocorrelation(rec)"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Signal enregistré"
+      SrcPort		      1
+      DstBlock		      "Pre-Emphasis \nsignal rec"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Pre-Emphasis \nsignal rec"
+      SrcPort		      1
+      DstBlock		      "Chevauchement \nsignal rec"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Chevauchement \nsignal rec"
+      SrcPort		      1
+      DstBlock		      "Fenetre \nde\nHamming (rec)"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Clock(rec)"
+      SrcPort		      1
+      DstBlock		      "Relational\nOperator(rec)"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Relational\nOperator(rec)"
+      SrcPort		      1
+      DstBlock		      "Stop"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "nombre d'echantillons\ntraités par seconde (rec"
+")"
+      SrcPort		      1
+      Points		      [35, 0; 0, -20]
+      DstBlock		      "Multiplication(rec)"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Multiplication(rec)"
+      SrcPort		      1
+      Points		      [0, 0; 20, 0]
+      Branch {
+	Points			[0, 95]
+	DstBlock		"Multiplication par\n1/4000 (rec)"
+	DstPort			1
+      }
+      Branch {
+	Points			[20, 0]
+	Branch {
+	  DstBlock		  "Nombre d'echantillons dans le signal rec"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, -50]
+	  DstBlock		  "Longueur du tableau\nEstimation et rec"
+	  DstPort		  1
+	}
+      }
+    }
+    Line {
+      SrcBlock		      "Multiplication par\n1/4000 (rec)"
+      SrcPort		      1
+      Points		      [0, 0; 25, 0]
+      Branch {
+	DstBlock		"Nombre de demi seconde\nqu'il faut pour une s"
+"imulation complète1"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 80]
+	DstBlock		"Multiplication par\n1/2 (rec)"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "nombre d'echantillons\ntraités par 0.5 seconde "
+"avec LPC_rec"
+      SrcPort		      1
+      DstBlock		      "Multiplication par\n1/4000 (rec)"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "0.5 seconde (rec)"
+      SrcPort		      1
+      DstBlock		      "Multiplication par\n1/2 (rec)"
+      DstPort		      2
+    }
+    Line {
+      Labels		      [0, 0]
+      SrcBlock		      "Multiplication par\n1/2 (rec)"
+      SrcPort		      1
+      Points		      [0, 0; 85, 0]
+      Branch {
+	DstBlock		"Temps que doit durer la simulation LPC_rec"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -270]
+	DstBlock		"Relational\nOperator(rec)"
+	DstPort			2
+      }
+    }
+    Line {
+      SrcBlock		      "duree de l'acquisition rec"
+      SrcPort		      1
+      Points		      [25, 0; 0, 20]
+      DstBlock		      "Multiplication(rec)"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Levinson-\nDurbin(rec)"
+      SrcPort		      1
+      DstBlock		      "To Workspace"
+      DstPort		      1
+    }
+    Annotation {
+      Name		      "\nLPC Analysis and Synthesis of Speech\n"
+      Position		      [1268, 617]
+      FontName		      "Arial"
+      FontSize		      14
+      FontWeight	      "bold"
+    }
+    Annotation {
+      Name		      "\nLPC Analysis and Synthesis of Speech\n(REC)"
+      Position		      [373, 62]
+      FontName		      "Arial"
+      FontSize		      14
+      FontWeight	      "bold"
+    }
+  }
+}

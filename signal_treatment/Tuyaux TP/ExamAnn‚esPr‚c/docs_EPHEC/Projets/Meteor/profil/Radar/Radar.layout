@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="calculs.c" open="1" top="0" tabpos="13">
+		<Cursor position="772" topLine="19" />
+	</File>
+	<File name="calculs.h" open="1" top="0" tabpos="14">
+		<Cursor position="130" topLine="0" />
+	</File>
+	<File name="fft.c" open="1" top="0" tabpos="5">
+		<Cursor position="4099" topLine="108" />
+	</File>
+	<File name="fft.h" open="1" top="0" tabpos="6">
+		<Cursor position="382" topLine="0" />
+	</File>
+	<File name="fichiers.c" open="1" top="0" tabpos="7">
+		<Cursor position="3320" topLine="29" />
+	</File>
+	<File name="fichiers.h" open="1" top="0" tabpos="8">
+		<Cursor position="53" topLine="0" />
+	</File>
+	<File name="globales.h" open="1" top="0" tabpos="1">
+		<Cursor position="464" topLine="11" />
+	</File>
+	<File name="gui.c" open="1" top="0" tabpos="15">
+		<Cursor position="13743" topLine="343" />
+	</File>
+	<File name="gui.h" open="1" top="0" tabpos="16">
+		<Cursor position="625" topLine="0" />
+	</File>
+	<File name="main.c" open="1" top="0" tabpos="2">
+		<Cursor position="920" topLine="43" />
+	</File>
+	<File name="main_functions.c" open="1" top="0" tabpos="3">
+		<Cursor position="1657" topLine="66" />
+	</File>
+	<File name="main_functions.h" open="1" top="0" tabpos="4">
+		<Cursor position="58" topLine="0" />
+	</File>
+	<File name="parameters.c" open="1" top="0" tabpos="17">
+		<Cursor position="4698" topLine="36" />
+	</File>
+	<File name="parameters.h" open="1" top="0" tabpos="18">
+		<Cursor position="70" topLine="0" />
+	</File>
+	<File name="questions.c" open="1" top="0" tabpos="9">
+		<Cursor position="5420" topLine="162" />
+	</File>
+	<File name="questions.h" open="1" top="0" tabpos="10">
+		<Cursor position="531" topLine="0" />
+	</File>
+	<File name="traitement.c" open="1" top="1" tabpos="11">
+		<Cursor position="4576" topLine="6" />
+	</File>
+	<File name="traitement.h" open="1" top="0" tabpos="12">
+		<Cursor position="618" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>
