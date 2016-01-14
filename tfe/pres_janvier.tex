@@ -1,0 +1,299 @@
+\documentclass{report}
+\usepackage{filecontents}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{listings}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage[toc, page]{appendix}
+\usepackage{url}
+
+\definecolor{xcodekw}{rgb}{0.75, 0.22, 0.60}
+\definecolor{xcodestr}{rgb}{0.89, 0.27, 0.30}
+\definecolor{xcodecmt}{rgb}{0.31, 0.73, 0.35}
+
+% \titleformat{\chapter}[display]
+%   {\centering\normalfont\huge\bfseries}
+%   {\chaptertitlename\ \thechapter}
+%   {20pt}
+%   {\Huge}
+
+\geometry{hscale=0.75,vscale=0.85,centering}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand\appendixtocname{Annexes}
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
+
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+
+\textsc{\LARGE Ephec }\\[1.5cm] % Name of your university/college
+\textsc{\Large Travail de fin d'études}\\[0.5cm] % Major heading such as course name
+\textsc{\large Plateforme d'apprentissage de l'anglais via chat et visioconférence}\\[0.5cm] % Minor heading such as course title
+
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Présentation Technique de Janvier}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Auteur:}\\
+Samuen \textsc{Monroe} 3TL1 % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Rapporteur (ephec) :} \\
+Virginie \textsc{Van den Schrieck} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[4cm]
+
+
+
+{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\tableofcontents
+\clearpage
+
+%% \textbf{}
+
+\section{Introduction}
+
+	Ce document fait état de rapport concernant ma présentation technique de janvier, dans le cadre du travail de fin d'études en technologies de l'informatique.\\
+
+	Celui-ci vient compléter et appronfondir la présentation orale de cette défense technique, effectuée en parallèle de la remise de ce rapport.\\
+
+	Je commencerai par présenter un descriptif du sujet sur lequel va se porter mon travail de fin d'étude, suivie par une description des fonctionnalités qui seront implémentées.\\
+	Ensuite viendra une description des technologies qui seront utilisées pour l'accomplissement de ce projet, la méthodologie suivie et regroupée dans un planning.\\
+	Enfin, je terminerai par exposer mon état d'avancement, et une conclusion.\\
+
+
+\section{Présentation du sujet}
+
+	L'idée est de développer une webapp d'apprentissage de l'anglais par correspondance via VoIP et VidéoChat intégrés sur cette application, une application mobile serait également disponible conjointement au site internet pour permettre aux utilisateurs de continuer leurs conversations de manière nomade, voire passer leurs appels (vidéo) sur ce support.\\
+
+	Un utilisateur se verrait proposer, sur base d'informations personnelles et sur ses centres d'intérêts, une liste d'autres personnes ayant des points communs avec celle-ci et de plus, n'ayant \textbf{aucune} langue commune autre que l'anglais, de sorte que celui-ci soit l'unique moyen de communiquer entre eux.\\
+	Le service s'adressant à des personnes désireuses d'apprendre l'anglais, ce seul moyen de communication les ferait progresser inévitablement dans la langue, ne serait-ce quand s'habituant à écrire des choses courantes en anglais, et mieux encore en conversant via le chat vocal-vidéo.\\
+
+\section{Features du projet}
+
+	Le service consistant en deux parties, une application web et une application mobile, je vais diviser cette section de manière à décrire les fonctionnalités pour chacune des parties.\\
+
+	\subsection{Plateforme Web}
+
+		\begin{itemize}
+			\item Dans un premier temps, l'utilisateur accédant à la plate-forme web se retrouvera confronté à une page d'accueil de type Facebook, qui lui présentera les fonctionnalités clés du produit, mais également un espace bien visible afin de s'inscrire via quelques informations telles que son nom, prénom, mail, date de naissance et mot de passe.\\
+			L'utilisateur déjà inscrit à la plateforme pourra accéder au service via un espace de connexion sur le haut de cette page d'accueil.\\
+			\item 
+		\end{itemize}
+
+		\subsubsection{Page d'accueil}
+
+			Dans un premier temps, l'utilisateur accédant à la plate-forme web se retrouvera confronté à une page d'accueil de type Facebook, qui lui présentera les fonctionnalités clés du produit, mais également un espace bien visible afin de s'inscrire via quelques informations telles que son nom, prénom, mail, date de naissance et mot de passe.\\
+			L'utilisateur déjà inscrit à la plateforme pourra accéder au service via un espace de connexion sur le haut de cette page d'accueil.\\
+
+		\subsubsection{Enregistrement}
+
+			Cette interface se retrouvera divisée en deux étapes.\\
+
+			La première est présente sur la page d'accueil et demande à l'utilisateur quelques champs basiques tels que son Nom et Prénom, son adresse Mail, un mot de passe ainsi qu'une date de naissance.\\
+			Une fois ces informations complétées et la confirmation via un bouton "Inscription", l'utilisateur sera connecté avec son compte, reçevra un mail de confirmation, et sera redirigé sur une page de complétion de son profil.\\
+
+			Cette deuxième page liée à l'inscription sera nécéssaire pour établir un profil complet de la personne, et lui proposer au mieux des contacts pour la correspondance.\\
+			Il sera invité à renseigner plusieurs informations personnelles : \\
+
+			\begin{itemize}
+				\item Une "bio"
+				\item Ses hobbies
+				\item Son type d'études ou ce vers quoi il veut se diriger plus tard
+				\item Genres de musique écoutés
+				\item Genres de films préférés
+				\item Sports pratiqués
+				\item Langue maternelle
+				\item Autres langues connues
+				\item Pays d'origine\\
+			\end{itemize}
+
+			Une fois ceci fait, il accèdera à la version du site pour un utilisateur connecté.\\
+
+		\subsubsection{Menu de Navigation}
+
+			Une fois connecté, l'utilisateur aura accès à plusieurs pages différentes pour profiter du service : \\
+
+			\begin{itemize}
+				\item \textbf{Profil} : Via laquelle l'utilisateur peut gérer son profil.
+
+				\item \textbf{Recherche} : Via laquelle il peut rechercher d'autres personnes avec lesquelles commencer à échanger.
+
+				\item \textbf{Amis} : Via laquelle il peut gérer ses échanges avec ses correspondants.
+			\end{itemize}
+
+		\subsubsection{Profil}
+
+			Cette page permettra à l'utilisateur de gérer son profil.\\
+			Il pourra modifier à la volée certains champs comme sa bio ou ses centres d'intérêts, voir des statistiques sur lui-même telles que le nombre d'heures qu'il a passé en chat ou encore le nombre de messages qu'il a déjà envoyé en anglais.\\
+
+		\subsubsection{Learners - Recherche de correspondants}
+
+			Dans cette section, l'utilisateur pourra rechercher des personnes avec qui commencer une correspondance en leur envoyant une demande d'ajout d'ami, pour leur proposer de pratiquer l'anglais ensemble.\\
+
+			Cette page présentera à l'utilisateur une liste des personnes établie selon les critères de matching, avec pour chaque personne sa bio, sa photo et un bouton d'ajout qui permet d'envoyer une invitation avec un message à destination de la personne.\\
+
+
+		\subsubsection{Amis et Chat}
+
+			Cette page montrera à l'utilisateur une interface du type de \textbf{messenger.com}, c'est à dire une liste latérale de ses correspondants avec un rappel du dernier message, dernière connexion, ainsi qu'un indicateur selon qu'un nouveau message aurait été envoyé par un de ceux-ci.\\
+
+			Un click sur une personne dans cette liste ouvrira dans le panneau central la fenêtre de discussion correspondante.\\
+			Des boutons seront mis en évidence pour passer un appel ou démarrer un chat vidéo avec la personne.\\
+			Enfin, divers petites informations seront présentes également pour indiquer le nombre de messages échangés, la durée de la correspondance, etc...\\
+
+		\subsubsection{Dictionnaire de Chat}
+
+			L'échange entre deux personnes ne connaissant pas extrêmement bien l'anglais pourrait poser des problèmes quant à la connaissance du vocabulaire, l'idée serait ici d'incorporer en vis-à-vis du chat, un petit dictionnaire regroupant les mots courants selon les centres d'intérêts concernés.\\
+			L'utilisateur pourrait ainsi se référer à celui-ci lorsqu'il veut envoyer un message, voir même effectuer des recherches dedans.\\
+
+	\subsection{Mobile App}
+
+		L'application mobile sera un outil de type companion-app permettant à l'utilisateur de prolonger son expérience en tout temps et tout endroit.\\
+
+		Elle consistera en quelques interfaces assez simples : \\
+
+		\begin{itemize}
+			\item Connexion
+			\item Liste de contacts
+			\item Ecran de chat
+		\end{itemize}
+
+		\subsubsection{Liste de contacts}
+
+			Elle se présentera en une liste déroulante affichant les correspondants de l'utilisateur.\\
+			Pour chaque entrée, classée selon l'échange le plus récent, sera indiqué l'état de connexion de l'utilisateur, un rappel de la date du dernier message ainsi qu'un résumé du dernier message.\\
+
+			Un appui sur une de ces entrées emmenerait l'utilisateur vers le fil de discussion avec cette personne.\\
+
+		\subsubsection{Ecran de chat}
+
+			Celui-ci affichera le fil de discussion entre l'utilisateur et le correspondant lié.\\
+			Les messages seraient séparés via couleur selon qu'il provient du destinataire ou de l'utilisateur, un espace de message permettrait via un appui de composer celui-ci, et proposer également l'envoi d'Emojis ou d'images via l'appareil photo.\\
+			Un petit menu permettrait également de lancer un appel ou une vidéo-conférence avec la personne.\\
+
+		\subsubsection{Ecran d'appel}
+
+			Lors de l'appel, l'écran affichera le statut de la communication, ainsi que la durée en temps réel de l'appel.\\
+			L'utilisateur pourra raccrocher, ou sélectionner des options telles que le "mute", l'activation des hauts-parleurs, l'activation et désactivation de la vidéo, et enfin l'option permettant de raccrocher.\\
+
+\section{Choix Techniques}
+
+	Je vais dans cette section détailler les choix de technologies que j'ai pris afin de mener à bien le projet, je vais également séparer ceux-ci en fonction de leur domaine d'application.\\
+
+	\subsection{Web Application}
+
+		Pour cette application Web, je vais utiliser le framework \textbf{Ruby on Rails} au niveau du back-end, et \textbf{Angular.JS} pour le front-end.\\
+		J'ai une petite expérience confortable sur le Rails en ayant accompli le projet d'intégration en utilisant celui-ci, de plus je devrai lors dem on stage l'utiliser de manière quotidienne au même titre que Angular.JS, ce qui devrait m'offrir une courbe de progression rapide et confortable dans ces technologies.\\
+
+		Le Ruby on Rails me permettra de mettre en place une \textbf{REST Api} afin de mettre en relation l'application mobile avec la plateforme web.\\
+
+		Une framework du type \textbf{Boostrap} me permettra d'établir le design du site aisément.\\
+
+		Enfin, je complèterai mon stack Rails/Angular via \textbf{Pusher}, un service fournissant une API destinée à la messagerie instantanée, websockets pour les communications audio/vidéo avec \textbf{WebRTC}, et autres services tels que des channels de presence des utilisateurs.\\
+
+	\subsection{Mobile Application}
+
+		L'application mobile sera développée en langages Web via le framework \textbf{PhoneGap}, ceci me permettra de rester dans le domaine des langages Web (Css,Html, Javascript) et de communiquer avec l'api fournie par la plateforme web et pusher de manière très simple.\\
+
+		De plus, l'application sera portable sur toutes les plateformes mobiles, de part sa conception via PhoneGap.\\
+
+	\subsection{Infrastructure}
+
+		Le serveur sera hébergé sur le cloud, via un VPS de chez DigitalOcean.\\
+
+		Pour des raisons de simplicité de configuration et d'accès à de nombreuses ressources d'information, ce VPS tournera avec un système \textbf{14.04 LTS}.\\
+
+		Le serveur web sera un serveur \textbf{Nginx}, couplé à une base de données \textbf{PostgreSQL}.\\
+
+		\subsubsection{Sécurité}
+		
+			Ce VPS sera sécurisé sur bases des techniques enseignées par Mme. Van den Schrieck dans le cadre de son cours sur la sécurité des réseaux.\\
+
+			Je devrai donc au minimum configurer un firewall sur bases des services nécéssaires à l'administration et au bon fonctionnement du service en lui-même.\\
+			En addition, ce serveur sera accessible via SSH par clé asymétrique.\\
+			D'autres services sécuritaires seront également à mettre en place, telle
+
+	\subsection{Détails Additionnels}
+
+		Le projet sera bien évidemment versionné et accessible par les personnes concernées sur le service de versionning cloud GitHub, j'associerai également le projet à \textbf{Travis CI} pour une visibilité immédiate du bon fonctionnement des derniers builds au niveau des tests.\\
+
+		Ce projet sera donc effectué en \textbf{Test-Driven Development}.\\
+
+\section{Méthodologie et Planning}
+
+	Je vais décrire dans cette section la méthodologie que je vais appliquer afin de parvenir à mes fins, et reprendre ces éléments ensuite dans une forme de planning qui me servira de guide-line dans les mois qui viennent.\\
+
+	\subsection{Méthodologie}
+
+		Premièrement, je vais surtout accomplir un gros travail de formation sur les technologies que je compte utiliser, en commençant par le Rails et l'Angular.\\
+		Ceci via des livres que je me suis procuré et via des tutoriels en lignes que j'ai sélectionné pour leur réputation, et également conseillé par mon maître de stage Nicolas Jacobeus.\\
+
+		Une fois ceci accompli, je vais commencer à mettre en place l'infrastructure nécéssaire à la mise en place du service.\\
+		Ceci consistera au déploiement du VPS, à sa configuration, sécurisation et à l'installation des différents services liés.\\
+
+		Les connaissances acquises et l'infrastructure disponible, je passerai au développement de l'application Web et de l'API.\\
+
+		Ensuite, je pourrai développer l'application mobile en disposant de la solide API et des services fonctionnels.\\
+
+		Enfin, je rédigerai le rapport final et préparerai la présentation.\\
+
+	\subsection{Planning}
+
+		Ce planning est un échéancier, chaque date marquera la fin d'une des étapes de mon projet : \\
+
+		\begin{itemize}
+			\item \textbf{1/02} : Formation terminée
+			\item \textbf{20/02} : Mise en place de l'infrastructure
+			\item \textbf{15/04} : Web App terminée
+			\item \textbf{25/05} : Mobile App terminée
+			\item \textbf{5/06} : Rédaction du rapport finalisée
+			\item \textbf{17/06} : Préparation de la présentation\\
+		\end{itemize}
+
+
+\section{Etat d'avancement}
+
+	D'un point de vue programmation, je n'ai pas encore commencé à coder quoi que ce soit.\\
+
+	J'ai néanmoins rassembler la documentation nécéssaire, et me suis proccuré deux livres de chez O'Reilly sur le RESTful Development en Rails et sur Angular.JS, dont la lecture ne saurait tarder.\\
+
+	De plus, j'ai également souscris à un compte CodeSchool sur lequel j'ai commencé les tutoriels nécéssaires au projet, et à mon intégration rapide dans le travail chez Belighted, société chez laquelle je fais mon stage.\\
+
+	Enfin, je possède également un compte chez DigitalOcean prêt au déploiement d'un VPS prêt à la configuration.\\
+
+\section{Conclusion}
+
+	Je suis très motivé par ce projet, et la perspective des mois qui arrivent m'enchante vraiment, même si je sais que tout ne se passera pas comme prévu
+	Le fait d'avoir choisi des technologies sur lesquelles je travaillerai lors de mon stage renforce cette motivation, et ne peut que me pousser vers l'avant que ça soit lors de mon stage ou lors du travail sur ce TFE.\\
+
+\end{document}
