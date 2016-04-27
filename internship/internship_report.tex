@@ -1,0 +1,108 @@
+\documentclass{report}
+\usepackage{filecontents}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{listings}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage[toc, page]{appendix}
+\usepackage{url}
+
+\definecolor{xcodekw}{rgb}{0.75, 0.22, 0.60}
+\definecolor{xcodestr}{rgb}{0.89, 0.27, 0.30}
+\definecolor{xcodecmt}{rgb}{0.31, 0.73, 0.35}
+
+\titleformat{\chapter}[display]
+  {\centering\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+
+\geometry{hscale=0.75,vscale=0.85,centering}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand\appendixtocname{Annexes}
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
+
+\title{Rapport de Stage}
+\author{Samuel \bsc{Monroe}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\tableofcontents
+
+\chapter*{Remerciements}
+
+  Je voudrais tout d'abord remercier Virginie Van Den Schrieck et Marie-Noël Vroman, pour
+  le rôle qu'elles ont tenu dans le projet d'intégration du premier quadrimestre,
+  en nous ayant responsabilisé quant à la gestion de notre projet et donné carte
+  blanche pour la réalisation de celui-ci.
+  C'est donc grâce à elles que j'ai fais mes premiers pas dans le monde du Ruby on Rails
+  et du développement web moderne en général, et ainsi avoir eu l'opportunité de faire ce stage chez Belighted.\\
+
+  Je remercie Nicolas Jacobeus, CEO de chez Belighted, de m'avoir offert cette place de stage pendant ces quinze
+  semaines où j'ai énormément progressé et appris de ce métier que je veux faire plus tard, ainsi que tout les membres
+  de l'équipe pour leur accueil, leurs conseils et leur aide tout au lond du stage.\\
+
+  Je voudrais également remercier Yves Delvigne, qui par son cours de programmation multimédia
+  nous a inculqué les bases du développement web, et qui a donc grandement contribué
+  au chemin que j'ai suivi depuis la deuxième année.\\
+
+  Mes remerciements vont enfin à tout les autres professeurs de l'EPHEC qui m'ont accompagnés tout au long
+  de ce cursus de bachelier en technologies de l'informatique et qui ont, quel que soit la matière
+  enseignée, contribués à me transmettre un panel de connaissances varié qui m'est et me sera utile pour
+  le reste de ma vie. Merci donc à Christian Lambeau, Claude Masson, Michel De Vleeschouwer,Youcef Bouterfa, Arnaud Dewulf,
+  Stéphane Faulkner, Véronique Leclerq, Thomas Thiry, Maxime Vanlerberghe, Jean-François Depasse, Marc Deherve et Laurent Hirsoux.\\
+
+\chapter{Introduction}
+
+  Point d'orgue de ces trois années de bachelier en technologie de l'informatique, la perspective de ce stage en entreprise
+  est en même temps excitante, motivante mais aussi un peu effrayante.\\
+  C'est le moment où nos acquis académiques sont confrontés à la réalité du terrain, celui du premier vrai pas vers la sortie
+  de classes de l'ephec.\\
+
+  C'est en direction de Belighted que j'ai fait ce pas, qui m'a accueilli grâce à une petite expérience déjà acquise en Ruby on Rails.\\
+  Lors de nos entretiens avant le stage, l'objectif et le travail que j'allais accomplir n'était pas clairement défini, néamoins il était
+  très clair qu'ils seraient de contribuer à un ou plusieurs projets au sein de l'équipe en faisant évoluer les compétences que j'avais acquises.\\
+  L'objectif qu'on m'a confié lors du premier jour de stage, que je décrirai plus en détails dans les pages suivantes, était de mettre sur pied un Software as a Service qui offrirait une gestion des avatars très simple
+  à d'autres applications web, leur évitant tout besoin de mettre en place un espace de stockage dédié et d'implémenter un
+  système d'avatars.\\
+
+  Concernant mes attentes personnelles pour ce stage, j'étais en premier lieu motivé par la perspective d'apprendre un maximum
+  sur le développement web. Je voulais vivre une expérience dans une PME travaillant dans le domaine, découvrir quelles étaient les bonnes
+  pratiques suivies lors du développement, quelles étaient les étapes du cycle de vie d'une application web.\\
+  Plus encore, je voulais avoir l'opportunité d'être très content de me lever chaque matin pour aller faire quelques chose d'agréable et de passionant
+  dans un cadre lui-même agréable.\\
+
+
+\chapter{A propos de Belighted}
+
+  Belighted est une PME active depuis 2008 sur le marché du developpement d'applications web et mobiles.\\
+  L'équipe est composée d'un peu de dix personnes, jeunes et passionnées, toutes travaillant dans le même open-space. Tout ceci donne
+  une ambiance sûrement plus proche de la startup que de l'entreprise classique.\\
+
+  L'entreprise s'est spécialisée dans le développement en Ruby on Rails, faisant d'elle et de son équipe des experts et la plus grosse
+  boîte de développement en Rails de Belgique.\\
+  Cette expertise se fonde sur une recherche de la qualité, en suivant notamment des principes Agiles.
+
+\chapter{Nature du stage et modalités de réalisation}
+
+\chapter{Objets d'études / Faits saillants / Expériences vécues}
+
+\chapter{Conclusion}
+
+\end{document}
