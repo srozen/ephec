@@ -75,7 +75,7 @@
 
 \chapter*{Remerciements}
 
-  Je voudrais tout d'abord remercier Virginie Van Den Schrieck et Marie-Noël Vroman, qui m'a poussé à postuler chez Belighted, pour
+  Je voudrais tout d'abord remercier Virginie Van Den Schrieck et Marie-Noël Vroman, qui m'ont poussé à postuler chez Belighted, pour
   le rôle qu'elles ont tenu dans le projet d'intégration du premier quadrimestre,
   en nous ayant responsabilisés quant à la gestion de notre projet et donné carte
   blanche pour la réalisation de celui-ci.
@@ -103,13 +103,14 @@
   C'est le moment où nos acquis académiques sont confrontés à la réalité du terrain, celui du premier vrai pas vers la sortie
   de classes de l'Ephec.\\
 
-  C'est en direction de Belighted que j'ai fait ce pas, qui m'a accueilli grâce à une petite expérience déjà acquise en Ruby on Rails.\\
+  C'est en direction de Belighted que j'ai fait ce pas et qui m'a accueilli grâce à une petite expérience déjà acquise en Ruby on Rails, le framework de développement web en Ruby.\\
   Lors de nos entretiens avant le stage, l'objectif et le travail que j'allais accomplir n'étaient pas clairement définis, néanmoins il était
   très clair qu'ils seraient de contribuer à un ou plusieurs projets au sein de l'équipe en faisant évoluer les compétences que j'avais acquises.\\
   L'objectif qu'on m'a confié lors du premier jour de stage, que je décrirai plus en détail dans les pages suivantes, était de mettre sur pied un Software as a
-  Service qui offrirait une gestion des avatars très simple
+  Service (SaaS) qui offrirait une gestion des avatars très simple
   à d'autres applications web, leur évitant tout besoin de mettre en place un espace de stockage dédié et d'implémenter un
   système d'avatars.\\
+  Un SaaS est un type de logiciel utilisé sur des serveurs distants et non sur la machine locale du client, tel que l'application de messagerie Gmail de Google.
 
   Concernant mes attentes personnelles pour ce stage, j'étais en premier lieu motivé par la perspective d'apprendre un maximum
   sur le développement web. Je voulais vivre une expérience dans une PME travaillant dans le domaine, découvrir les bonnes
@@ -127,10 +128,15 @@
   L'équipe est composée d'un peu plus de dix personnes, jeunes et passionnées, toutes travaillant dans le même open-space. Tout ceci donne
   une ambiance sûrement plus proche de la startup que de l'entreprise classique.\\
 
-  L'entreprise s'est spécialisée dans le développement en Ruby on Rails, faisant d'elle et de son équipe des experts et la plus grosse
-  boîte de développement en Rails de Belgique.\\
+  L'entreprise s'est spécialisée dans le développement en Ruby on Rails, faisant d'elle et de son équipe des experts et un des plus grosses
+  boîtes de développement en Rails de Belgique selon son fondateur.\\
   Cette expertise se fonde sur une recherche de la qualité, en suivant notamment des principes Agiles et par conséquent des pratiques
   telles que le développement dirigé par les tests ainsi qu'une relation proche au client.\\
+
+  Elle a notamment réalisé des applications web pour des entreprises de grande envergure telles qu'une plateforme de monitoring des incidents pour \textbf{IBA}, un application
+  destinée au système de validation de brevets de \textbf{Valipat} ou encore une application pour le service après-vente de \textbf{Bombardier}.\\
+  Elle propose également la possibilité d'appui au développement pour les entreprises, mon mentor lors du stage a notamment dû se rendre chez \textbf{Listminut} afin d'aider leur équipe de développement
+  à effectuer certains changements majeurs dans leur application.\\
 
   Belighted étant composée d'une demi-douzaine de développeurs, il n'y a pas pour ainsi dire de structure vraiment définie et distincte au sein du personnel. \\
   Tous sont des développeurs avec un minimum d'expérience en Ruby on Rails et JavaScript, certains étant plutôt spécialisés dans les technologies mobiles et le frontend JavaScript,
@@ -143,6 +149,7 @@
   Pour ce qui est des développeurs front-end et designers on retrouve Maxime Nguyen et Simon Henrotte. \\
   Les développeurs backend Ruby on Rails sont Philippe Van Eerdenbrugghe, Kathleen Clacens, Philippe Bourez et Dominique Lebrun.\\
   Michaël est analyste business et développeur.\\
+  J'étais également accompagnés de quatre autres stagiaires, tous dans le cadre du marketing de Belighted.\\ 
 
   C'est donc Philippe Van Eerdenbrugghe qui a été chargé de m'accompagner dans la réalisation de mon SaaS, étant un développeur senior en Rails et ayant de très grandes connaissances et compétences.\\
   Il m'a énormément appris et surtout conditionné au développement dirigé par les tests et à l'application de spécifications et de bonnes pratiques dans le développement logiciel.\\
@@ -184,10 +191,13 @@
       La première étape de mon travail sur Pravatar fut de mettre en place le bon environnement de travail et de poser les bases saines du backend en Ruby on Rails.\\
       Philippe, mon mentor lors du stage, en a surtout profité pour m'inculquer les bonnes pratiques à suivre et la façon dont l'équipe s'y prend pour commencer un nouveau projet.\\
 
-      J'ai donc commencé par configurer tout l'environnement, ainsi que d'inclure un service d'administration de l'application via la gemme \textit{ActiveAdmin}.\\
+      J'ai donc commencé par configurer tout l'environnement, ainsi que d'inclure un service d'administration de l'application via la gem \textit{ActiveAdmin}.\\ Le système de gems en Ruby est la manière
+      standard de partage de programmes et de librairies, ActiveAdmin est donc un programme d'administration prêt à l'emploi qui peut s'inclure via sa gem sur d'autres projets Rails afin d'obtenir un système d'administration
+      sans devoir réinventer la roue.\\
+
       Une fois installée, j'ai pu commencer le développement de la partie administration en \textbf{Behaviour Driven Development} avec RSpec.\\
 
-      Le but était de me former dans la démarche d'écrire des tests de features avant toute chose, écris à la manière des \textit{User Stories} propres aux méthodes Agiles, et seulement enfin
+      Le but était de me former dans la démarche d'écrire des tests de features avant toute chose, écrits à la manière des \textit{User Stories} propres aux méthodes Agiles, et seulement enfin
       d'écrire le code qui couvrait ces tests, suivant le cycle Red-Green-Refactor. Ce fut une vraie mise en pratique des concepts théoriques enseignés lors du cours d'intégration de Mr.Thiry.\\
 
       Une fois habitué à cette manière de travailler, j'ai pu commencer le développement d'une \textbf{RESTapi} sur le backend qui serait chargée de fournir les endpoints pour le script tiers
@@ -225,6 +235,8 @@
       objets chargés d'encapsuler la logique business d'une application, et de laisser aux contrôleurs la façon spécifique de répondre aux requêtes.\\
 
       J'ai dû ensuite mettre en place du stockage des images sur une instance Amazon S3.\\
+      Amazon, le célèbre site de vente en ligne, propose également une immense collection de services destinés aux développeurs. \textbf{S3} est un de ces services et consiste en un système
+      de stockage de données en ligne dans le cloud.\\
       Cette configuration du stockage Amazon S3 est justement ce que Pravatar devrait absorber sur les autres projets de chez Belighted.\\
 
       Une importante mise à jour du service fut sa mise en conformité par rapport à la spécification \textit{JSON:API}. En effet, une API JSON peut en pratique répondre ou recevoir des requêtes
@@ -236,9 +248,11 @@
     \label{sub:Améliorations du front-end}
 
       Au fur et à mesure du développement du script tiers, travaillant avec du Javacript pur, je me suis rapidement retrouvé avec un amas de fonctions difficilement maintenables.\\
-      J'ai pu grâce à \textbf{Browerify} opérer une découpe de mon code en modules indépendants et définis selon leurs responsabilités.\\
+      J'ai pu grâce à \textbf{Browserify} opérer une découpe de mon code en modules indépendants et définis selon leurs responsabilités.\\ Browserify permet de mieux organiser son code Javascript en découpant
+      celui-ci en modules s'incluant entre eux selon les besoins, ceci forme un arbre de dépendances logique. Ces modules peuvent également provenir d'autres développeurs, il est ainsi possible de spécifier une dépendance
+      au module jQuery, qui sera alors inclus dans cet arbre.\\
       Le code du script est devenu beaucoup plus compréhensible, et évidemment beaucoup plus maintenable du fait de cette découpe en modules.\\
-      Une réécriture du code en Coffeescript m'a également été demandée par Philippe.
+      Une réécriture du code en Coffeescript m'a également été demandée par Philippe, c'est un langage qui se compile en Javascript et permet plus de flexibilité dans la manière d'écrire.\\
 
       Suite à cette réécriture en Coffeescript et à l'indépendance de l'environnement du script, la compilation et le packaging de celui-ci n'étaient évidemment plus assurés par l'asset pipeline de Rails.\\
       J'ai donc pu mettre en place un système d'automatisation de compilation et de configuration avec l'outil \textbf{Gulp}, ce qui a permis un travail fluide sur le script
@@ -390,7 +404,7 @@
 
           Le script étant réellement une fonctionnalité séparée de l'application Rails, le test runner devait également vivre dans son propre éco-système au sein du projet.\\
 
-          Installé via npm, \textit{Karma} est un test runner qui va exécuter les tests Jasmine sur un browser spécifié dans la configuration.\\
+          Installé via npm (\textbf{Node Package Manager}, un gestionnaire de paquets livré avec Node.js), \textit{Karma} est un test runner qui va exécuter les tests Jasmine sur un browser spécifié dans la configuration.\\
           De nombreuses options de configurations peuvent être paramétrées sur Karma, c'est là également que se retrouvent listés les autres modules dont les tests dépendent, tels que jasmine-jquery.\\
 
       \subsection{Automatisation des tâches sur le script client}
