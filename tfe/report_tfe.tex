@@ -1,0 +1,128 @@
+\documentclass{report}
+\usepackage{filecontents}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{listings}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage[toc, page]{appendix}
+\usepackage{url}
+\usepackage[left=2cm,top=2.5cm,right=1.5,bottom=2.5cm]{geometry}
+
+\definecolor{xcodekw}{rgb}{0.75, 0.22, 0.60}
+\definecolor{xcodestr}{rgb}{0.89, 0.27, 0.30}
+\definecolor{xcodecmt}{rgb}{0.31, 0.73, 0.35}
+
+% \titleformat{\chapter}[display]
+%   {\centering\normalfont\huge\bfseries}
+%   {\chaptertitlename\ \thechapter}
+%   {20pt}
+%   {\Huge}
+
+\geometry{hscale=0.75,vscale=0.85,centering}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand\appendixtocname{Annexes}
+\renewcommand\appendixname{Annexes}
+\renewcommand\appendixpagename{Annexes}
+
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+
+\textsc{\LARGE Ecole Pratique des Hautes Etudes Commerciales }\\[1.5cm] % Name of your university/college
+\includegraphics[scale=0.7]{ephec.png}\\
+Avenue du Ciseau, 15\\
+1348 Louvain-la-neuve\\
+\\[50pt]
+\textsc{\Large Travail de fin d'études}\\[0.5cm] % Major heading such as course name
+
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Plateforme d'apprentissage de l'anglais via chat et visioconférence}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+\textsc{Travail de fin d’études présenté en vue de l’obtention du diplôme de bachelier en Informatique et Systèmes : finalité Technologie de l’informatique}\\
+
+\\[90pt]
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Auteur:}\\
+Samuen \textsc{Monroe} 3TL1 % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Rapporteur (ephec) :} \\
+Virginie \textsc{Van den Schrieck} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[4cm]
+
+
+
+{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\tableofcontents
+\clearpage
+
+%% \textbf{}
+
+\chapter*{Remerciements}
+
+  Je voudrais tout d'abord remercier Virginie Van Den Schrieck qui, en tant que rapporteuse de mon travail de fin d'études,
+  m'a accompagné et aidé à parvenir au bout du projet que je me suis fixé pour ce travail.
+  Merci à elle mais également à Marie-Noël Vroman pour le rôle qu'elles ont tenu lors du projet d'intégration du premier quadrimestre,
+  qui m'a fait entrer dans le développement Ruby on Rails et a fait naître en moi la volonté de poursuivre une carrière dans le développement web.
+
+  Je remercie Nicolas Jacobeus, CEO de chez Belighted, de m'avoir offert cette place de stage pendant ces quinze
+  semaines où j'ai énormément progressé et pu apprendre de ce métier que je veux faire plus tard, ainsi que tous les membres
+  de l'équipe pour leur accueil, leurs conseils et leur aide tout au long du stage, et plus spécifiquement Maxime Nguyen et Michaël Albert qui m'ont
+  offert de précieux conseils sur AngularJs et WebRTC.
+
+  Je voudrais également remercier Yves Delvigne, qui par son cours de programmation multimédia
+  nous a inculqué les bases du développement web, et qui a donc grandement contribué
+  au chemin que j'ai entrepris de suivre depuis la deuxième année.
+
+  Un merci particulier à Rémy Voet, avec qui nous nous sommes motivés mutuellement en se retrouvant pour
+  travailler sur nos projets respectifs.
+
+  Mes remerciements vont enfin à tous les autres professeurs de l'EPHEC qui m'ont accompagné tout au long
+  de ce cursus de bachelier en technologie de l'informatique et qui ont, quelle que soit la matière
+  enseignée, contribué à me transmettre un panel de connaissances varié qui m'est et me sera utile pour
+  le reste de ma vie. Merci donc à Christian Lambeau, Claude Masson, Michel de Vleeschouwer,Youcef Bouterfa, Arnaud Dewulf,
+  Stéphane Faulkner, Véronique Leclerq, Thomas Thiry, Maxime Vanlerberghe, Jean-François Depasse, Marc Deherve et Laurent Hirsoux.
+
+
+\chapter{Introduction}
+
+  Conjoitement au stage en entreprise, le TFE marque la fin de ces trois années de bachelier en technologie de l'informatique.
+  C'est un travail de longue haleine, prenant l'entiereté du deuxième quadrimestre, associé au devoir de gérer son temps par rapport
+  à celui investi dans chaque journée au stage.
+  Mais c'est aussi l'occasion de pouvoir mettre en oeuvre nos compétences via la création d'un produit conçu enièrement par nos soins.
+
+  Passionné par le développement web, j'ai décidé de me lancer dans la création d'une application web destinée à faciliter l'apprentissage de l'anglais
+  en permettant aux utilisateurs de communiquer entre eux dans ce but grâce à un chat textuel en temps réel et à la possibilité de communiquer via un chat
+  audio/vidéo.
+
+\chapter{Conclusion}
+\end{document}
